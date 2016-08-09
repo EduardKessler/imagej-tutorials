@@ -133,7 +133,6 @@
                     "/////////////////////////////////////////////////////////////////",
                     "",
                     "import java.net.URL",
-                    "import net.imagej.ImageJ",
                     "",
                     "// This is an instance of the class net.imagej.ImageJ,",
                     "// and is created as follows:",
@@ -142,11 +141,7 @@
                     "// Here are some examples of the API in action:",
                     "",
                     "// The plugin service manages the available ImageJ plugins.",
-                    "pluginService = ij.plugin()",
-                    "ctx = ij.context()",
-                    "import org.scijava.plugin.PluginService",
-                    "pluginService = ctx.service(PluginService.class)",
-                    "pluginCount = pluginService.getIndex().size()",
+                    "pluginCount = ij.plugin().getIndex().size();",
                     "println(\"There are \" + pluginCount + \" plugins available.\")",
                     "",
                     "// The log service is used for logging messages.",
@@ -186,12 +181,12 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "728fe690-4acf-4477-a4e8-0da0c48198b0",
-                "elapsedTime": 556,
+                "shellId": "cb3718c5-4ee4-4b53-bdb5-cd6d0dabc75a",
+                "elapsedTime": 4050,
                 "height": 87
             },
             "evaluatorReader": true,
-            "lineCount": 39
+            "lineCount": 34
         },
         {
             "id": "sectionuliW9g",
