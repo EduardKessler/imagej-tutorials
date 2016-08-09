@@ -1,0 +1,44 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        }
+    ],
+    "cells": [
+        {
+            "id": "sectionJhkyYB",
+            "type": "section",
+            "title": "ImageJ Context",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownE1GsjV",
+            "type": "markdown",
+            "body": [
+                "The gateway is backed by a fundamental object known as scijava application context.  This is the thing that encapsulates the state.  It is essentially the application - if you have the context - you can access all services and methods.  The most common, singular injection point."
+            ],
+            "evaluatorReader": false
+        }
+    ],
+    "namespace": {}
+}

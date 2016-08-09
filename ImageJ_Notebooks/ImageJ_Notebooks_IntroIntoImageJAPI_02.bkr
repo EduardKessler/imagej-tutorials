@@ -1,0 +1,216 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            },
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n",
+            "deferred": {
+                "promise": {
+                    "$$state": {
+                        "status": 0,
+                        "pending": [
+                            [
+                                {
+                                    "promise": {
+                                        "$$state": {
+                                            "status": 0,
+                                            "pending": [
+                                                [
+                                                    {
+                                                        "promise": {
+                                                            "$$state": {
+                                                                "status": 0
+                                                            }
+                                                        }
+                                                    },
+                                                    null,
+                                                    null,
+                                                    null
+                                                ]
+                                            ]
+                                        }
+                                    }
+                                },
+                                null,
+                                null,
+                                null
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "jsSetting2": "",
+            "jsSetting1": "",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "R",
+            "plugin": "R",
+            "view": {
+                "cm": {
+                    "mode": "r"
+                }
+            }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "section001",
+            "type": "section",
+            "level": 1,
+            "title": "An Introduction to the ImageJ API",
+            "collapsed": false,
+            "evaluatorReader": false
+        },
+        {
+            "id": "markdown9dHd5C",
+            "type": "markdown",
+            "body": [
+                "The first step when working with ImageJ is to create an *ImageJ gateway*.  This gateway provides access to ImageJ operations and data structures.  ",
+                "",
+                "ImageJ's functionality is divided into *services*.  Each service provides some API methods for performing related tasks."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codelg4ywN",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-50')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    "",
+                    "import java.net.URL",
+                    "import net.imagej.ImageJ",
+                    "",
+                    "// This is an instance of the class net.imagej.ImageJ,",
+                    "// and is created as follows:",
+                    "ij = new ImageJ()",
+                    "",
+                    "// Here are some examples of the API in action:",
+                    "",
+                    "// The plugin service manages the available ImageJ plugins.",
+                    "pluginService = ij.plugin()",
+                    "ctx = ij.context()",
+                    "import org.scijava.plugin.PluginService",
+                    "pluginService = ctx.service(PluginService.class)",
+                    "pluginCount = pluginService.getIndex().size()",
+                    "println(\"There are \" + pluginCount + \" plugins available.\")",
+                    "",
+                    "// The log service is used for logging messages.",
+                    "ij.log().warn(\"Death Star approaching!\")",
+                    "",
+                    "// The status service is used to report the current status of operations.",
+                    "ij.status().showStatus(\"It's nine o'clock and all is well.\")",
+                    "",
+                    "// The menu service organizes a menu hierarchy for ImageJ commands.",
+                    "menuItemCount = ij.menu().getMenu().size()",
+                    "println(\"There are \" + menuItemCount + \" menu items total.\")",
+                    "",
+                    "// The platform service handles platform-specific functionality.",
+                    "// E.g., it can open a URL in the default web browser for your system:",
+                    "ij.platform().open(new URL(\"http://imagej.net/\"))",
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "There are 1326 plugins available.\n"
+                        },
+                        {
+                            "type": "err",
+                            "value": "[WARNING] Death Star approaching!\n"
+                        },
+                        {
+                            "type": "out",
+                            "value": "There are 176 menu items total.\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "728fe690-4acf-4477-a4e8-0da0c48198b0",
+                "elapsedTime": 556,
+                "height": 87
+            },
+            "evaluatorReader": true,
+            "lineCount": 39
+        },
+        {
+            "id": "sectionuliW9g",
+            "type": "section",
+            "title": "Comparison with ImageJ 1.x:",
+            "level": 4,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownpDUu52",
+            "type": "markdown",
+            "body": [
+                "ImageJ 1.x has a similar concept with the ij.ImageJ class, which is created using \"new ImageJ()\" and cached statically as a singleton.  This allows the ImageJ instance to be recovered later by calling IJ.getInstance(), and simplifies the API in some ways.  However, the assumption that there will only ever be one ImageJ per JVM limits its flexibility, and the fact that ij.ImageJ extends java.awt.Frame makes ImageJ 1.x difficult to use headless or with user interfaces other than Java AWT.",
+                "",
+                "ImageJ 1.x is not service-driven, which makes it less extensible, since additional functionality cannot be registered with the context."
+            ],
+            "evaluatorReader": false
+        }
+    ],
+    "namespace": {}
+}
