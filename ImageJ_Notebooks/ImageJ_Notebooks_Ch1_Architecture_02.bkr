@@ -1,0 +1,104 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        }
+    ],
+    "cells": [
+        {
+            "id": "sectionexjkqh",
+            "type": "section",
+            "title": "Chapter 1",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownIulA9J",
+            "type": "markdown",
+            "body": [
+                "Let's get started by discussing a little bit about the [Architecture](http://imagej.net/Architecture) of ImageJ."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionYSXpdZ",
+            "type": "section",
+            "title": "Core Libraries",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownO1DXmA",
+            "type": "markdown",
+            "body": [
+                "The [[SciJava]] software stack is composed of the following core libraries:",
+                "",
+                "* [SciJava Common](http://imagej.net/SciJava_Common) - The SciJava application container and plugin framework.",
+                "* [ImgLib2](http://imagej.net/ImgLib2) - The N-dimensional image data model.",
+                "* [ImageJ Common](http://imagej.net/ImageJ_Common) - Metadata-rich image data structures and SciJava extensions.",
+                "* [ImageJ Ops](http://imagej.net/ImageJ_Ops) - The framework for reusable image processing operations.",
+                "* [SCIFIO](http://imagej.net/SCIFIO) - The framework for N-dimensional image I/O.",
+                "",
+                "These libraries form the basis of SciJava-based software."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionwkKVyS",
+            "type": "section",
+            "title": "Modularity",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownWE3fIV",
+            "type": "markdown",
+            "body": [
+                "Much effort has been expended to ensure the design of these libraries provides a good [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns). Developers in need of specific functionality may choose to depend on only those components which are relevant, rather than needing to add a dependency to the entire SciJava software stack.",
+                "",
+                "Along those lines, the libraries take great pains to be '''UI agnostic''', with no dependencies on packages such as <code>java.awt</code> or <code>javax.swing</code>. The idea is that it should be possible to build a [user interface](https://en.wikipedia.org/wiki/Graphical_user_interface) (UI) on top of these libraries, without needing to change the library code itself. We have developed several proof-of-concept UIs for ImageJ using different UI frameworks, including [Swing](https://github.com/imagej/imagej-ui-swing), [AWT](https://github.com/imagej/imagej-ui-awt), [Eclipse SWT](https://github.com/imagej/imagej-ui-swt) and [Apache Pivot](https://github.com/imagej/imagej-ui-pivot)."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionvI6lrN",
+            "type": "section",
+            "title": "Extensibility",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownbbX4Aa",
+            "type": "markdown",
+            "body": [
+                "Extensibility is [ImageJ](http://imagej.net/ImageJ)'s greatest strength. ImageJ provides many different types of plugins, and it is possible to extend the system with your own new types of plugins. See the [create-a-new-plugin-type-tutorial](https://github.com/imagej/imagej-tutorials/tree/master/create-a-new-plugin-type) for an illustration.",
+                "",
+                "The [SciJava Common](http://imagej.net/SciJava_Common) (SJC) library provides a plugin framework with [strong typing](https://en.wikipedia.org/wiki/Strong_and_weak_typing), and makes extensive use of plugins itself, to allow core functionality to be [customized easily](http://c2.com/cgi/wiki?SoftwareSeam). SJC has an powerful plugin discovery mechanism that finds all plugins available on the Java classpath, without knowing in advance what they are or where they are located. It works by indexing the plugins at compile time via an [annotation processor](https://en.wikipedia.org/wiki/Java_annotation#Processing) (inspired by the [SezPoz](https://github.com/jglick/sezpoz ) project) which writes the plugin metadata inside the JAR file (in <code>META-INF/json/org.scijava.plugin.Plugin</code>). Reading this index allows the system to discover plugin metadata at runtime very quickly ''without'' loading the plugin classes in advance."
+            ],
+            "evaluatorReader": false
+        }
+    ],
+    "namespace": {}
+}
