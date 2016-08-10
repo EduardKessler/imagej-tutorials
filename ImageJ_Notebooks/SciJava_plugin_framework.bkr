@@ -30,6 +30,16 @@
                     "mode": "groovy"
                 }
             }
+        },
+        {
+            "name": "Java",
+            "plugin": "Java",
+            "imports": "com.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "text/x-java"
+                }
+            }
         }
     ],
     "cells": [
@@ -42,27 +52,42 @@
             "collapsed": false
         },
         {
+            "id": "markdownImNNoc",
+            "type": "markdown",
+            "body": [
+                "First and foremost, [SciJava Common](http://imagej.net/SciJava_Common#Services) is a plugin framework — a base for developing highly modular and extensible Java applications.  All plugins available on Java's classpath are automatically discovered and made available. This is accomplished by scanning classpath resources for the file path <code>META-INF/json/org.scijava.plugin.Plugin</code>. Such files are generated at compile time by a Java annotation processor that writes them in response to <code>@Plugin</code> annotations on Java classes.",
+                "",
+                "In ImageJ2 , we invented a plugin mechanism to replace ImageJ 1.x plugins, now called \"commands\" in ImageJ2 to distinguish from other plugins. We factor out plugin discovery from ImageJ2 into a base library: SciJava-Common."
+            ],
+            "evaluatorReader": false
+        },
+        {
             "id": "code6n2Saq",
             "type": "code",
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    " // Bootstrap ImageJ. This may take some minutes the first time,",
                     "// but will be fast on subsequent runs on the same computer.",
                     "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
                     "@Grab('net.imagej:imagej:2.0.0-rc-50')",
-                    "import net.imagej.ImageJ"
+                    "import net.imagej.ImageJ",
+                    "",
+                    "// application gateway to all services, our instance of ImageJ",
+                    "ij = new ImageJ()"
                 ]
             },
             "output": {
                 "state": {},
-                "selectedType": "Hidden",
+                "result": "net.imagej.ImageJ@4d223fb8",
+                "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "24d3ab3d-0eb0-4605-8ddb-a082bf91353b",
-                "elapsedTime": 3387
+                "shellId": "9a412bae-1f9c-4068-bbb0-0fc91b8124ab",
+                "elapsedTime": 2624,
+                "height": 56
             },
             "evaluatorReader": true,
-            "lineCount": 5
+            "lineCount": 8
         },
         {
             "id": "sectionE4yLib",
@@ -76,7 +101,9 @@
             "id": "markdownYVcrrX",
             "type": "markdown",
             "body": [
-                "References to all the <code>@Plugin</code>-annotated classes that are discovered are contained in a single, master [Context](https://github.com/scijava/scijava-common/blob/scijava-common-2.47.0/src/main/java/org/scijava/Context.java). Each application is responsible for creating its own <code>Context</code> to manage plugins and contextual state.",
+                "Essentially, the [Context](https://github.com/scijava/scijava-common/blob/scijava-common-2.47.0/src/main/java/org/scijava/Context.java) keeps track of the currently available plugins.  The SciJava context is a container of named [Services](http://imagej.net/Writing_plugins#Services) that hold local state information.",
+                "",
+                "References to all the <code>@Plugin</code>-annotated classes that are discovered are contained in a single, master <code>Context</code>. Each application is responsible for creating its own <code>Context</code> to manage plugins and contextual state.",
                 "",
                 "In ImageJ, a <code>Context</code> is automatically created when the [application starts up](https://github.com/imagej/imagej/blob/imagej-2.0.0-rc-39/src/main/java/net/imagej/ImageJ.java), so plugin developers do not need to create their own. In fact, creating your own <code>Context</code> typically causes problems, as it will be a different container than ImageJ is using. Instead, plugin instances within a common <code>Context</code> are provided automatically by the framework—you just have to ask for it.",
                 "",
@@ -90,43 +117,45 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "@Plugin",
-                    "public class MyPlugin {",
+                    "import net.imagej.ImageJ",
+                    "import java.net.URL",
+                    "import org.scijava.plugin.Plugin",
+                    "import org.scijava.plugin.Parameter",
+                    "import org.scijava.platform.PlatformService",
+                    "import org.scijava.command.Command",
+                    "",
+                    "@Plugin(type = Command.class)",
+                    "public class MyPlugin implements Command {",
                     " ",
                     "  // This @Parameter notation is 'asking' the Context",
-                    "  // for an instance of LogService.",
+                    "  // for an instance of PlatformService.",
                     "  @Parameter",
-                    "  private LogService logService;",
+                    "  private PlatformService platformService",
                     " ",
-                    "  public void log(String message) {",
-                    "    // Just use the LogService!",
+                    "  public void run() {",
+                    "    // Just use the PlatformService!",
                     "    // There is no need to construct it, since the Context",
                     "    // has already provided an appropriate instance.",
-                    "    logService.info(message);",
+                    "    platformService.open(new URL(\"http://imagej.net\"))",
                     "  }",
                     "}",
-                    ""
+                    "",
+                    "// executing our sample command, will open URL",
+                    "ij.command().run(MyPlugin.class, true)",
+                    "\"Success!\""
                 ]
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14708421576421034382627.groovy: 1: unable to resolve class Plugin ,  unable to find class for annotation<br/> @ line 1, column 1.<br/>   @Plugin<br/>   ^<br/><br/>script14708421576421034382627.groovy: 6: unable to resolve class LogService <br/> @ line 6, column 3.<br/>     @Parameter<br/>     ^<br/><br/>script14708421576421034382627.groovy: 6: unable to resolve class Parameter ,  unable to find class for annotation<br/> @ line 6, column 3.<br/>     @Parameter<br/>     ^<br/><br/>3 errors<br/><br/>",
-                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
-                        ""
-                    ]
-                },
-                "selectedType": "BeakerDisplay",
+                "result": "Success!",
+                "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "24d3ab3d-0eb0-4605-8ddb-a082bf91353b",
-                "elapsedTime": 550,
-                "height": 353
+                "shellId": "9a412bae-1f9c-4068-bbb0-0fc91b8124ab",
+                "elapsedTime": 571,
+                "height": 56
             },
             "evaluatorReader": true,
-            "lineCount": 16
+            "lineCount": 26
         },
         {
             "id": "markdownezExAD",
@@ -144,6 +173,7 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
+                    "",
                     "public class MyService {",
                     " ",
                     "  // This service will manually create plugin instances.",
@@ -174,19 +204,19 @@
                     "type": "BeakerDisplay",
                     "innertype": "Error",
                     "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14708421466801880568951.groovy: 6: unable to resolve class Context <br/> @ line 6, column 3.<br/>     @Parameter<br/>     ^<br/><br/>script14708421466801880568951.groovy: 6: unable to resolve class Parameter ,  unable to find class for annotation<br/> @ line 6, column 3.<br/>     @Parameter<br/>     ^<br/><br/>script14708421466801880568951.groovy: 12: unable to resolve class MyPlugin <br/> @ line 12, column 14.<br/>       MyPlugin plugin = new MyPlugin();<br/>                ^<br/><br/>script14708421466801880568951.groovy: 12: unable to resolve class MyPlugin <br/> @ line 12, column 23.<br/>       MyPlugin plugin = new MyPlugin();<br/>                         ^<br/><br/>4 errors<br/><br/>",
+                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14708553001921149489611.groovy: 1: unable to resolve class net.imagej.ImageJ<br/> @ line 1, column 1.<br/>   import net.imagej.ImageJ<br/>   ^<br/><br/>script14708553001921149489611.groovy: 2: unable to resolve class org.scijava.plugin.Parameter<br/> @ line 2, column 1.<br/>   import org.scijava.plugin.Parameter<br/>   ^<br/><br/>script14708553001921149489611.groovy: 9: unable to resolve class Context <br/> @ line 9, column 3.<br/>     @Parameter<br/>     ^<br/><br/>script14708553001921149489611.groovy: 15: unable to resolve class MyPlugin <br/> @ line 15, column 14.<br/>       MyPlugin plugin = new MyPlugin();<br/>                ^<br/><br/>script14708553001921149489611.groovy: 15: unable to resolve class MyPlugin <br/> @ line 15, column 23.<br/>       MyPlugin plugin = new MyPlugin();<br/>                         ^<br/><br/>5 errors<br/><br/>",
                         "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
                         ""
                     ]
                 },
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Groovy",
-                "shellId": "24d3ab3d-0eb0-4605-8ddb-a082bf91353b",
-                "elapsedTime": 950,
-                "height": 433
+                "shellId": "9a412bae-1f9c-4068-bbb0-0fc91b8124ab",
+                "elapsedTime": 582,
+                "height": 513
             },
             "evaluatorReader": true,
-            "lineCount": 22
+            "lineCount": 23
         },
         {
             "id": "sectionkmU6Pi",
@@ -200,6 +230,10 @@
             "id": "markdownWbk4hB",
             "type": "markdown",
             "body": [
+                "[Services](http://imagej.net/SciJava_Common#Services) are -- surprise! -- SciJavaPlugins. Just like plugins, there are Service interfaces and implementing classes. This allows a proper separation between the Service's public contract and the details of its implementation.",
+                "",
+                "Services are defined as interfaces, with concrete implementations as plugins. This design provides [seams](http://c2.com/cgi/wiki?SoftwareSeam) in the right places so that behavior at every level can be customized and overridden.",
+                "",
                 "Services provide two important functions to the SciJava framework: utility methods and persistent state. If you want to add reusable Java methods that can be used throughout the SciJava framework, then you should create a <code>Service</code> to provide this functionality. If you need to track Context-wide variables or configuration, a <code>Service</code> should be used to encapsulate that state.",
                 "",
                 "Conceptually, a <code>Service</code> satisfies the role of [static utility classes](https://en.wikipedia.org/wiki/Utility_class) on a per-Context basis. In this way, only one [instance](http://math.hws.edu/javanotes/c5/s1.html ) of each <code>Service</code> class can be associated with a given <code>Context</code> instance; an association that occurs automatically during <code>Context</code> creation. Furthermore, when a <code>Context</code> is asked for an implementation of a given <code>Service</code>, only the highest priority instance will be returned.",
@@ -207,6 +241,41 @@
                 "Services often build on or reuse functionality defined in each other. For example, the [PluginService](https://github.com/scijava/scijava-common/blob/scijava-common-2.47.0/src/main/java/org/scijava/plugin/PluginService.java) sees ubiquitous use in retrieving and working with plugin instances. For such reuse, [@Parameter annotation](https://github.com/scijava/scijava-common/blob/scijava-common-2.47.0/src/main/java/org/scijava/plugin/Parameter.java) can be used to declare inter-service requirements. During <code>Context</code> startup, these relationships will be resolved automatically."
             ],
             "evaluatorReader": false
+        },
+        {
+            "id": "code8bOVJa",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Example Service Interface:",
+                    "public interface HelloService extends SciJavaService {",
+                    "  public void sayHello();",
+                    "}",
+                    "",
+                    "// Example implementation:",
+                    "@Plugin(type = Service.class)",
+                    "public class DefaultHelloService implements HelloService {",
+                    "  @Parameter",
+                    "  private StatusService status;",
+                    "",
+                    "  @Override",
+                    "  public void initialize() {",
+                    "          // initialize as little as possible here",
+                    "  }",
+                    "",
+                    "  @Override",
+                    "  public void sayHello() {",
+                    "          status.showStatus(\"Howdy!\");",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 21
         },
         {
             "id": "sectionTK39y9",
