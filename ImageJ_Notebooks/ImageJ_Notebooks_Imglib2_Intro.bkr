@@ -1,0 +1,44 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        }
+    ],
+    "cells": [
+        {
+            "id": "sectionFLdwbe",
+            "type": "section",
+            "title": "ImgLib2",
+            "level": 1,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdowneXFCFn",
+            "type": "markdown",
+            "body": [
+                "[ImgLib2](http://imagej.net/ImgLib2) is a general-purpose, multidimensional image processing library."
+            ],
+            "evaluatorReader": false
+        }
+    ],
+    "namespace": {}
+}
