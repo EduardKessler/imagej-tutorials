@@ -53,9 +53,10 @@
             "id": "markdownyrt159",
             "type": "markdown",
             "body": [
-                "FOllow ordering in imglib2.net",
+                "FOllow ordering in imglib2.net (http://imagej.net/ImgLib2_-_Accessors#Cursor)",
                 "",
                 "1 Introduction",
+                "",
                 "2 RandomAccess",
                 "",
                 "3 A Taste of Generic Algorithms",
