@@ -50,6 +50,54 @@
             "evaluatorReader": false
         },
         {
+            "id": "sectionV10NVP",
+            "type": "section",
+            "title": "Accessors",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownzA1iqb",
+            "type": "markdown",
+            "body": [
+                "In ImgLib2, images are manipulated using Accessors.  For pixel images, you can think of an accessor as a movable reference to a pixel.  It can be moved around the image, even to a pixel at specific coordinates.  It can be de-referenced to get the pixel value, and it can retrieve the current position.  The accessors provided by ImgLib2 typically implement Cursor or RandomAccess."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionYwzbUJ",
+            "type": "section",
+            "title": "Cursor",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownNWf2i1",
+            "type": "markdown",
+            "body": [
+                ""
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionUdF2Lv",
+            "type": "section",
+            "title": "RandomAccess",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdowny0NufM",
+            "type": "markdown",
+            "body": [
+                ""
+            ],
+            "evaluatorReader": false
+        },
+        {
             "id": "markdownyrt159",
             "type": "markdown",
             "body": [
