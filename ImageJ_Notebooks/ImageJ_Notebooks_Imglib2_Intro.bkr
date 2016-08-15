@@ -36,7 +36,7 @@
         {
             "id": "sectionFLdwbe",
             "type": "section",
-            "title": "ImgLib2",
+            "title": "ImgLib2: Introduction",
             "level": 1,
             "evaluatorReader": false,
             "collapsed": false
@@ -52,6 +52,26 @@
             "evaluatorReader": false
         },
         {
+            "id": "sectionlAC22Y",
+            "type": "section",
+            "title": "Accessibles",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownTa7Tew",
+            "type": "markdown",
+            "body": [
+                "In ImgLib2, images are represented by [_Accessibles_](http://imagej.net/ImgLib2_-_Accessibles). Image here refers to any (partial) function from coordinates to values.",
+                "",
+                "In the following sections we will see how pixel values can be manipulated using [_Accessors_](http://imagej.net/ImgLib2_-_Accessors). _Accessors_ are obtained from _Accessibles_. ",
+                "",
+                "_Accessibles_ represent the data itself. Pixel images, procedurally generated images, views into images (for instance sub-images), interpolated images, sparse collections of samples, the list of local intensity maxima of an image, list of nearest neighbors, etc., are all examples of _Accessibles_."
+            ],
+            "evaluatorReader": false
+        },
+        {
             "id": "sectionV10NVP",
             "type": "section",
             "title": "Accessors",
@@ -63,7 +83,7 @@
             "id": "markdownzA1iqb",
             "type": "markdown",
             "body": [
-                "In ImgLib2, images are manipulated using [Accessors](http://imagej.net/ImgLib2_-_Accessors).  For pixel images, you can think of an accessor as a movable reference to a pixel.  It can be moved around the image, even to a pixel at specific coordinates.  It can be de-referenced to get the pixel value, and it can retrieve the current position.  The accessors provided by ImgLib2 typically implement **RandomAccess** of  **Cursor**.",
+                "In ImgLib2, images are manipulated using [_Accessors_](http://imagej.net/ImgLib2_-_Accessors).  For pixel images, you can think of an accessor as a movable reference to a pixel.  It can be moved around the image, even to a pixel at specific coordinates.  It can be de-referenced to get the pixel value, and it can retrieve the current position.  The accessors provided by ImgLib2 typically implement **RandomAccess** of  **Cursor**.",
                 "",
                 "",
                 ">_NOTE:_    ",
