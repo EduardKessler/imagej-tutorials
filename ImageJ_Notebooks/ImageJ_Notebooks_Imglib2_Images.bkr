@@ -52,6 +52,16 @@
                     "mode": "r"
                 }
             }
+        },
+        {
+            "name": "Java",
+            "plugin": "Java",
+            "imports": "com.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "text/x-java"
+                }
+            }
         }
     ],
     "cells": [
@@ -67,9 +77,36 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                ""
+                "The following piece of code creates and displays an 400x320 8bit gray-level image:"
             ],
             "evaluatorReader": false
+        },
+        {
+            "id": "codeMjDEcP",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import net.imglib2.img.Img;",
+                    "import net.imglib2.img.array.ArrayImgFactory;",
+                    "import net.imglib2.img.display.imagej.ImageJFunctions;",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    " ",
+                    "public class CreateAndDisplay {",
+                    "    public static void main( final String[] args ) {",
+                    "        // will create & display a window showing a black 400x320 image",
+                    "        final Img< UnsignedByteType > img = new ArrayImgFactory< UnsignedByteType >()",
+                    "            .create( new long[] { 400, 320 }, new UnsignedByteType() );",
+                    "        ImageJFunctions.show( img );",
+                    "    }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 13
         }
     ],
     "namespace": {}
