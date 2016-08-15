@@ -22,12 +22,12 @@
             "languageVersion": "ES2015"
         },
         {
-            "name": "Groovy",
-            "plugin": "Groovy",
-            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "name": "Java",
+            "plugin": "Java",
+            "imports": "com.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
             "view": {
                 "cm": {
-                    "mode": "groovy"
+                    "mode": "text/x-java"
                 }
             }
         }
@@ -45,7 +45,9 @@
             "id": "markdowneXFCFn",
             "type": "markdown",
             "body": [
-                "[ImgLib2](http://imagej.net/ImgLib2) is a general-purpose, multidimensional image processing library.  Writing code using ImgLib2 is independent of image dimensionality, data type, and data storage strategy.  It's designed to be reusable, to decouple algorithm development and data management, and to be extensible and adaptable through the addition of new algorithms, pixel types, and storage strategies."
+                "[ImgLib2](http://imagej.net/ImgLib2) is a general-purpose, multidimensional image processing library.  Writing code using ImgLib2 is independent of image dimensionality, data type, and data storage strategy.  It's designed to be reusable, to decouple algorithm development and data management, and to be extensible and adaptable through the addition of new algorithms, pixel types, and storage strategies.",
+                "",
+                "Find javadocs for Imglib2 [here](http://javadoc.imagej.net/ImgLib2/)."
             ],
             "evaluatorReader": false
         },
@@ -61,23 +63,13 @@
             "id": "markdownzA1iqb",
             "type": "markdown",
             "body": [
-                "In ImgLib2, images are manipulated using Accessors.  For pixel images, you can think of an accessor as a movable reference to a pixel.  It can be moved around the image, even to a pixel at specific coordinates.  It can be de-referenced to get the pixel value, and it can retrieve the current position.  The accessors provided by ImgLib2 typically implement Cursor or RandomAccess."
-            ],
-            "evaluatorReader": false
-        },
-        {
-            "id": "sectionYwzbUJ",
-            "type": "section",
-            "title": "Cursor",
-            "level": 3,
-            "evaluatorReader": false,
-            "collapsed": false
-        },
-        {
-            "id": "markdownNWf2i1",
-            "type": "markdown",
-            "body": [
-                ""
+                "In ImgLib2, images are manipulated using [Accessors](http://imagej.net/ImgLib2_-_Accessors).  For pixel images, you can think of an accessor as a movable reference to a pixel.  It can be moved around the image, even to a pixel at specific coordinates.  It can be de-referenced to get the pixel value, and it can retrieve the current position.  The accessors provided by ImgLib2 typically implement **RandomAccess** of  **Cursor**.",
+                "",
+                "",
+                ">_NOTE:_    ",
+                ">Both, **RandomAccess** and **Cursor** implement the **Sampler** interface which allows to access pixel values. Both implement the **Localizable** interface which allows to retrieve the accessors current >pixel coordinates. Both inherit (through Localizable) the **EuclideanSpace** interval which allows to get the number of dimensions of the image.",
+                "",
+                ">Note, that Sampler, RandomAccess, and Cursor have a type paramer **< T >** that refers to the value type of the underlying image."
             ],
             "evaluatorReader": false
         },
@@ -93,7 +85,306 @@
             "id": "markdowny0NufM",
             "type": "markdown",
             "body": [
-                ""
+                "**RandomAccess** provides n-dimensional random access through the **Positionables** interface. It can be positioned at arbitrary integer coordinates.",
+                "",
+                "RandomAccess provides n-dimensional random access through the Positionable interface. It can be used to access pixels at arbitrary integer coordinates. The following code uses a RandomAccess to draw some white pixels into an image.",
+                "",
+                ">_NOTE:_",
+                "> * **get()** is defined in the **Sampler ** interface, so you can obtain pixel references from a Cursor in exactly the same way.",
+                "> * Often, the **T** obtained from **Sampler < T >.get()** is a proxy object that is re-used internally. You should assume that moving the accessor invalidates the proxy. If you want to keep a permanent reference to a pixel, use the **Sampler < T >.copy()** method. In the above example, this would return a copy of the RandomAccess refering to the same pixel.",
+                "> * The **Positionable**, **Localizable**, … interfaces are not restricted to accessors. In fact, many ImgLib2 entities are **Localizable**. For instance, the **Point** class implements **Positionable** and **Localizable**, and simply represents a n-dimensional coordinate. In your own code, whenever you have something that can provide coordinates, you should consider implementing **Localizable**."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeLsYhPl",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Random;",
+                    " ",
+                    "import net.imglib2.RandomAccess;",
+                    "import net.imglib2.img.Img;",
+                    "import net.imglib2.img.array.ArrayImgFactory;",
+                    "import net.imglib2.img.display.imagej.ImageJFunctions;",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    " ",
+                    "public class DrawWhitePixels {",
+                    "    public static void main( final String[] args ) {",
+                    "      ",
+                    "        // create a 8-bit gray-level image",
+                    "        final int[] dimensions = new int[] { 400, 320 };",
+                    "        final Img< UnsignedByteType > img = new ArrayImgFactory< UnsignedByteType >()",
+                    "            .create( dimensions, new UnsignedByteType() );",
+                    "      ",
+                    "        // create a RandomAccess to the image (same generic type, UnsignedByteType)",
+                    "        // Img implements the RandomAccessible interface, ",
+                    "        // thus we can use randomAccess() to obtain one",
+                    "        final RandomAccess< UnsignedByteType > r = img.randomAccess();",
+                    "        final Random random = new Random();",
+                    "      ",
+                    "        // set 1000 random pixels to the value 255 (white)",
+                    "        for ( int i = 0; i < 1000; ++i ) {",
+                    "            // obtain the x, y coordinates of a random pixel within the image boundaries",
+                    "            final int x = ( int ) ( random.nextFloat() * img.max( 0 ) );",
+                    "            final int y = ( int ) ( random.nextFloat() * img.max( 1 ) );",
+                    "          ",
+                    "            // position the RandomAccess at those coordinates",
+                    "            // setPosition() takes two parameters: the coordinate and the dimension",
+                    "            r.setPosition( x, 0 );",
+                    "            r.setPosition( y, 1 );",
+                    "          ",
+                    "            // get() the pixel value at that coordinate, ",
+                    "            // this method returns an instance of the pixel value ",
+                    "            // type UnsignedByteType that acts as a reference to the pixel",
+                    "            final UnsignedByteType t = r.get();",
+                    "          ",
+                    "            // set the pixel value via this reference",
+                    "            t.set( 255 );",
+                    "        }",
+                    "        // show the result",
+                    "        ImageJFunctions.show( img );",
+                    "    }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 45
+        },
+        {
+            "id": "markdownJC1lzG",
+            "type": "markdown",
+            "body": [
+                "Before we move on to the \"other\" accessor, **Cursor**, let's consider a generalization of the previous example. Let's say we like setting random pixels, and because we plan to do this a lot in the future, we extract this functionality into a method.",
+                "",
+                "Easy enough. But what if we want to apply the method to images of another value type, e.g. **DoubleType** or **ARGBType**? What if we want to apply it to a 3D image? ImgLib2 allows you to write code that handles of this transparently. In the following we write a function, that sets 1000 random pixels to \"white\", no matter what."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeEmBSUF",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import java.util.Random;",
+                    " ",
+                    "import net.imglib2.RandomAccess;",
+                    "import net.imglib2.img.Img;",
+                    "import net.imglib2.img.array.ArrayImgFactory;",
+                    "import net.imglib2.img.display.imagej.ImageJFunctions;",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    " ",
+                    "public class DrawWhitePixelsGeneric {",
+                    "  ",
+                    "  // There is no need to restrict ourselves to Img. ",
+                    "  // We need be able to get a RandomAccess, so we need RandomAccessible<T>, ",
+                    "  // and to get the number of dimensions and the extent in every dimension, ",
+                    "  // so we need Interval and therefore use: RandomAccessibleInterval<T>",
+                    "  public static < T extends Type< T > >",
+                    "        void draw( final RandomAccessibleInterval< T > img, final T white ) {",
+                    "        // get the number of dimensions",
+                    "        final int n = img.numDimensions();",
+                    "        // Taking a general Interval means that we no longer can assume ",
+                    "        // that the interval starts at coordinates (0,0,…,0). Thus we need ",
+                    "        // to make a final modification to correctly draw between min and max of the interval.",
+                    "        final long[] min = new long[ n ];",
+                    "        img.min( min );",
+                    "        final long[] scale = new long[ n ];",
+                    "        for ( int d = 0; d < n; ++d ) {",
+                    "            scale[ d ] = img.max( d ) - min[ d ];",
+                    "        }",
+                    "        final long[] pos = new long[ n ];",
+                    " ",
+                    "        // create a RandomAccess to the image (now the generic type, T)",
+                    "        // Img implements the RandomAccessible interface, ",
+                    "        // thus we can use randomAccess() to obtain one",
+                    "        final RandomAccess< T > r = img.randomAccess();",
+                    "        final Random random = new Random();",
+                    "        for ( int i = 0; i < 1000; ++i ) {",
+                    "            // loop over all dimensions when setting the position of the RandomAccess",
+                    "            for ( int d = 0; d < n; ++d ) {",
+                    "                pos[ d ] = min[ d ] + ( long ) ( random.nextFloat() * scale[ d ] );",
+                    "            }",
+                    "            // set the position",
+                    "            r.setPosition( pos );",
+                    "          ",
+                    "            // get() the pixel at that coordinate and ",
+                    "            // set the pixel value via this reference",
+                    "            r.get().set( white );",
+                    "        }",
+                    "    }",
+                    " ",
+                    "    public static void main( final String[] args ) {",
+                    "        // in this example, we use a 3D ARGBType image ",
+                    "        // (which means a color image with red/green/blue/alpha values)",
+                    "        final Img< ARGBType > img = new ArrayImgFactory< ARGBType >()",
+                    "            .create( new int[] {400, 320, 100}, new ARGBType() );",
+                    "        draw( img, new ARGBType( 0xffffffff ) );",
+                    "        ImageJFunctions.show( img );",
+                    "    }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 57
+        },
+        {
+            "id": "markdownlIXzRt",
+            "type": "markdown",
+            "body": [
+                "Now we are able to apply **draw()** to many ImgLib2 constructs that are not pixel Imgs. For instance there are Views that employ on-the-fly coordinate transforms, sampled and interpolated data, etc.",
+                "",
+                ">_NOTE:_",
+                "> * Besides **setPosition()** in a single or all dimensions, you can also relatively move a **RandomAccess** in one or all dimensions, or move the **RandomAccess** pixel-wise in one dimension (Have a look at the [Positionable API doc](http://javadoc.imagej.net/ImgLib2/)!) Which of those is most efficient depends on the situation.",
+                "> T* here is a **setPosition()** version which takes a **Localizable**. Often a situation occurs where you want to position accessor _a_ to the same location as accessor _b._ In this situation you can avoid localizing _b_ into an array and using that array to set the position of _a._ You can simply **a.setPosition( b )** because _b_ is **Localizable**.",
+                "> * By _image_, we do not necessarily mean _pixel image._",
+                "> * We use the generic parameter **< T extends Type< T > >** instead of **< Type >** throughout ImgLib2 since that allows us to be more type-safe. Imagine implementing an **add(a, b)** method for a certain type: using the simpler generic parameter would not allow us to enforce both parameters to have the same subclass of **Type**!",
+                "> * We create as many variables as possible outside of the loop (in particular, objects) since creating objects costs a bit of execution time and can easily dominate the performance of the algorithm if one is not careful about it."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectionYwzbUJ",
+            "type": "section",
+            "title": "Cursor",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdownNWf2i1",
+            "type": "markdown",
+            "body": [
+                "**Cursor** provides iteration through the **Iterator** interface. It can be moved forward to visit all pixels of the image once.  The **Cursor** concept is not limited to pixel images. A **Cursor** can be used to iterate every collection of **Localizable** samples.",
+                "",
+                "**Cursor** provides iteration through the **net.imglib2.Iterator** interface. **Iterator.fwd()** advances the cursor. **Iterator.hasNext()** returns true if the cursor can be advanced further. Initially, a **Cursor** points before the first element. You have to call **fwd()** once to move to the first element.",
+                "",
+                "Note, that the ImgLib2 **net.imglib2.Iterator** interface is different from Java's **java.util.Iterator.** However, for convenience, **Cursor** implements **java.util.Iterator** as well.",
+                "",
+                "Just like **RandomAccess**, **Cursor** extends **Sampler**, so you can **get()** the value of the current pixel (respectively sample). It also implements **Localizable**, so you can query the coordinates of the current sample.",
+                "",
+                "Let's look at an example: We load an image and find the maximum value (the intensity of the brightest pixel)."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codePsZDrU",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import net.imglib2.Cursor;",
+                    "import net.imglib2.img.Img;",
+                    "import net.imglib2.img.array.ArrayImgFactory;",
+                    "import net.imglib2.io.ImgIOException;",
+                    "import net.imglib2.io.ImgOpener;",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    " ",
+                    "public class FindMaximumValue {",
+                    "    public static void main( final String[] args ) throws ImgIOException {",
+                    "        final Img< UnsignedByteType > img = new ImgOpener().openImg( \"graffiti.tif\",",
+                    "            new ArrayImgFactory< UnsignedByteType >(), new UnsignedByteType() );",
+                    "      ",
+                    "        // we get a Cursor from the image",
+                    "        final Cursor< UnsignedByteType > cursor = img.cursor();",
+                    "        int max = 0;",
+                    "      ",
+                    "        // we iterate over the image ",
+                    "        while ( cursor.hasNext() ) {",
+                    "            // get the value at the current position",
+                    "            // (again,this is an instance of the pixel ",
+                    "            // value type UnsignedByteType that ",
+                    "            // acts as a reference to the pixel)",
+                    "            final UnsignedByteType t = cursor.next();",
+                    "            max = Math.max( t.get(), max );",
+                    "        }",
+                    "        System.out.println( \"max = \" + max );",
+                    "    }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 28
+        },
+        {
+            "id": "markdownaRyqSH",
+            "type": "markdown",
+            "body": [
+                "Let's extend the previous example. Now we are also interested in the coordinates of the maximum. **Cursor** extends the **Localizable** interface which provides methods to get the current location either dimension-by-dimension or all at once.  And let's do this via a generic version; for example, we will not take an **Img< T >** as the parameter, because that would be too restrictive."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeURnKML",
+            "type": "code",
+            "evaluator": "Java",
+            "input": {
+                "body": [
+                    "import net.imglib2.Cursor;",
+                    "import net.imglib2.IterableInterval;",
+                    "import net.imglib2.img.Img;",
+                    "import net.imglib2.img.array.ArrayImgFactory;",
+                    "import net.imglib2.io.ImgIOException;",
+                    "import net.imglib2.io.ImgOpener;",
+                    "import net.imglib2.type.Type;",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    " ",
+                    "public class FindMaximumValueAndLocationGeneric {",
+                    "    // IterableInterval<T> is the most general type to use, but must be Comparable",
+                    "    // the return value of findmax is a Cursor<T>, holds value and coordinates",
+                    "    public static < T extends Comparable< T > >",
+                    "            Cursor< T > findmax( final IterableInterval< T > iterable ) {",
+                    "        final Cursor< T > cursor = iterable.cursor();",
+                    "        cursor.fwd();",
+                    "        Cursor< T > max = cursor.copyCursor();",
+                    "      while ( cursor.hasNext() ) {",
+                    "        // to remember the maximum, we simply take a new copy ",
+                    "        // of the iterating cursor whenever a better max value is found",
+                    "        if ( cursor.next().compareTo( max.get() ) > 0 ) {",
+                    "                max = cursor.copyCursor();",
+                    "        }",
+                    "      }",
+                    "        return max;",
+                    "    }",
+                    " ",
+                    "    public static void main( final String[] args ) throws ImgIOException {",
+                    "        final Img< UnsignedByteType > img = new ImgOpener().openImg( \"graffiti.tif\",",
+                    "            new ArrayImgFactory< UnsignedByteType >(), new UnsignedByteType() );",
+                    "        // use findmax and get the maximum value and coordinates from the resulting Cursor,",
+                    "        // using the dimension-by-dimension getLongPosition() of the Localizable interface",
+                    "        final Cursor< UnsignedByteType > max = findmax( img );",
+                    "        System.out.println( \"max = \" + max.get().get() );",
+                    "        System.out.println( \"found at ( \" + max.getLongPosition( 0 ) + \", \" +",
+                    "                                            max.getLongPosition( 1 ) + \")\" );",
+                    "    }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {}
+            },
+            "evaluatorReader": true,
+            "lineCount": 38
+        },
+        {
+            "id": "markdown0WQBpZ",
+            "type": "markdown",
+            "body": [
+                "> _NOTE:_",
+                "> * The iteration order is subject to implementation, specialized for each memory layout to minimize access time. For example, an **ArrayImg** has a different iteration order from a **CellImg**. This is nicely illustrated in [ImgLib2 Example 2b - Duplicating an Img using a different ImgFactory](http://imagej.net/ImgLib2_Examples#Example_2b_-_Duplicating_an_Img_using_a_different_ImgFactory).",
+                "> * Typically, there are two variants of **Cursors** available. One that calculates its location per each iteration and one that calculates it only per localization request. The former is more efficient when localization occurs frequently, the latter otherwise. In the maximum-finding example, we use the latter because localization is only required once after the maximum has been found. The former one could be obtained using **localizingCursor()** instead of **cursor()** (see [IterableInterval API doc](http://javadoc.imagej.net/ImgLib2/))",
+                "> * **copyCursor()** is a work-around to circumvent a javac bug with covariant return type overriding. In the future (with JDK7) every **Sampler** can be copied using **copy()** instead of having specialised **copyCursor()**, **copyRandomAccess()**, … methods."
             ],
             "evaluatorReader": false
         },
@@ -101,19 +392,17 @@
             "id": "markdownyrt159",
             "type": "markdown",
             "body": [
-                "FOllow ordering in imglib2.net (http://imagej.net/ImgLib2_-_Accessors#Cursor)",
+                "ImgLib2 is not restricted to rasterized images and integer coordinates It also supports continuous images and real-valued coordinates. Examples where this is appropriate are",
                 "",
-                "1 Introduction",
+                "* an interpolated image, where an interpolated value can be obtained at any real coordinate. Note that this is a bounded, but continuous image. Thus it is not iterable.",
+                "* a procedurally generated image, where a value can be computed at any real coordinate (continuous, unbounded, non-iterable).",
+                "* collections of samples taken at arbitrary real coordinates (discrete, bounded, iterable).",
                 "",
-                "2 RandomAccess",
+                "Real equivalents of the **Positionable** and **Localizable** interfaces have been added by which real-valued coordinates can be accessed, **RealPositionable** and **RealLocalizable**, respectively.   **RealPositionable** extends **Positionable**, because whenever something can be positioned at arbitrary real coordinates, of course it can be positioned to integer coordinates as well.  **Localizable** extends **RealLocalizable**, as something that is able to provide its integer coordinates is always able to provide them as real coordinates too.",
                 "",
-                "3 A Taste of Generic Algorithms",
+                "Both, **RealRandomAccess** and **RealCursor** are **RealLocalizable**. Note that the inheritance relationship of **Localizable** and **RealLocalizable** propagates to the cursors. Every **Cursor** is also a **RealCursor** (because it can provide its current integer coordinates as real coordinates as well). There is no such relationship between **RandomAccess** and **RealRandomAccess**.",
                 "",
-                "4 Cursor",
-                "",
-                "5 Accessors for Continuous Coordinates",
-                "5.1 A RealRandomAccess to Render Mandelbrot Fractals",
-                ""
+                "You can read more about this final topic and see example code [here](http://imagej.net/ImgLib2_-_Accessors#Accessors_for_Continuous_Coordinates)."
             ],
             "evaluatorReader": false
         }
