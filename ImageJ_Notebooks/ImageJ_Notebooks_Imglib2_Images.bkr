@@ -151,10 +151,10 @@
                 "Next we create a **long[]** array that specifies the image size in every dimension. The length of the array specifies the number of dimensions. Here, we state that we want to create 400x320 2D image.",
                 "",
                 "_Line 3:_",
-                "We need to provide a type variable, that is a variable having the type that is to be stored in the image. This must match the generic type parameter of the **ImgFactory**. Thus we create an **UnsignedByteType**.  ",
+                "We need to provide a type variable, that is a variable having the type that is to be stored in the image. This must match the generic type parameter of the [ImgFactory](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/ImgFactory.html). Thus we create an [UnsignedByteType](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/numeric/integer/UnsignedByteType.html).  ",
                 "",
                 "_Line 4:_",
-                "We create the image, using the factory, dimensions, and type variable.  We store the result of the **create()** method in an [Img](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html) variable. **Img** is a convenience interface that gathers properties of pixel image containers such as having a number of dimensions, being able to iterate it's pixels, etc."
+                "We create the image, using the factory, dimensions, and type variable.  We store the result of the **create()** method in an [Img](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html) variable. [Img](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html) is a convenience interface that gathers properties of pixel image containers such as having a number of dimensions, being able to iterate it's pixels, etc."
             ],
             "evaluatorReader": false
         },
@@ -231,10 +231,10 @@
             "type": "markdown",
             "body": [
                 "_Line 1:_",
-                "When opening an image, we can specify which memory layout to use and as which value type we want to load the image. We want to use the **ArrayImg** layout again, and we want to have **UnsignedByteType** values again. We need an **ImgFactory** and an instance of the value type.",
+                "When opening an image, we can specify which memory layout to use and as which value type we want to load the image. We want to use the [ArrayImg](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/array/ArrayImg.html) layout again, and we want to have [UnsignedByteType](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/numeric/integer/UnsignedByteType.html) values again. We need an [ImgFactory](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/ImgFactory.html) and an instance of the value type.",
                 "",
                 "_Line 4:_",
-                "We can use the **openImg()** method, giving a filename, **ImgFactory**, and type instance."
+                "We can use the **openImg()** method, giving a filename, [ImgFactory](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/ImgFactory.html), and type instance."
             ],
             "evaluatorReader": false
         },
@@ -244,7 +244,7 @@
             "body": [
                 "> _NOTE:_",
                 "",
-                "> Note that [Img](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html) is just convenience interface. When you get more proficient with ImgLib2 you will find yourself using it less and less. You will either be more concrete or more general than that. In the above example, we could be more concrete -- the result of the **ArrayImgFactory< UnsignedByteType >.create()** is actually an **ArrayImg< UnsignedByteType, ByteArray >**. In algorithm implementations, you want to be as generic as possible to not constrain yourself to specific image types. You will specify only the super-interfaces of **Img** that you really need. For instance, if you need something which has boundaries and can be iterated you would use **IterableInterval**.",
+                "> Note that [Img](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html) is just convenience interface. When you get more proficient with ImgLib2 you will find yourself using it less and less. You will either be more concrete or more general than that. In the above example, we could be more concrete -- the result of the **ArrayImgFactory< UnsignedByteType >.create()** is actually an **ArrayImg< UnsignedByteType, ByteArray >**. In algorithm implementations, you want to be as generic as possible to not constrain yourself to specific image types. You will specify only the super-interfaces of [Img](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html) that you really need. For instance, if you need something which has boundaries and can be iterated you would use [IterableInterval](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/IterableInterval.html).",
                 ""
             ],
             "evaluatorReader": false
