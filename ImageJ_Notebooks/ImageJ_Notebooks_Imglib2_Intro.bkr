@@ -123,9 +123,9 @@
                 "",
                 "",
                 ">_NOTE:_    ",
-                ">Both, **RandomAccess** and **Cursor** implement the **Sampler** interface which allows to access pixel values. Both implement the **Localizable** interface which allows to retrieve the accessors current >pixel coordinates. Both inherit (through Localizable) the **EuclideanSpace** interval which allows to get the number of dimensions of the image.",
+                ">Both, [RandomAccess](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/RandomAccess.html) and [Cursor](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/Cursor.html) implement the [Sampler](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/Sampler.html) interface which allows to access pixel values. Both implement the [Localizable](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/Localizable.html) interface which allows to retrieve the accessors current >pixel coordinates. Both inherit (through Localizable) the [EuclideanSpace](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/EuclideanSpace.html) interval which allows to get the number of dimensions of the image.",
                 "",
-                ">Note, that Sampler, RandomAccess, and Cursor have a type paramer **< T >** that refers to the value type of the underlying image."
+                ">Note, that [Sampler](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/Sampler.html), [RandomAccess](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/RandomAccess.html), and [Cursor](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/Cursor.html) have a type paramer **< T >** that refers to the value type of the underlying image."
             ],
             "evaluatorReader": false
         },
