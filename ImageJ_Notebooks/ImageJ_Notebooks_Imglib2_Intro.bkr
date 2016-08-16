@@ -81,8 +81,8 @@
                 "state": {},
                 "selectedType": "Hidden",
                 "pluginName": "Groovy",
-                "shellId": "d2e86f6f-630c-48e5-9401-32365206dbd3",
-                "elapsedTime": 1769
+                "shellId": "609cae7e-ea2a-44bb-9f75-1f8fffe2b33e",
+                "elapsedTime": 1693
             },
             "evaluatorReader": true,
             "lineCount": 8
@@ -153,72 +153,194 @@
             "evaluatorReader": false
         },
         {
+            "id": "markdownE8ltyF",
+            "type": "markdown",
+            "body": [
+                "First, we will creat a 400x320 8-bit gray-level image."
+            ],
+            "evaluatorReader": false
+        },
+        {
             "id": "codeLsYhPl",
             "type": "code",
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "import java.util.Random;",
+                    "import net.imglib2.img.array.ArrayImgs",
                     "",
-                    "import net.imglib2.RandomAccess;",
-                    "import net.imglib2.img.Img;",
-                    "import net.imglib2.img.array.ArrayImgFactory;",
-                    "import net.imglib2.img.display.imagej.ImageJFunctions;",
-                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    "long[] dimensions = [400, 320]",
+                    "img = ArrayImgs.unsignedBytes(dimensions)",
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "ArrayImg [400x320]",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "609cae7e-ea2a-44bb-9f75-1f8fffe2b33e",
+                "elapsedTime": 616,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 5
+        },
+        {
+            "id": "markdownAcDxee",
+            "type": "markdown",
+            "body": [
+                "Next, we will create a [RandomAccess](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccess.html) to the image. Img implements the [RandomAccessible](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccessible.html) interface, thus we can use randomAccess() to obtain one. The [RandomAccess](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccess.html) has the same generic type, [UnsignedByteType](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/numeric/integer/UnsignedByteType.html), as the image."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codel9df3A",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
                     "",
-                    "        // create a 8-bit gray-level image",
-                    "        final int[] dimensions = new int[] { 400, 320 };",
-                    "        final Img< UnsignedByteType > img = new ArrayImgFactory< UnsignedByteType >()",
-                    "            .create( dimensions, new UnsignedByteType() );",
-                    "      ",
-                    "        // create a RandomAccess to the image (same generic type, UnsignedByteType)",
-                    "        // Img implements the RandomAccessible interface, ",
-                    "        // thus we can use randomAccess() to obtain one",
-                    "        final RandomAccess< UnsignedByteType > r = img.randomAccess();",
-                    "        final Random random = new Random();",
-                    "      ",
-                    "        // set 1000 random pixels to the value 255 (white)",
-                    "        for ( int i = 0; i < 1000; ++i ) {",
-                    "            // obtain the x, y coordinates of a random pixel within the image boundaries",
-                    "            final int x = ( int ) ( random.nextFloat() * img.max( 0 ) );",
-                    "            final int y = ( int ) ( random.nextFloat() * img.max( 1 ) );",
-                    "          ",
-                    "            // position the RandomAccess at those coordinates",
-                    "            // setPosition() takes two parameters: the coordinate and the dimension",
-                    "            r.setPosition( x, 0 );",
-                    "            r.setPosition( y, 1 );",
-                    "          ",
-                    "            // get() the pixel value at that coordinate, ",
-                    "            // this method returns an instance of the pixel value ",
-                    "            // type UnsignedByteType that acts as a reference to the pixel",
-                    "            final UnsignedByteType t = r.get();",
-                    "          ",
-                    "            // set the pixel value via this reference",
-                    "            t.set( 255 );",
-                    "        }",
-                    "        // show the result",
-                    "        ImageJFunctions.show( img );"
+                    "r = img.randomAccess()",
+                    "random = new Random()   "
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "java.util.Random@1852da9",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "609cae7e-ea2a-44bb-9f75-1f8fffe2b33e",
+                "elapsedTime": 221,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 3
+        },
+        {
+            "id": "markdowndU9enK",
+            "type": "markdown",
+            "body": [
+                "Using a **for** loop, we will set 1000 random pixels to the value of 255 (ie. _white_).  ",
+                "",
+                "First, we obtain the _x_, _y_ coordiantes of a random pixel within the image boundaries (_lines 2-3_). ",
+                "",
+                "Then we position the [RandomAccess](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccess.html) at those coordinates using **setPosition()** from the [Positionable](http://javadoc.imagej.net/ImgLib2/net/imglib2/Positionable.html) interface, which takes two parameters, the coordinate and the dimension (_lines 4-5_), so we set the coordinate in dimension 0 to the value _x_, and we set the coordinate in dimension 1 to the value _y_.  ",
+                "",
+                "In _line 6_, using **get()**, we retrieve the pixel value at that coordinate; this method retunrs an instance of the pixel value type [UnsignedByteType](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/numeric/integer/UnsignedByteType.html) that acts as a reference to the pixel.  ",
+                "",
+                "Finally, we set the pixel value to 255 (ie. _white_) via this reference (_line 7_)."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeEz83wt",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "1000.times {",
+                    "  x = ( int ) ( random.nextFloat() * img.max( 0 ) )",
+                    "  y = ( int ) ( random.nextFloat() * img.max( 1 ) )",
+                    "  r.setPosition( x, 0 )",
+                    "  r.setPosition( y, 1 )",
+                    "  t = r.get()",
+                    "  t.set( 255 );",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Groovy",
+                "shellId": "609cae7e-ea2a-44bb-9f75-1f8fffe2b33e",
+                "elapsedTime": 3148
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
+        },
+        {
+            "id": "markdowncFLij3",
+            "type": "markdown",
+            "body": [
+                "Now, the image can be displayed."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeqgCHOS",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "///////////////////////////////////////////////////////////////////////////////",
+                    "// Define an object which houses some handy notebook functions. In particular,",
+                    "// we include a way to display ImgLib images (i.e., RandomAccessibleInterval",
+                    "// objects) directly inside the notebook here.",
+                    "",
+                    "import java.awt.image.BufferedImage",
+                    "import net.imagej.display.ColorTables",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.converter.RealLUTConverter",
+                    "import net.imglib2.display.projector.composite.CompositeXYProjector",
+                    "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "",
+                    "notebook = new Object() {",
+                    "  BufferedImage display(RandomAccessibleInterval source) {",
+                    "    return display(source, 0, 1, -1)",
+                    "  }",
+                    "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis) {",
+                    "    w = (int) source.dimension(xAxis)",
+                    "    h = (int) source.dimension(yAxis)",
+                    "    c = 1",
+                    "    target = new ARGBScreenImage(w, h)",
+                    "    converters = new ArrayList<RealLUTConverter>(c);",
+                    "    for (int i=0; i<c; i++) {",
+                    "      converters.add(new RealLUTConverter(0, 255, ColorTables.GRAYS))",
+                    "    }",
+                    "    proj = new CompositeXYProjector(source, target, converters, cAxis)",
+                    "    proj.map()",
+                    "    return target.image()",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "script1471376272561592662173$1@19a7370",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "609cae7e-ea2a-44bb-9f75-1f8fffe2b33e",
+                "elapsedTime": 609,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 30
+        },
+        {
+            "id": "codeJORUUV",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "notebook.display( img );"
                 ]
             },
             "output": {
                 "state": {},
                 "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script1471361753891710603572.groovy: 10: unexpected token: 400 @ line 10, column 46.<br/>   nt[] dimensions = new int[] { 400, 320 }<br/>                                 ^<br/><br/>1 error<br/><br/>",
-                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
-                        ""
-                    ]
+                    "type": "ImageIcon",
+                    "imageData": "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",
+                    "width": 400,
+                    "height": 320
                 },
-                "selectedType": "BeakerDisplay",
+                "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "d2e86f6f-630c-48e5-9401-32365206dbd3",
-                "elapsedTime": 606,
-                "height": 177
+                "shellId": "609cae7e-ea2a-44bb-9f75-1f8fffe2b33e",
+                "elapsedTime": 632,
+                "height": 357
             },
             "evaluatorReader": true,
-            "lineCount": 40
+            "lineCount": 1
         },
         {
             "id": "markdownJC1lzG",
@@ -391,7 +513,7 @@
                     "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
                 },
                 "selectedType": "BeakerDisplay",
-                "height": 77
+                "height": 114
             },
             "evaluatorReader": true,
             "lineCount": 28
@@ -458,7 +580,7 @@
                     "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
                 },
                 "selectedType": "BeakerDisplay",
-                "height": 77
+                "height": 114
             },
             "evaluatorReader": true,
             "lineCount": 38
