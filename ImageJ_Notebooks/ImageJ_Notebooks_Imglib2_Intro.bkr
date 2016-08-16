@@ -341,7 +341,11 @@
             "id": "markdownqgeLHy",
             "type": "markdown",
             "body": [
-                ""
+                "We are going to write a **draw()** method that can be applied to many ImgLib2 constructs that are not pixel  [Img](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html)s. For instance there are Views that employ on-the-fly coordinate transforms, sampled and interpolated data, etc.",
+                "",
+                "There is no need to restrict ourselves to [Img](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html).  We need be able to get a [RandomAccess](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccess.html), so we need **RandomAccessible< T >**, and to get the number of dimensions and the extent in every dimension,  so we need [Interval](http://javadoc.imagej.net/ImgLib2/net/imglib2/Interval.html) and therefore use **RandomAccessibleInterval< T >**.",
+                "",
+                "However, with great power comes great responsibility… Taking a general [Interval](http://javadoc.imagej.net/ImgLib2/net/imglib2/Interval.html) means that we no longer can assume that the interval starts at coordinates (0,0,…,0). Thus we need to make a final modification to correctly draw between min and max of the interval."
             ],
             "evaluatorReader": false
         },
@@ -351,48 +355,44 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "import java.util.Random;",
+                    "import java.util.Random",
                     " ",
-                    "import net.imglib2.RandomAccess;",
-                    "import net.imglib2.img.Img;",
-                    "import net.imglib2.img.array.ArrayImgFactory;",
-                    "import net.imglib2.img.display.imagej.ImageJFunctions;",
-                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    "import net.imglib2.RandomAccess",
+                    "import net.imglib2.img.Img",
+                    "import net.imglib2.img.array.ArrayImgFactory",
+                    "import net.imglib2.img.display.imagej.ImageJFunctions",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType",
                     " ",
-                    "  // There is no need to restrict ourselves to Img. ",
-                    "  // We need be able to get a RandomAccess, so we need RandomAccessible<T>, ",
-                    "  // and to get the number of dimensions and the extent in every dimension, ",
-                    "  // so we need Interval and therefore use: RandomAccessibleInterval<T>",
                     " draw( final RandomAccessibleInterval< T > img, final T white ) {",
                     "        // get the number of dimensions",
-                    "        final int n = img.numDimensions();",
+                    "        final int n = img.numDimensions()",
                     "        // Taking a general Interval means that we no longer can assume ",
                     "        // that the interval starts at coordinates (0,0,…,0). Thus we need ",
                     "        // to make a final modification to correctly draw between min and max of the interval.",
-                    "        final long[] min = new long[ n ];",
-                    "        img.min( min );",
-                    "        final long[] scale = new long[ n ];",
+                    "        final long[] min = new long[ n ]",
+                    "        img.min( min )",
+                    "        final long[] scale = new long[ n ]",
                     "        for ( int d = 0; d < n; ++d ) {",
-                    "            scale[ d ] = img.max( d ) - min[ d ];",
+                    "            scale[ d ] = img.max( d ) - min[ d ]",
                     "        }",
                     "        final long[] pos = new long[ n ];",
                     " ",
                     "        // create a RandomAccess to the image (now the generic type, T)",
                     "        // Img implements the RandomAccessible interface, ",
                     "        // thus we can use randomAccess() to obtain one",
-                    "        final RandomAccess< T > r = img.randomAccess();",
-                    "        final Random random = new Random();",
+                    "        final RandomAccess< T > r = img.randomAccess()",
+                    "        final Random random = new Random()",
                     "        for ( int i = 0; i < 1000; ++i ) {",
                     "            // loop over all dimensions when setting the position of the RandomAccess",
                     "            for ( int d = 0; d < n; ++d ) {",
-                    "                pos[ d ] = min[ d ] + ( long ) ( random.nextFloat() * scale[ d ] );",
+                    "                pos[ d ] = min[ d ] + ( long ) ( random.nextFloat() * scale[ d ] )",
                     "            }",
                     "            // set the position",
-                    "            r.setPosition( pos );",
+                    "            r.setPosition( pos )",
                     "          ",
                     "            // get() the pixel at that coordinate and ",
                     "            // set the pixel value via this reference",
-                    "            r.get().set( white );",
+                    "            r.get().set( white )",
                     "        }",
                     "    }",
                     " ",
@@ -405,19 +405,19 @@
                     "type": "BeakerDisplay",
                     "innertype": "Error",
                     "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script1471378900803133685487.groovy: 6: unable to resolve class net.imglib2.img.display.imagej.ImageJFunctions<br/> @ line 6, column 1.<br/>   import net.imglib2.img.display.imagej.ImageJFunctions;<br/>   ^<br/><br/>script1471378900803133685487.groovy: 13: unable to resolve class T <br/> @ line 13, column 40.<br/>    draw( final RandomAccessibleInterval&lt; T &gt; img, final T white ) {<br/>                                          ^<br/><br/>script1471378900803133685487.groovy: 13: unable to resolve class RandomAccessibleInterval <br/> @ line 13, column 44.<br/>   RandomAccessibleInterval&lt; T &gt; img, final<br/>                                 ^<br/><br/>script1471378900803133685487.groovy: 13: unable to resolve class T <br/> @ line 13, column 57.<br/>   bleInterval&lt; T &gt; img, final T white ) {<br/>                                 ^<br/><br/>script1471378900803133685487.groovy: 30: unable to resolve class T <br/> @ line 30, column 29.<br/>           final RandomAccess&lt; T &gt; r = img.randomAccess();<br/>                               ^<br/><br/>5 errors<br/><br/>",
+                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14713799135081204035773.groovy: 4: unable to resolve class net.imglib2.img.Img<br/> @ line 4, column 1.<br/>   import net.imglib2.img.Img<br/>   ^<br/><br/>script14713799135081204035773.groovy: 7: unable to resolve class net.imglib2.type.numeric.integer.UnsignedByteType<br/> @ line 7, column 1.<br/>   import net.imglib2.type.numeric.integer.UnsignedByteType<br/>   ^<br/><br/>script14713799135081204035773.groovy: 3: unable to resolve class net.imglib2.RandomAccess<br/> @ line 3, column 1.<br/>   import net.imglib2.RandomAccess<br/>   ^<br/><br/>script14713799135081204035773.groovy: 6: unable to resolve class net.imglib2.img.display.imagej.ImageJFunctions<br/> @ line 6, column 1.<br/>   import net.imglib2.img.display.imagej.ImageJFunctions<br/>   ^<br/><br/>script14713799135081204035773.groovy: 5: unable to resolve class net.imglib2.img.array.ArrayImgFactory<br/> @ line 5, column 1.<br/>   import net.imglib2.img.array.ArrayImgFactory<br/>   ^<br/><br/>script14713799135081204035773.groovy: 9: unable to resolve class T <br/> @ line 9, column 40.<br/>    draw( final RandomAccessibleInterval&lt; T &gt; img, final T white ) {<br/>                                          ^<br/><br/>script14713799135081204035773.groovy: 9: unable to resolve class RandomAccessibleInterval <br/> @ line 9, column 44.<br/>   RandomAccessibleInterval&lt; T &gt; img, final<br/>                                 ^<br/><br/>script14713799135081204035773.groovy: 9: unable to resolve class T <br/> @ line 9, column 57.<br/>   bleInterval&lt; T &gt; img, final T white ) {<br/>                                 ^<br/><br/>script14713799135081204035773.groovy: 26: unable to resolve class T <br/> @ line 26, column 29.<br/>           final RandomAccess&lt; T &gt; r = img.randomAccess()<br/>                               ^<br/><br/>9 errors<br/><br/>",
                         "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
                         ""
                     ]
                 },
                 "selectedType": "BeakerDisplay",
-                "height": 513,
+                "height": 833,
                 "pluginName": "Groovy",
-                "shellId": "015bbd92-13a8-43ce-bd4c-a833b0d43f59",
-                "elapsedTime": 535
+                "shellId": "c4df0654-20ab-4401-b439-c9dc4416bc0d",
+                "elapsedTime": 625
             },
             "evaluatorReader": true,
-            "lineCount": 46
+            "lineCount": 42
         },
         {
             "id": "codebmbgMK",
@@ -453,8 +453,6 @@
             "id": "markdownlIXzRt",
             "type": "markdown",
             "body": [
-                "Now we are able to apply **draw()** to many ImgLib2 constructs that are not pixel Imgs. For instance there are Views that employ on-the-fly coordinate transforms, sampled and interpolated data, etc.",
-                "",
                 ">_NOTE:_",
                 "> * Besides **setPosition()** in a single or all dimensions, you can also relatively move a [RandomAccess](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccess.html) in one or all dimensions, or move the [RandomAccess](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccess.html) pixel-wise in one dimension (Have a look at the [Positionable](http://javadoc.imagej.net/ImgLib2/net/imglib2/Positionable.html) API doc!) Which of those is most efficient depends on the situation.",
                 "> T* here is a **setPosition()** version which takes a [Localizable](http://javadoc.imagej.net/ImgLib2/net/imglib2/Localizable.html). Often a situation occurs where you want to position accessor _a_ to the same location as accessor _b._ In this situation you can avoid localizing _b_ into an array and using that array to set the position of _a._ You can simply **a.setPosition( b )** because _b_ is [Localizable](http://javadoc.imagej.net/ImgLib2/net/imglib2/Localizable.html).",
@@ -599,7 +597,7 @@
                     "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
                 },
                 "selectedType": "BeakerDisplay",
-                "height": 151
+                "height": 114
             },
             "evaluatorReader": true,
             "lineCount": 38
@@ -610,7 +608,7 @@
             "body": [
                 "> _NOTE:_",
                 "> * The iteration order is subject to implementation, specialized for each memory layout to minimize access time. For example, an [ArrayImg](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/array/ArrayImg.html) has a different iteration order from a [CellImg](http://javadoc.imagej.net/ImgLib2/net/imglib2/cell/CellImg.html). This is nicely illustrated in [ImgLib2 Example 2b - Duplicating an Img using a different ImgFactory](http://imagej.net/ImgLib2_Examples#Example_2b_-_Duplicating_an_Img_using_a_different_ImgFactory).",
-                "> * Typically, there are two variants of [Cursor](http://javadoc.imagej.net/ImgLib2/net/imglib2/Cursor.html) available. One that calculates its location per each iteration and one that calculates it only per localization request. The former is more efficient when localization occurs frequently, the latter otherwise. In the maximum-finding example, we use the latter because localization is only required once after the maximum has been found. The former one could be obtained using **localizingCursor()** instead of **cursor()** (see [IterableInterval](http://javadoc.imagej.net/ImgLib2/net/imglib2/IterableInterval.html) API doc)",
+                "> * Typically, there are two variants of [Cursor](http://javadoc.imagej.net/ImgLib2/net/imglib2/Cursor.html) available. One that calculates its location per each iteration and one that calculates it only per localization request. The former is more efficient when localization occurs frequently, the latter otherwise. In the maximum-finding example, we use the latter because localization is only required once after the maximum has been found. The former one could be obtained using **localizingCursor()** instead of **cursor()** (see [IterableInterval](http://jenkins.imagej.net/job/ImgLib-daily/javadoc/index.html?net/imglib2/IterableInterval.html) API doc)",
                 "> * **copyCursor()** is a work-around to circumvent a javac bug with covariant return type overriding. In the future (with JDK7) every [Sampler](http://javadoc.imagej.net/ImgLib2/net/imglib2/Sampler.html) can be copied using **copy()** instead of having specialised **copyCursor()**, **copyRandomAccess()**, … methods."
             ],
             "evaluatorReader": false
