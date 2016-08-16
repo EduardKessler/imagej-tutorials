@@ -30,6 +30,16 @@
                     "mode": "text/x-java"
                 }
             }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
         }
     ],
     "cells": [
@@ -50,6 +60,32 @@
                 "Find javadocs for Imglib2 [here](http://javadoc.imagej.net/ImgLib2/)."
             ],
             "evaluatorReader": false
+        },
+        {
+            "id": "codeqcbnVd",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-50')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Groovy",
+                "shellId": "d2e86f6f-630c-48e5-9401-32365206dbd3",
+                "elapsedTime": 1769
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
         },
         {
             "id": "sectionlAC22Y",
@@ -119,20 +155,17 @@
         {
             "id": "codeLsYhPl",
             "type": "code",
-            "evaluator": "Java",
+            "evaluator": "Groovy",
             "input": {
                 "body": [
                     "import java.util.Random;",
-                    " ",
+                    "",
                     "import net.imglib2.RandomAccess;",
                     "import net.imglib2.img.Img;",
                     "import net.imglib2.img.array.ArrayImgFactory;",
                     "import net.imglib2.img.display.imagej.ImageJFunctions;",
                     "import net.imglib2.type.numeric.integer.UnsignedByteType;",
-                    " ",
-                    "public class DrawWhitePixels {",
-                    "    public static void main( final String[] args ) {",
-                    "      ",
+                    "",
                     "        // create a 8-bit gray-level image",
                     "        final int[] dimensions = new int[] { 400, 320 };",
                     "        final Img< UnsignedByteType > img = new ArrayImgFactory< UnsignedByteType >()",
@@ -164,16 +197,28 @@
                     "            t.set( 255 );",
                     "        }",
                     "        // show the result",
-                    "        ImageJFunctions.show( img );",
-                    "    }",
-                    "}"
+                    "        ImageJFunctions.show( img );"
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": [
+                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script1471361753891710603572.groovy: 10: unexpected token: 400 @ line 10, column 46.<br/>   nt[] dimensions = new int[] { 400, 320 }<br/>                                 ^<br/><br/>1 error<br/><br/>",
+                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
+                        ""
+                    ]
+                },
+                "selectedType": "BeakerDisplay",
+                "pluginName": "Groovy",
+                "shellId": "d2e86f6f-630c-48e5-9401-32365206dbd3",
+                "elapsedTime": 606,
+                "height": 177
             },
             "evaluatorReader": true,
-            "lineCount": 45
+            "lineCount": 40
         },
         {
             "id": "markdownJC1lzG",
@@ -251,7 +296,14 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
+                },
+                "selectedType": "BeakerDisplay",
+                "height": 77
             },
             "evaluatorReader": true,
             "lineCount": 57
@@ -332,7 +384,14 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
+                },
+                "selectedType": "BeakerDisplay",
+                "height": 77
             },
             "evaluatorReader": true,
             "lineCount": 28
@@ -392,7 +451,14 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
+                },
+                "selectedType": "BeakerDisplay",
+                "height": 77
             },
             "evaluatorReader": true,
             "lineCount": 38
