@@ -65,8 +65,8 @@
                 "state": {},
                 "selectedType": "Hidden",
                 "pluginName": "Groovy",
-                "shellId": "48360b3f-f7bb-49d0-bdaf-82739f024a6f",
-                "elapsedTime": 1710
+                "shellId": "9cfce36e-0f16-4905-8c8d-6ed0f2d6ccbb",
+                "elapsedTime": 1963
             },
             "evaluatorReader": true,
             "lineCount": 5
@@ -113,9 +113,9 @@
                 "state": {},
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "48360b3f-f7bb-49d0-bdaf-82739f024a6f",
+                "shellId": "9cfce36e-0f16-4905-8c8d-6ed0f2d6ccbb",
                 "elapsedTime": 567,
-                "result": "script14713767664391826220538$1@417629ec",
+                "result": "script14714428134961826220538$1@74731a09",
                 "height": 56
             },
             "evaluatorReader": true,
@@ -151,8 +151,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "48360b3f-f7bb-49d0-bdaf-82739f024a6f",
-                "elapsedTime": 556,
+                "shellId": "9cfce36e-0f16-4905-8c8d-6ed0f2d6ccbb",
+                "elapsedTime": 1551,
                 "height": 90
             },
             "evaluatorReader": true,
@@ -178,8 +178,8 @@
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "48360b3f-f7bb-49d0-bdaf-82739f024a6f",
-                "elapsedTime": 1679,
+                "shellId": "9cfce36e-0f16-4905-8c8d-6ed0f2d6ccbb",
+                "elapsedTime": 1670,
                 "height": 549
             },
             "evaluatorReader": true,
@@ -213,8 +213,8 @@
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "48360b3f-f7bb-49d0-bdaf-82739f024a6f",
-                "elapsedTime": 638,
+                "shellId": "9cfce36e-0f16-4905-8c8d-6ed0f2d6ccbb",
+                "elapsedTime": 681,
                 "height": 549
             },
             "evaluatorReader": true,

@@ -111,9 +111,9 @@
                 "state": {},
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "015bbd92-13a8-43ce-bd4c-a833b0d43f59",
-                "elapsedTime": 4600,
-                "result": "script14713788943541453574080$1@4e3cffdc",
+                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
+                "elapsedTime": 4223,
+                "result": "script14714424506681453574080$1@3a3603d3",
                 "height": 56
             },
             "evaluatorReader": true,
@@ -210,8 +210,8 @@
                 "result": "ArrayImg [400x320]",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "015bbd92-13a8-43ce-bd4c-a833b0d43f59",
-                "elapsedTime": 597,
+                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
+                "elapsedTime": 598,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -231,22 +231,21 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "",
                     "r = img.randomAccess()",
                     "random = new Random()   "
                 ]
             },
             "output": {
                 "state": {},
-                "result": "java.util.Random@7b74c572",
+                "result": "java.util.Random@7ad4afe6",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "015bbd92-13a8-43ce-bd4c-a833b0d43f59",
-                "elapsedTime": 572,
+                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
+                "elapsedTime": 581,
                 "height": 56
             },
             "evaluatorReader": true,
-            "lineCount": 3
+            "lineCount": 2
         },
         {
             "id": "markdowndU9enK",
@@ -284,8 +283,8 @@
                 "state": {},
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Groovy",
-                "shellId": "015bbd92-13a8-43ce-bd4c-a833b0d43f59",
-                "elapsedTime": 453,
+                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
+                "elapsedTime": 2573,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -312,14 +311,14 @@
                 "state": {},
                 "result": {
                     "type": "ImageIcon",
-                    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAFACAYAAACSgSrjAAAK5ElEQVR42u3dy24jSQ4FUP3/T7tQCwNaWK9UBIOP08DZzHTZSgbJmym5y7fb7fYDnf3/p9P3gUQUASYGXubrFMZnzuNC3Q0fTOxxs8KoJ5CIhjdUCCgzoL5BAXK6GJodZs/N77XYBZ5ADBHoTer0joJbBoDddOnPKCLCUP38lBGeQLDYAAGChQ8IEIRJoVqpJ+ZDgADgCQRwt0v6AMl6qJoNfYNz9QSCYXTd6AEB4mA1JfrGNQ+ur+ZQA06dr/7IVZeq53HwL5q1YHGOOEt8BgIWNAgQsPzVCwGCoQZSzt6Xr+nMi91VSMsR/WEe8ARiELCs0S8CBCxeNaRhLykYsGcB+SVO3sKiyB2lQQVzIEA0NMCx3fLB13UIYMH0+N5u1sJrYMgAECAAbHqK+eN/VyzAW27ZrydpbTQt0Gch+xxEgGgGAAEC4C0oAYLhAP3HowBxqBj8M3Wp8utxnT+eQCxktQj6ns5X3bLX5Yuv6UAASxQBYrAMFvrG+Z0IEE2EIVQH9IgnEI0BZgQBAggG1yxAMDSuhbTn+Onr+evfH9abGhUscddMwQBxkAACxJ0IYG5nXb9mxKABiwPE8AFQ/glEmKnRt9esh6DwE8irr2fAcROQ52/kNY89emfzOSo8noTU3/WqlwBBs6P2auUzEA2Bc/z0Wif3bbdrL3I9mghnAQiQ8A/+LXKvWaAyuDcVj55NbmGDJxAABAjUfAvI0wzmRYAAIEAg/glh1/fxhKOeAgSNDwiQFcsvYhle/R4WtVAENgeIBT1z2fqbfdVI/+AtLADBPC9A3MWAZYcnECwADtY98iwzvH6/M/0nLkAsCgBBc/wJRBi5W1FL14y3sICb37OxI1DUU4Aw5O7OsKsLCBAAVt4gubsDzDKeQDDEgAABIYkfBhAgYBDRCwIELAP1dY0IEMOx9HV3H3SLTF31RIMA+eTQHDCWCGy7CTRcAF1vQjbvYIeHmwQ3Qc6gW28EvTbNCQJFnbrVPW2AaAwAIXVzd4G7XTAj3sICsOz9GK9m8HrVCj0gQNDYatPwfLL+oq2KdS3cC5aJxex8gIT/ISEIidrXJpB5GSCaxCLGeVR83XrYW1hYnKOWTsT3t1hJGyCTBsAggjl4VYNM9Ql8LQYDAAHS7i7OXZ86gQABcJMiQMDAn3uNFhkCBIBjN0eLbkQcBuweOE8aeALx9gSAXXcyQCx/LALUJmd9PzwLzQN6Fj186d+fOQwWAJF9od/wGUiiATaQ52qj9rjRc21+CgsAAQLucmFYgBheJvWGflcLAQIA7nxwHurnuhEgmkwtAQHSZUFauugl17nq+hPWxmBiQQACxLLE2ZCqB5r3mSbK2DhX/2zXX6JkiAVt9+sqWmcDgkEBBAgIS4jrUcXTROquf3DmAkRDg951/XHfXxMDlqrrTxggj4rhrtnA4WzxFhaWFOjPmTVXLCwaC9CyxhMIAAIEd4PoV5Kfl0JqHAABAoAAcQfvdQMCRGAACBCEDpgbxgWI5nQWQLMAqbhMdr5myxUQIBYnegQECBY1dOgZvS1ADB3oNfUSIACUDpB30tbv9nCnBNG9qr89gQBuJtRFgPRqgMjG0sRzl5KzN1MCBAOF/+ZJ3RAgAHwZ3O4gALOtHp5ANDfgrcO476G5DBRg9gUIkGj5RN+ouDFq9BaWH5EFPI0LkHJF1xRYgOBDdAAECAAtA8Sj8N63FLLW17mrT2RN1LNVv+Y+fM2mHhnqc7ruzh1vYVlGOFcQIIbVdaP3ECAlhsFQWHroD/0iQEAoQo9+nTmI2YY787KxCIHxTyAWIXoABAgWLZA1QCwQADyBuEv3pKG2cC5ADAOWuFqqA08DRJOgJ5zx9OvI9nV2fo8v/7zmdU2CAvAZiIUKw3va3AqQccN8pemnDIqFAGlnSHEtyfWvyZ1u3xoI9D21KlpXh2x40AcgQCwv0P9qE1cnRTdkoJdIGiAakCmL09/ybEcIECBsMU7876De+UVxGeoi2F7WQiEA8ASCEC15Fo/OwzkhQCzqS8tDCAECBBDwatbxzBQD54q+xRNIimbSqJYDemnINWmYE4Xf8XX/+jzFYtVrOOejTyAam6n9offr1sPZNXoLy2ECtNur7hIAhESSABEKYNngLSywKNEvCBDND3oTAYLhxlkjQLCocD4IkA0N3HUgDDqYDQGiMdXONYEAMfSuB7AHPIFgMMDM7f76Cs6skBBq6EVPIIAF5+ZAgNRptHf+nCa2LNh/bs4/xblZDlhMk1/z72swc/rCEwiAoBAgzX5aAfQEPgMBBAVz+/PuzysmCB7XF/Xaxv1OdLCwPFmAAMHdqWt1rXgLy5JFzZnYe6d68o/v65CwsMGseQtr7MLKdA0+d8Cu8BkIGEicIc/OWWEMNuoPnkCAi6H2KvAEIgLEHaT6gPkUIJYomKcJrzVxXTStwHCGgAAB4QECBAQBJJ8BBwGCCQQIgBsUAeJA1dD1ggAxuAACBMCNotoJEAAECLhjRq8JECw8oMbcW1BQtWcrvm77YdhbWBkOXNOhD9SI/b3zTv/c/TuKZsgBu6jhZyAWLayfD3OFD9EBDr6VgwKAp28QIAAIEGh6B3//ujxlIEAAECA8v2vseMfoLrh+fZwh7QKkW1MbUib26aOvN2UezL0nEAwLmCcBYuEBJNmzigNA8BPIybt/n68AeAsLQQUIEEvU0gYECABuAgWI5jcggAAB3GWrrwABLCkEiKE1/K4fBAgWNvTqVb0uQNI1qaYUhjC8jw2kpoLafWtGPIEAUCtwJbo7OsBe8QSCIEJP6vPTTyCKqw7qgx6b0/8Xr0uzarC61yLMwIfoIKTURM0FCAACxF0R7qZZWC+1btfLig5Y/BwOEE1mkNUI/TSqDzUICDSclQDhy6EwQIAAAXesIEAsghnvETsD/Y4A0fTqiD5CgGg8LEjAW1gkWsa//6gNlX8oRA9rSAwNxXpADwoQ4PDyjPo9HNlfMwLE3VCia7ry5y2GfrV49zqcvQABhJhAECC4m8TZoq8DA8T7nJYT4AkEhBvwat4to0rX9uzrWepz+6/KNai1JxA0vFo0e/16RL8KEKB9OAi7VHXVGAACwRMIhgL1xVtYcwez6hCffN2Za+bvjUKAAG5wcO4CxLBZGDN6MfKc9ZQnkJYLLqKxMw0ywKgAiVqwq76PQFAPat5U6VWfgVisYH7URIBg4NA/116nfhcgWDaAAMGidj5eMwJEYwO4QXq+kxXI3SJ+6s9M4C0sDKIagQCxRNQYavTZ4N7VUF2X5vSF7C8xZNe5OFsBAuBmQYBgIAABAlDoZmb4zZYG1ZSA+RcgDha9QruzSfx6DQMADZ9ABJc7QECAWFoAAsRyFnJkP2e9REBvKCaA8CgeIO6YNLY6oC98BoJh8ZYPCBALJ/sCmrb47q/33WvvVqOr1yMkZ8xb4Gt0OF47gCcQYTAkyIQ1CBBgQVC6aXAzcujaDSlMWiye3tR14et18JUO2fBjqeItLE1+5Hoe/X8GHfNuj1y4Pg0luAA8gbQNhixhI/TUwHnoDwGCwQL8h4Tsqa2zwI0KoQGy4vA0ANN7wV+94hqL3CBqGgwxeqFKfyXrcY226hAtLwsIZ+UtLDQnmE8ECJUG3TKwRKfXudhZagoAgSBA3JWpF84TAZJvAD8ZSMOrDtXPa+jfLkvVANEAzgDMzrWvf2h2zxfW0gLc/HgCQVOj7xAggLBwzWohQABY7B8LcsQuURWnRgAAAABJRU5ErkJggg==",
+                    "imageData": "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",
                     "width": 400,
                     "height": 320
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "015bbd92-13a8-43ce-bd4c-a833b0d43f59",
-                "elapsedTime": 350,
+                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
+                "elapsedTime": 1892,
                 "height": 357
             },
             "evaluatorReader": true,
@@ -356,47 +355,78 @@
             "input": {
                 "body": [
                     "import java.util.Random",
-                    " ",
-                    "import net.imglib2.RandomAccess",
-                    "import net.imglib2.img.Img",
-                    "import net.imglib2.img.array.ArrayImgFactory",
-                    "import net.imglib2.img.display.imagej.ImageJFunctions",
-                    "import net.imglib2.type.numeric.integer.UnsignedByteType",
-                    " ",
-                    " draw( final RandomAccessibleInterval< T > img, final T white ) {",
-                    "        // get the number of dimensions",
-                    "        final int n = img.numDimensions()",
-                    "        // Taking a general Interval means that we no longer can assume ",
-                    "        // that the interval starts at coordinates (0,0,…,0). Thus we need ",
-                    "        // to make a final modification to correctly draw between min and max of the interval.",
-                    "        final long[] min = new long[ n ]",
-                    "        img.min( min )",
-                    "        final long[] scale = new long[ n ]",
-                    "        for ( int d = 0; d < n; ++d ) {",
-                    "            scale[ d ] = img.max( d ) - min[ d ]",
-                    "        }",
-                    "        final long[] pos = new long[ n ];",
-                    " ",
-                    "        // create a RandomAccess to the image (now the generic type, T)",
-                    "        // Img implements the RandomAccessible interface, ",
-                    "        // thus we can use randomAccess() to obtain one",
-                    "        final RandomAccess< T > r = img.randomAccess()",
-                    "        final Random random = new Random()",
-                    "        for ( int i = 0; i < 1000; ++i ) {",
-                    "            // loop over all dimensions when setting the position of the RandomAccess",
-                    "            for ( int d = 0; d < n; ++d ) {",
-                    "                pos[ d ] = min[ d ] + ( long ) ( random.nextFloat() * scale[ d ] )",
-                    "            }",
-                    "            // set the position",
-                    "            r.setPosition( pos )",
-                    "          ",
-                    "            // get() the pixel at that coordinate and ",
-                    "            // set the pixel value via this reference",
-                    "            r.get().set( white )",
-                    "        }",
+                    "import net.imglib2.*",
+                    "",
+                    "public <T> void draw( final RandomAccessibleInterval< T > img, final T value ) {",
+                    "  // get the number of dimensions",
+                    "  final int n = img.numDimensions()",
+                    "  // Taking a general Interval means that we no longer can assume ",
+                    "  // that the interval starts at coordinates (0,0,…,0). Thus we need ",
+                    "  // to make a final modification to correctly draw between min and max of the interval.",
+                    "  final long[] min = new long[ n ]",
+                    "  img.min( min )",
+                    "  final long[] scale = new long[ n ]",
+                    "  for ( int d = 0; d < n; ++d ) {",
+                    "    scale[ d ] = img.max( d ) - min[ d ]",
+                    "  }",
+                    "  final long[] pos = new long[ n ]",
+                    "",
+                    "  // create a RandomAccess to the image (now the generic type, T)",
+                    "  // Img implements the RandomAccessible interface, ",
+                    "  // thus we can use randomAccess() to obtain one",
+                    "  final RandomAccess< T > r = img.randomAccess()",
+                    "  final Random random = new Random()",
+                    "  for ( int i = 0; i < 1000; ++i ) {",
+                    "    // loop over all dimensions when setting the position of the RandomAccess",
+                    "    for ( int d = 0; d < n; ++d ) {",
+                    "      pos[ d ] = min[ d ] + ( long ) ( random.nextFloat() * scale[ d ] )",
                     "    }",
-                    " ",
-                    "   "
+                    "    // set the position",
+                    "    r.setPosition( pos )",
+                    "",
+                    "    // get() the pixel at that coordinate and ",
+                    "    // set the pixel value via this reference",
+                    "    r.get().set( value )",
+                    "  }",
+                    "}  "
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "height": 833,
+                "pluginName": "Groovy",
+                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
+                "elapsedTime": 607
+            },
+            "evaluatorReader": true,
+            "lineCount": 35
+        },
+        {
+            "id": "markdownXErDHa",
+            "type": "markdown",
+            "body": [
+                "   // in this example, we use a 3D ARGBType image ",
+                "   // (which means a color image with red/green/blue/alpha values)",
+                "       "
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codebmbgMK",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imglib2.type.numeric.ARGBType",
+                    "import net.imglib2.img.array.ArrayImgs",
+                    "",
+                    "",
+                    "long[] dimensions = [400, 320, 100]",
+                    "img = ArrayImgs.argbs(dimensions)",
+                    "//value = new ARGBType( 0xffffffff )",
+                    "draw( img, new ARGBType(0xffffffff))",
+                    "notebook.display( img )"
                 ]
             },
             "output": {
@@ -405,46 +435,17 @@
                     "type": "BeakerDisplay",
                     "innertype": "Error",
                     "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14713799135081204035773.groovy: 4: unable to resolve class net.imglib2.img.Img<br/> @ line 4, column 1.<br/>   import net.imglib2.img.Img<br/>   ^<br/><br/>script14713799135081204035773.groovy: 7: unable to resolve class net.imglib2.type.numeric.integer.UnsignedByteType<br/> @ line 7, column 1.<br/>   import net.imglib2.type.numeric.integer.UnsignedByteType<br/>   ^<br/><br/>script14713799135081204035773.groovy: 3: unable to resolve class net.imglib2.RandomAccess<br/> @ line 3, column 1.<br/>   import net.imglib2.RandomAccess<br/>   ^<br/><br/>script14713799135081204035773.groovy: 6: unable to resolve class net.imglib2.img.display.imagej.ImageJFunctions<br/> @ line 6, column 1.<br/>   import net.imglib2.img.display.imagej.ImageJFunctions<br/>   ^<br/><br/>script14713799135081204035773.groovy: 5: unable to resolve class net.imglib2.img.array.ArrayImgFactory<br/> @ line 5, column 1.<br/>   import net.imglib2.img.array.ArrayImgFactory<br/>   ^<br/><br/>script14713799135081204035773.groovy: 9: unable to resolve class T <br/> @ line 9, column 40.<br/>    draw( final RandomAccessibleInterval&lt; T &gt; img, final T white ) {<br/>                                          ^<br/><br/>script14713799135081204035773.groovy: 9: unable to resolve class RandomAccessibleInterval <br/> @ line 9, column 44.<br/>   RandomAccessibleInterval&lt; T &gt; img, final<br/>                                 ^<br/><br/>script14713799135081204035773.groovy: 9: unable to resolve class T <br/> @ line 9, column 57.<br/>   bleInterval&lt; T &gt; img, final T white ) {<br/>                                 ^<br/><br/>script14713799135081204035773.groovy: 26: unable to resolve class T <br/> @ line 26, column 29.<br/>           final RandomAccess&lt; T &gt; r = img.randomAccess()<br/>                               ^<br/><br/>9 errors<br/><br/>",
-                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
+                        "groovy.lang.GroovyRuntimeException: Could not find matching constructor for: net.imglib2.type.numeric.ARGBType(java.lang.Long)<br/>",
+                        "\tat script1471445923277747580947.run(script1471445923277747580947.groovy:8)",
+                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:378)",
                         ""
                     ]
                 },
                 "selectedType": "BeakerDisplay",
-                "height": 833,
+                "height": 81,
                 "pluginName": "Groovy",
-                "shellId": "c4df0654-20ab-4401-b439-c9dc4416bc0d",
-                "elapsedTime": 625
-            },
-            "evaluatorReader": true,
-            "lineCount": 42
-        },
-        {
-            "id": "codebmbgMK",
-            "type": "code",
-            "evaluator": "Groovy",
-            "input": {
-                "body": [
-                    " public static void main( final String[] args ) {",
-                    "        // in this example, we use a 3D ARGBType image ",
-                    "        // (which means a color image with red/green/blue/alpha values)",
-                    "        final Img< ARGBType > img = new ArrayImgFactory< ARGBType >()",
-                    "            .create( new int[] {400, 320, 100}, new ARGBType() );",
-                    "        draw( img, new ARGBType( 0xffffffff ) );",
-                    "        notebook.display( img )",
-                    "    }",
-                    "}"
-                ]
-            },
-            "output": {
-                "state": {},
-                "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
-                },
-                "selectedType": "BeakerDisplay",
-                "height": 77
+                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
+                "elapsedTime": 605
             },
             "evaluatorReader": true,
             "lineCount": 9
@@ -489,51 +490,114 @@
         {
             "id": "codePsZDrU",
             "type": "code",
-            "evaluator": "Java",
+            "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "import net.imglib2.Cursor;",
-                    "import net.imglib2.img.Img;",
-                    "import net.imglib2.img.array.ArrayImgFactory;",
-                    "import net.imglib2.io.ImgIOException;",
-                    "import net.imglib2.io.ImgOpener;",
-                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    "import net.imglib2.Cursor",
+                    "import net.imglib2.img.Img",
+                    "",
                     " ",
-                    "public class FindMaximumValue {",
-                    "    public static void main( final String[] args ) throws ImgIOException {",
-                    "        final Img< UnsignedByteType > img = new ImgOpener().openImg( \"graffiti.tif\",",
-                    "            new ArrayImgFactory< UnsignedByteType >(), new UnsignedByteType() );",
+                    "import net.imagej.ImageJ",
+                    "",
+                    "// create an ImageJ gateway",
+                    "ij = new ImageJ()",
+                    "",
+                    "// load an image of a colorful primate",
+                    "path = \"http://wsr.imagej.net/images/mitosis.tif\"",
+                    "mitosis = ij.scifio().datasetIO().open(path)",
+                    "",
+                    "//final Img< UnsignedByteType > img = new ImgOpener().openImg( mitosis,new ArrayImgFactory< UnsignedByteType >(), new UnsignedByteType() );",
                     "      ",
-                    "        // we get a Cursor from the image",
-                    "        final Cursor< UnsignedByteType > cursor = img.cursor();",
-                    "        int max = 0;",
-                    "      ",
-                    "        // we iterate over the image ",
-                    "        while ( cursor.hasNext() ) {",
-                    "            // get the value at the current position",
-                    "            // (again,this is an instance of the pixel ",
-                    "            // value type UnsignedByteType that ",
-                    "            // acts as a reference to the pixel)",
-                    "            final UnsignedByteType t = cursor.next();",
-                    "            max = Math.max( t.get(), max );",
-                    "        }",
-                    "        System.out.println( \"max = \" + max );",
-                    "    }",
-                    "}"
+                    "// we get a Cursor from the image",
+                    "cursor = ij.cursor();",
+                    "int max = 0;",
+                    "",
+                    "// we iterate over the image ",
+                    "while ( cursor.hasNext() ) {",
+                    "  // get the value at the current position",
+                    "  // (again,this is an instance of the pixel ",
+                    "  // value type UnsignedByteType that ",
+                    "  // acts as a reference to the pixel)",
+                    "  t = cursor.next();",
+                    "  max = Math.max( t.get(), max );",
+                    "}",
+                    "System.out.println( \"max = \" + max );",
+                    ""
                 ]
             },
             "output": {
                 "state": {},
                 "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] Reading IFDs\n"
+                        },
+                        {
+                            "type": "err",
+                            "value": "[ERROR] Error reading IFD type at: 194\n"
+                        },
+                        {
+                            "type": "err",
+                            "value": "[INFO] Populating metadata\n"
+                        }
+                    ],
+                    "payload": {
+                        "type": "BeakerDisplay",
+                        "innertype": "Error",
+                        "object": [
+                            "java.io.IOException: io.scif.img.ImgIOException: java.io.IOException: Resetting to invalid mark<br/>",
+                            "\tat io.scif.services.DefaultDatasetIOService.open(DefaultDatasetIOService.java:134)",
+                            "\tat io.scif.services.DefaultDatasetIOService.open(DefaultDatasetIOService.java:109)",
+                            "\tat io.scif.services.DatasetIOService$open.call(Unknown Source)",
+                            "\tat script1471446744088967431503.run(script1471446744088967431503.groovy:12)",
+                            "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:378)",
+                            "Caused by: io.scif.img.ImgIOException: java.io.IOException: Resetting to invalid mark",
+                            "\tat io.scif.img.ImgOpener.createReader(ImgOpener.java:571)",
+                            "\tat io.scif.img.ImgOpener.openImgs(ImgOpener.java:145)",
+                            "\tat io.scif.services.DefaultDatasetIOService.open(DefaultDatasetIOService.java:124)",
+                            "\tat io.scif.services.DefaultDatasetIOService.open(DefaultDatasetIOService.java:109)",
+                            "\tat io.scif.services.DatasetIOService$open.call(Unknown Source)",
+                            "\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)",
+                            "\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:110)",
+                            "\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:122)",
+                            "\tat script1471446744088967431503.run(script1471446744088967431503.groovy:12)",
+                            "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:378)",
+                            "\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)",
+                            "\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)",
+                            "\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)",
+                            "\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)",
+                            "\tat java.lang.Thread.run(Thread.java:745)",
+                            "Caused by: java.io.IOException: Resetting to invalid mark",
+                            "\tat java.io.BufferedInputStream.reset(BufferedInputStream.java:448)",
+                            "\tat java.io.FilterInputStream.reset(FilterInputStream.java:226)",
+                            "\tat io.scif.io.URLHandle.seek(URLHandle.java:122)",
+                            "\tat io.scif.io.RandomAccessInputStream.seek(RandomAccessInputStream.java:139)",
+                            "\tat io.scif.formats.tiff.TiffParser.getIFDValue(TiffParser.java:476)",
+                            "\tat io.scif.formats.tiff.TiffParser.fillInIFD(TiffParser.java:457)",
+                            "\tat io.scif.formats.MinimalTIFFFormat$Parser.typedParse(MinimalTIFFFormat.java:449)",
+                            "\tat io.scif.formats.TIFFFormat$BaseTIFFParser.typedParse(TIFFFormat.java:891)",
+                            "\tat io.scif.formats.TIFFFormat$BaseTIFFParser.typedParse(TIFFFormat.java:873)",
+                            "\tat io.scif.AbstractParser.parse(AbstractParser.java:253)",
+                            "\tat io.scif.AbstractParser.parse(AbstractParser.java:336)",
+                            "\tat io.scif.AbstractParser.parse(AbstractParser.java:52)",
+                            "\tat io.scif.AbstractReader.setSource(AbstractReader.java:270)",
+                            "\tat io.scif.services.DefaultInitializeService.initializeReader(DefaultInitializeService.java:90)",
+                            "\tat io.scif.img.ImgOpener.createReader(ImgOpener.java:562)",
+                            "\t... 14 more",
+                            ""
+                        ]
+                    }
                 },
-                "selectedType": "BeakerDisplay",
-                "height": 77
+                "selectedType": "Results",
+                "height": 131,
+                "pluginName": "Groovy",
+                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
+                "elapsedTime": 11784
             },
             "evaluatorReader": true,
-            "lineCount": 28
+            "lineCount": 30
         },
         {
             "id": "markdownaRyqSH",
@@ -597,7 +661,7 @@
                     "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
                 },
                 "selectedType": "BeakerDisplay",
-                "height": 114
+                "height": 77
             },
             "evaluatorReader": true,
             "lineCount": 38
