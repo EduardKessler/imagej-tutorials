@@ -111,9 +111,9 @@
                 "state": {},
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
-                "elapsedTime": 4223,
-                "result": "script14714424506681453574080$1@3a3603d3",
+                "shellId": "1614f86f-3a49-4fc0-96ec-8c3bcd2e848b",
+                "elapsedTime": 4411,
+                "result": "script14719802214511453574080$1@4c417403",
                 "height": 56
             },
             "evaluatorReader": true,
@@ -210,8 +210,8 @@
                 "result": "ArrayImg [400x320]",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
-                "elapsedTime": 598,
+                "shellId": "1614f86f-3a49-4fc0-96ec-8c3bcd2e848b",
+                "elapsedTime": 600,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -237,11 +237,11 @@
             },
             "output": {
                 "state": {},
-                "result": "java.util.Random@7ad4afe6",
+                "result": "java.util.Random@2aa2fc64",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
-                "elapsedTime": 581,
+                "shellId": "1614f86f-3a49-4fc0-96ec-8c3bcd2e848b",
+                "elapsedTime": 611,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -281,10 +281,10 @@
             },
             "output": {
                 "state": {},
-                "selectedType": "BeakerDisplay",
+                "selectedType": "Hidden",
                 "pluginName": "Groovy",
-                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
-                "elapsedTime": 2573,
+                "shellId": "1614f86f-3a49-4fc0-96ec-8c3bcd2e848b",
+                "elapsedTime": 574,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -311,14 +311,14 @@
                 "state": {},
                 "result": {
                     "type": "ImageIcon",
-                    "imageData": "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",
+                    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAFACAYAAACSgSrjAAAK10lEQVR42u3d0W4bSQ4FUP3/T0+QhwEUw5YsqbqKvDwLHOxLJlGzSN5uWbZvt9vtv2f+/u83fw7S6H14yABC1T5+9u9+8roqzOZPr8HeECAACBB3hq7dNeLcCAiQE81pICBvZsy1t7AABPOZUHQggKWsDhsDZHrBp1x/1U8fqWe9uq34ty3yc7V7879XeAy6moG3sCwdnMPQuiSf0bvXtqEmsw7fIgDL3Tl4AgEQot7CAkCASHHXB+ZOgABYtLPP8MmfV9B3DsAgWTTOxnUTVPSODaKpAW9hWdwcrK3zVG/9IkAA6BOKClr5dbpT0l/uqPEEAghIQSlAwOL7/t/8+v9qhgDBMnU9wOoAMdDg00wIECyy0q/HsrLcKdcXCkrNBWQBqiWeQAyuIXfNIECYvnQtfLBTLguQn16IxWNR49yJ6wOHlfD9B6Bv1FCAMGoADCF6S4AAIED23A1UvTtw1wLgCQSAa2+WFRJPbYAAAWDfjaA7UPBNms5Z/Zs9gfimQyxTZ5neP+G9rMEBixEB4pvlQHhRIUC8xQRUCoOdu6fTnjv4WgWE4VUH9KMah76Fpakw3KhbydppBE1o8J09NA4QA7y2huoJ+BSW8FFHQICAkAMBAuCGxg2NJgCLBuceHCAVD8JSQK+olScQDBhtzmb3+es3BAiWu0WIfukVIA4BLFwEiGEAsOv6BMjURS7AIGMm/UIpC9aSVwtnD97Csty8VmBrgBh0Cxm1Rt94AsEwgVmYFyAWDhYIzlOAaBTAHAkQkgbVj8oAPS9ANApAZoBYrmA+nMfrf3eh3tAYBh69iHN+Q4dGMwwA3sISEozvlS6vf/JM2kdvBIiiYbCAlwPEYrC0hUiPuqo/3sIKH/rVQ25pCHycS3SAOCCDp4csS+qf58K/z+Fg+YA5FCAAJRayH6ZYsBDujoHkXdNsx2kUjaCWzhcECAIC9KsAgT5LwkLRIwIEwGJGgBhAdQDzIkA0x6jrNMwgQABBSXZ/zSqGoVUbss+80zUF1N8CASxJvIVlsNQOECCWhFo4WxAggJAi4ty//J2KDJa4oMETiMEAs4cA0dDqCggQID783UAIEABPtggQynxSgwU1UlPKBojmxOIGPIGAQHFmCBCNpZ6Q3suN50whoOIM3P89vk7V95oSv4H07s8beNwMqK0anLjGqB/njk9JkdcX3c5abwoQDJBrhukBYrBBOOIdiR/+rAPBolRLZ0rQW1jfNW6lZvZ7l71uNQMFIHyRvftaLGPwNRDATQXdn0A0kKWgFqTWe+jb2hoRwE2DALm8KTSMYQMztiFArrqY3/y9lhUIezyBYFkBNWdLkQH4PnyehJBC4Q6LWfXWN55AwKKGs/1ogAw6MHm+P7hOTQJYqJWvtXDdDYXGQE/17uNP/n0zODRAfvkpgRaD4ZsXLXOcsQBRcAAB0iU8/FA13KWir8ICxC9dcj04ZzyBaHBLQV3Yfi7O3PeBYIl4Xa4VTyAAQk49PggQTaDxXBPgCQQLHcxC/QBJPQTNtb52aor9UHMHffm3HLCG9dqcuTPDW1gWAyPOUV8gQCxbBvadPkWAGBDcHOA8p9dp/QvVHGAJ2QWeQABAgLD+o7PuMEGAAN66oXhPFOwrgwICB2fiCcQ3Zam761ID9p2hwhg4AE8g0CL4/QwwBAgAAiThLRV3bzXr7lzwFrMnEI/ehgDnCd7CwkICBAhsCTyBCgIEuDg0u4Ztt9dd4PUaEo0567o8SagLxb6IbpgMpPqot9qNq7XmwIJCv7oOAQJY9qQGiB9UCBCzdxVX8AD2hAABLE313PeaHCoG2jJF6AQESKchtVCck2tg+Bm9VhyNDIC3sHDX5bzQEzUDpHuzGjbA7vIEAtA6BN4JhQ1B4qDcYQAcDpDfLDWLD3ATJUDAAoEL+7FBjzt4TWw5gxsjAYKAAAQIwPobId8UfWGAVC2qw8ZHNGHP/nzhzysoAN7C2hoMQgjsieE10EwYFuBQgBhOoFvw21sbA0Sxof+SOv167JG42jg4qDbsFq0+ECAO2rUDyfOZWXRLExAWAsTB3Wr+oLZuv7/eTQUsn2sFA8ATCHhLUz05HSAaBCxu9JMnECwg5wNX9JliagJ4ra/03uwdcvffKRbOQZ2hwBOIpsWCVS+1ECAM+F6OhNdhmNFrwQGi6IZDjUCAYMHEnFPiWek/e0WAGC7n4fzBE4il6BpAbwsQh6g+gP3iCaTiYQgOYY1e8QSCpjeAMDtADHzPujg3HwDQV2w6NwXGYFmeXHHOA/pG0wC4eRAggCXIvj5QVECgIUAA4YMAAUCAuAvCJ2n0MQJE01vCqDccC5BJw2IxqIVauw4BogFBb+Lc7inG3Kb0+zgATyCBC86yRe+ovQABoERg+U70xUX0U04BTzYDA8TiBeyqo9fgcAHwNRBPLs4EECBYxmBmxwbI6aJ8+u8/+u8taXBjgwJgGbC5Ryr2j572neiAsKLLE8izg3OwYMm6jtiaKw5gGQqqRl8DcTjn6ukXJOkD9eTyANE84JN7AhafwgLGB4EAESDuVNAbBV+7mRlZLwcJWKwcCpApB17tx8Dj0zfYXz6FBXDBnrBnvIUFblxgaoAYWsDuECBsHhjfGGZRgQABQUPYOekHzaaZXDPo64kB4qD310fNIfMp6o2fru6gADeFeAtL4+Pc0BsCBCwfECAAbhoECLMbyF01XDdXDefLAgEhbb7VwRMIcGg5WroCBEvF6wFmB0jCAvL7KwQ2CJCFQ2Tw1AcQIAAIEDwJAAP3g8ME3PSonQABi1DdWXyOD85WwQyVuqg9U2q8+LU5bLDEXCNv1VeRwLJyVngCAUCAuHtxjegd9a1Q721fRNdcFggwZs4tDpw3MPAtLEsOvQACBGgWrP//T50FiLs6IP7p0U7bFCAK3bsxnR/YF97CAmGJ3u4TIBU/iwwITjyBAEJFvQQIqYNhsEC4CZDBy3PldQgUMDvHAqR7ES1QAE8g4AYFPu87g+J6gNVzP2QvaASBpL7OyAdG1FGAACBAcHfounyCDwECWLoIELAIcbZqLEA0kesAcyVAAOGvfgIEDDsIECw0QIBYxoAdgCcQw+CagPgAsUjg7MyYQTyBMPbGwBOaelWqQ9h3+GsUAO+2CBCNBlAlQCwrhB+YG08gDQ/ewjXcULivFQrAjYMnEA0GsG9fKdyJQxAu+oG1Nbv/77rUPaA/NKGhzz5n5wkCBHdIgAAB3EAgQPC22dDzfOXts0nnq5cFyD/NoCEMLkDLJxCLEdzMIECg5CI6ufAmLFuBkvO2rADB4DsnWNFrCmLQcc5q6Zq8heVQ1dw1E39ehV6TBjEAua/xir9XAIAA+WhZnFoiV/+7VZajJY0+EiAYPECAYGHj/F0/jQPEF7Qslm719iNuECCWtjs/14de4WSArD4kh264gKIBYnEIB5wz+CI6lh7oPQHyyhdbUxtBg6uXmqibAAEsZHUQIABkhfODv0OBNRRg3jc/gVhECDrwFhYIK3XQB/pAgGB41BPneShAOv1uBrDAwBMIAAJkzl3UlT/byx0n2A3F/10HjeH0+nF2AgQsL0bXt+wTiOZFfzhDiH4CMQRgThAgAGPDuEHIO3wNjrNETwgQLJ+46/zkWoQNAgQEEggQYE7oCV4BgiFSD5yl6xYg3Rrmyh+VYhDy+s95CgwBAiHL4eobAMtOHwoQwPJSewECwAx/ACHawTF4gRIfAAAAAElFTkSuQmCC",
                     "width": 400,
                     "height": 320
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
-                "elapsedTime": 1892,
+                "shellId": "1614f86f-3a49-4fc0-96ec-8c3bcd2e848b",
+                "elapsedTime": 2543,
                 "height": 357
             },
             "evaluatorReader": true,
@@ -356,8 +356,9 @@
                 "body": [
                     "import java.util.Random",
                     "import net.imglib2.*",
-                    "",
-                    "public <T> void draw( final RandomAccessibleInterval< T > img, final T value ) {",
+                    "  ",
+                    "  stuff = new Object() {",
+                    "def <T> void draw( final RandomAccessibleInterval< T > img, final T value ) {",
                     "  // get the number of dimensions",
                     "  final int n = img.numDimensions()",
                     "  // Taking a general Interval means that we no longer can assume ",
@@ -388,19 +389,21 @@
                     "    // set the pixel value via this reference",
                     "    r.get().set( value )",
                     "  }",
-                    "}  "
+                    "}  ",
+                    "  }"
                 ]
             },
             "output": {
                 "state": {},
-                "selectedType": "Hidden",
-                "height": 833,
+                "selectedType": "Text",
+                "height": 56,
                 "pluginName": "Groovy",
-                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
-                "elapsedTime": 607
+                "shellId": "1614f86f-3a49-4fc0-96ec-8c3bcd2e848b",
+                "elapsedTime": 606,
+                "result": "script1471982749145778841815$1@1b140a41"
             },
             "evaluatorReader": true,
-            "lineCount": 35
+            "lineCount": 37
         },
         {
             "id": "markdownXErDHa",
@@ -418,37 +421,34 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "import net.imglib2.type.numeric.ARGBType",
+                    "import net.imglib2.type.numeric.real.FloatType",
                     "import net.imglib2.img.array.ArrayImgs",
                     "",
                     "",
-                    "long[] dimensions = [400, 320, 100]",
-                    "img = ArrayImgs.argbs(dimensions)",
+                    "long[] dimensions = [400, 320, 5]",
+                    "img = ArrayImgs.floats(dimensions)",
+                    "//println(img.firstElement().getClass())",
                     "//value = new ARGBType( 0xffffffff )",
-                    "draw( img, new ARGBType(0xffffffff))",
+                    "stuff.draw( img, new FloatType(255f))",
                     "notebook.display( img )"
                 ]
             },
             "output": {
                 "state": {},
                 "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": [
-                        "groovy.lang.GroovyRuntimeException: Could not find matching constructor for: net.imglib2.type.numeric.ARGBType(java.lang.Long)<br/>",
-                        "\tat script1471445923277747580947.run(script1471445923277747580947.groovy:8)",
-                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:378)",
-                        ""
-                    ]
+                    "type": "ImageIcon",
+                    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAFACAYAAACSgSrjAAAFkElEQVR42u3by67qOhBFUf//T4NopIOEiBLFrlUeVxrte7bzmC4DY4zxAoALLMIvn/+sA4CAADZuCIiHCOsGAgKAgACmJwTEzQ7ufzCBACAgdo0AAgJgwycgAAgIAAgIAAICgIAAICAAbPzNNYsOgIAAICAACAgAAgIAAoJvpQACAoCAACAg4EgK94KAAICAACAggGMlBAQQDgQEAAEBwGQnIMZv6wgIiBeddcH9gYAAICAACAgACAgAAgL4cNv1EBDc7ICAAKeDLdwICAACAo64AAFBaAABAUBAABMkAgIAFoDmO1K7a+uLgAAgINipAgICgIBgGgAQEAAEBMDULyAACAjYFfqb/a0CAgACAoCAAJAbEGeIAJhAfIgHICBe5mIFCAjCBQiIlwmAgIBpxd8LAgKAgIBdPwgIIIrWQUAAEBDI3inapYKAeFn6m8H9LyAACAgACAgAAoKzXUBAAIjYJFpQAAQEAAHB5xTguRQQF42i94n7B0wgAMzfoFskwHESJhA8oLjXEBAABAQAAQEcr8DfgHg4ADCBAKZBBASAhgGxCwDYZqKzUAAUOsIyiQC0n0YsDgCXQmJRACcQ+BYWAAICgICEjtvGcHBk5phOQMBL1b8bAcGDBggIAAICgIAAOGpFQMBLECYFxIMCiC0mEAAEBLtDQEAAEBAwNbk21kFAAEQJAQFAQLCTBAQEoOoGxoanaEBcGAABAQAB8dkCgIAAICAACAgAAgKAz0K//t8uBAAmEAAEBBwtgIAAYiWwAgIAAgKAgOA4AfcZAgJAp4AcOwg7CQBMII4BAAQEAAEBQEAcDTmiAgQEAATEdGEawv1FdEDcRAACAjYJICAAICAACAgAAgKAgAAgIAAgIL6uCiAgAAiIqQTwHhAQAEwgACAgRlUAAUHgAAEBQEDsmE0gACYQAAQEAAFxPAR4HwgIAAIC2EmDgAAgIICJJeZvbrZGbnoAsbsZEOedAJhAABzjCQgAAgKAgACw+VGWCw2AgIBdJggIAAICgIDgOAbgdEC8WAAwgQAgIACOa5eun8UAwAQCYOJJD4gR0VoBJhAAGyMEBAABwe4S1wQBAUBA7PCw5iAgICjWxLVCQAAQEACTUYn1syB42IBFE4iXDO4hEBAAbHwEBAABAUJ2znblAgKAqAoIHlRAQAAQEEwIgIAAICB2u7gOgAkEgCc3gRbHbhrABAJgsykgABSPlcUHO0kQEAAEBAABAUBAnBMDYALxwTCAgAAgIJhuAAEBQEAAQEAAEBAABAQAAQFAQABAQACYERA/CAP8UBUTCAACApgQKHFdLCwAAoJdIe5lBAS8QEBAAOi4gbMgYMICEwgA8zYlFhcwMSEggBc98+4XCwUIHyYQwMsdAQG89BEQDxyAgACAgAAgIAAICAACAoCAAICAACAggN9mISAACIjdDYCAAICAYMKj8X3j3hIQAAQETC4gIAAgIAAICDimAwEBQECwW8U1R0AAQEAAEBAABMS5NHgeEBAABMQOCAATCIANr4AAUCNQFhgAAQFAQAAQEAAEBAA/NRAQAAQEAAHxa3MAAQFAQEwKAJhAcCwJbBEQLxYAAQFAQAAQEAAQEAAEBAABAaDdN1stJvjNDK6VgACQHBC7I9xTICAAICAACAiAY10BAcAEAnZmICAAICAACAgAAgLgszUBAUBAALtSXGsBgfUvGi8eBATsNAEBAUBAwCQDAgJeyCAgXhoAAoKI4d4HAfHQ4xqBgHjwAc+ogLjhrQMgIAAICJioAAEBQEAAEBDAMSYCAsBuGwSLAaYDeGgCccPhxWbdwBEWXj64RxAQANEUEAAEBAABARzdONJBQAAQEAAEBBK/beNIBwSkxQvPuTUgIAAICAAC4pegAJhARBLcowgIAAICQJo34JMCgJompTIAAAAASUVORK5CYII=",
+                    "width": 400,
+                    "height": 320
                 },
-                "selectedType": "BeakerDisplay",
-                "height": 81,
+                "selectedType": "Image",
+                "height": 357,
                 "pluginName": "Groovy",
-                "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
-                "elapsedTime": 605
+                "shellId": "1614f86f-3a49-4fc0-96ec-8c3bcd2e848b",
+                "elapsedTime": 636
             },
             "evaluatorReader": true,
-            "lineCount": 9
+            "lineCount": 10
         },
         {
             "id": "markdownlIXzRt",
@@ -528,70 +528,12 @@
             "output": {
                 "state": {},
                 "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "err",
-                            "value": "[INFO] Reading IFDs\n"
-                        },
-                        {
-                            "type": "err",
-                            "value": "[ERROR] Error reading IFD type at: 194\n"
-                        },
-                        {
-                            "type": "err",
-                            "value": "[INFO] Populating metadata\n"
-                        }
-                    ],
-                    "payload": {
-                        "type": "BeakerDisplay",
-                        "innertype": "Error",
-                        "object": [
-                            "java.io.IOException: io.scif.img.ImgIOException: java.io.IOException: Resetting to invalid mark<br/>",
-                            "\tat io.scif.services.DefaultDatasetIOService.open(DefaultDatasetIOService.java:134)",
-                            "\tat io.scif.services.DefaultDatasetIOService.open(DefaultDatasetIOService.java:109)",
-                            "\tat io.scif.services.DatasetIOService$open.call(Unknown Source)",
-                            "\tat script1471446744088967431503.run(script1471446744088967431503.groovy:12)",
-                            "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:378)",
-                            "Caused by: io.scif.img.ImgIOException: java.io.IOException: Resetting to invalid mark",
-                            "\tat io.scif.img.ImgOpener.createReader(ImgOpener.java:571)",
-                            "\tat io.scif.img.ImgOpener.openImgs(ImgOpener.java:145)",
-                            "\tat io.scif.services.DefaultDatasetIOService.open(DefaultDatasetIOService.java:124)",
-                            "\tat io.scif.services.DefaultDatasetIOService.open(DefaultDatasetIOService.java:109)",
-                            "\tat io.scif.services.DatasetIOService$open.call(Unknown Source)",
-                            "\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)",
-                            "\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:110)",
-                            "\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:122)",
-                            "\tat script1471446744088967431503.run(script1471446744088967431503.groovy:12)",
-                            "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:378)",
-                            "\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)",
-                            "\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)",
-                            "\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)",
-                            "\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)",
-                            "\tat java.lang.Thread.run(Thread.java:745)",
-                            "Caused by: java.io.IOException: Resetting to invalid mark",
-                            "\tat java.io.BufferedInputStream.reset(BufferedInputStream.java:448)",
-                            "\tat java.io.FilterInputStream.reset(FilterInputStream.java:226)",
-                            "\tat io.scif.io.URLHandle.seek(URLHandle.java:122)",
-                            "\tat io.scif.io.RandomAccessInputStream.seek(RandomAccessInputStream.java:139)",
-                            "\tat io.scif.formats.tiff.TiffParser.getIFDValue(TiffParser.java:476)",
-                            "\tat io.scif.formats.tiff.TiffParser.fillInIFD(TiffParser.java:457)",
-                            "\tat io.scif.formats.MinimalTIFFFormat$Parser.typedParse(MinimalTIFFFormat.java:449)",
-                            "\tat io.scif.formats.TIFFFormat$BaseTIFFParser.typedParse(TIFFFormat.java:891)",
-                            "\tat io.scif.formats.TIFFFormat$BaseTIFFParser.typedParse(TIFFFormat.java:873)",
-                            "\tat io.scif.AbstractParser.parse(AbstractParser.java:253)",
-                            "\tat io.scif.AbstractParser.parse(AbstractParser.java:336)",
-                            "\tat io.scif.AbstractParser.parse(AbstractParser.java:52)",
-                            "\tat io.scif.AbstractReader.setSource(AbstractReader.java:270)",
-                            "\tat io.scif.services.DefaultInitializeService.initializeReader(DefaultInitializeService.java:90)",
-                            "\tat io.scif.img.ImgOpener.createReader(ImgOpener.java:562)",
-                            "\t... 14 more",
-                            ""
-                        ]
-                    }
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
                 },
-                "selectedType": "Results",
-                "height": 131,
+                "selectedType": "BeakerDisplay",
+                "height": 77,
                 "pluginName": "Groovy",
                 "shellId": "73a52b3c-27d5-47b8-a9ae-1fe9863421d3",
                 "elapsedTime": 11784
