@@ -103,6 +103,7 @@
                     "      converters.add(new RealLUTConverter(0, 255, ColorTables.getDefaultColorTable(i)))",
                     "    }",
                     "    proj = new CompositeXYProjector(source, target, converters, cAxis)",
+                    "    proj.setComposite(true)",
                     "    proj.map()",
                     "    return target.image()",
                     "  }",
