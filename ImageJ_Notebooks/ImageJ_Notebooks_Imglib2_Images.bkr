@@ -62,6 +62,16 @@
                     "mode": "text/x-java"
                 }
             }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
         }
     ],
     "cells": [
@@ -72,6 +82,64 @@
             "title": "ImgLib2: Create, Open, & Display an Image",
             "collapsed": false,
             "evaluatorReader": false
+        },
+        {
+            "id": "codech0r0I",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-50')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    "",
+                    "///////////////////////////////////////////////////////////////////////////////",
+                    "// Define an object which houses some handy notebook functions. In particular,",
+                    "// we include a way to display ImgLib images (i.e., RandomAccessibleInterval",
+                    "// objects) directly inside the notebook here.",
+                    "",
+                    "import java.awt.image.BufferedImage",
+                    "import net.imagej.display.ColorTables",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.converter.RealLUTConverter",
+                    "import net.imglib2.display.projector.composite.CompositeXYProjector",
+                    "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "",
+                    "notebook = new Object() {",
+                    "  BufferedImage display(RandomAccessibleInterval source) {",
+                    "    return display(source, 0, 1, -1)",
+                    "  }",
+                    "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis) {",
+                    "    w = (int) source.dimension(xAxis)",
+                    "    h = (int) source.dimension(yAxis)",
+                    "    c = 1",
+                    "    target = new ARGBScreenImage(w, h)",
+                    "    converters = new ArrayList<RealLUTConverter>(c);",
+                    "    for (int i=0; i<c; i++) {",
+                    "      converters.add(new RealLUTConverter(0, 255, ColorTables.GRAYS))",
+                    "    }",
+                    "    proj = new CompositeXYProjector(source, target, converters, cAxis)",
+                    "    proj.map()",
+                    "    return target.image()",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "result": "script14720683149231453574080$1@3ee3e3f0",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "ba8861d4-2815-44d7-8bfa-e16b510e334e",
+                "elapsedTime": 2326,
+                "state": {},
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 38
         },
         {
             "id": "sectionS6UXp3",
@@ -85,109 +153,50 @@
             "id": "markdownBq7a4y",
             "type": "markdown",
             "body": [
-                "The following piece of code creates and displays an 400x320 8bit gray-level image:"
+                "The following piece of code creates and displays an 400x320 8-bit gray-level image:"
             ],
             "evaluatorReader": false
         },
         {
             "id": "codeMjDEcP",
             "type": "code",
-            "evaluator": "Java",
+            "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "import net.imglib2.img.Img;",
-                    "import net.imglib2.img.array.ArrayImgFactory;",
-                    "import net.imglib2.img.display.imagej.ImageJFunctions;",
-                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
+                    "import net.imglib2.img.Img",
+                    "import net.imglib2.img.array.ArrayImgFactory",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType",
                     " ",
-                    "public class CreateAndDisplay {",
-                    "    public static void main( final String[] args ) {",
-                    "        // will create a window showing a black 400x320 image",
-                    "        final Img< UnsignedByteType > img = new ArrayImgFactory< UnsignedByteType >()",
-                    "            .create( new long[] { 400, 320 }, new UnsignedByteType() );",
-                    "        // show image",
-                    "        ImageJFunctions.show( img );",
-                    "    }",
-                    "}"
+                    "// will create a window showing a black 400x320 image",
+                    "long[] dimensions = [400, 320]",
+                    "final Img< UnsignedByteType > img = new ArrayImgFactory< UnsignedByteType >().create( dimensions, new UnsignedByteType() )",
+                    "// show image",
+                    "notebook.display( img )",
+                    ""
                 ]
             },
             "output": {
                 "state": {},
-                "selectedType": "BeakerDisplay",
-                "pluginName": "Java",
-                "shellId": "3e98338c-67a3-4989-94d1-97aef0235589",
-                "elapsedTime": 800,
+                "selectedType": "Image",
+                "pluginName": "Groovy",
+                "shellId": "ba8861d4-2815-44d7-8bfa-e16b510e334e",
+                "elapsedTime": 579,
                 "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": [
-                        "ERROR: 10 compilation error(s)",
-                        "",
-                        "error at line 1: package net.imglib2.img does not exist",
-                        " import net.imglib2.img.Img",
-                        "        ^                  ^ ",
-                        "",
-                        "error at line 2: package net.imglib2.img.array does not exist",
-                        " import net.imglib2.img.array.ArrayImgFactory",
-                        "        ^                                    ^ ",
-                        "",
-                        "error at line 3: package net.imglib2.img.display.imagej does not exist",
-                        " import net.imglib2.img.display.imagej.ImageJFunctions",
-                        "        ^                                             ^ ",
-                        "",
-                        "error at line 4: package net.imglib2.type.numeric.integer does not exist",
-                        " import net.imglib2.type.numeric.integer.UnsignedByteType",
-                        "        ^                                                ^ ",
-                        "",
-                        "error at line 8: cannot find symbol",
-                        "  symbol:   class Img",
-                        "  location: class com.twosigma.beaker.javash.bkr3e98338c.CreateAndDisplay",
-                        "                 final Img< UnsignedByteType > img = new",
-                        "                       ^  ^                               ",
-                        "",
-                        "error at line 8: cannot find symbol",
-                        "  symbol:   class UnsignedByteType",
-                        "  location: class com.twosigma.beaker.javash.bkr3e98338c.CreateAndDisplay",
-                        "                 final Img< UnsignedByteType > img = new ArrayImgFactory< ",
-                        "                            ^               ^                               ",
-                        "",
-                        "error at line 9: cannot find symbol",
-                        "  symbol:   class UnsignedByteType",
-                        "  location: class com.twosigma.beaker.javash.bkr3e98338c.CreateAndDisplay",
-                        "( new long[] { 400, 320 }, new UnsignedByteType() )",
-                        "                               ^               ^     ",
-                        "",
-                        "error at line 8: cannot find symbol",
-                        "  symbol:   class ArrayImgFactory",
-                        "  location: class com.twosigma.beaker.javash.bkr3e98338c.CreateAndDisplay",
-                        "< UnsignedByteType > img = new ArrayImgFactory< UnsignedByteType >()",
-                        "                               ^              ^                       ",
-                        "",
-                        "error at line 8: cannot find symbol",
-                        "  symbol:   class UnsignedByteType",
-                        "  location: class com.twosigma.beaker.javash.bkr3e98338c.CreateAndDisplay",
-                        "e > img = new ArrayImgFactory< UnsignedByteType >()",
-                        "                               ^               ^     ",
-                        "",
-                        "error at line 10: cannot find symbol",
-                        "  symbol:   variable ImageJFunctions",
-                        "  location: class com.twosigma.beaker.javash.bkr3e98338c.CreateAndDisplay",
-                        "                 ImageJFunctions.show( img )",
-                        "                 ^              ^             ",
-                        "",
-                        ""
-                    ]
+                    "type": "ImageIcon",
+                    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAFACAYAAACSgSrjAAADnElEQVR42u3VIQEAAAjAsPcvDR1QiIkVuHnVAMCBCAAYCAAGAoCBAGAgAGAgABgIAAYCgIEAYCAAYCAAGAgABgKAgQBgIABgIAAYCAAGAoCBAGAgAGAgABgIAAYCgIEAYCAAYCAAGAgABgKAgQBgIABgIAAYCAAGAoCBAGAgAGAgABgIAAYCgIEAgIEAYCAAGAgABgKAgQCAgQBgIAAYCAAGAoCBAICBAGAgABgIAAYCgIEAgIEAYCAAGAgABgKAgQCAgQBgIAAYCAAGAoCBAICBAGAgABgIAAYCgIEAgIEAYCAAGAgABgKAgYgAgIEAYCAAGAgABgIABgKAgQBgIAAYCAAGAgAGAoCBAGAgABgIAAYCAAYCgIEAYCAAGAgABgIABgKAgQBgIAAYCAAGAgAGAoCBAGAgABgIAAYCAAYCgIEAYCAAGAgABgIABgKAgQBgIAAYCAAIAICBAGAgABgIAAYCAAYCgIEAYCAAGAgABgIABgKAgQBgIAAYCAAGAgAGAoCBAGAgABgIAAYCAAYCgIEAYCAAGAgABgIABgKAgQBgIAAYCAAGAgAGAoCBAGAgABgIAAYCAAYCgIEAYCAAGAgAGAgABgKAgQBgIAAYCAAYCAAGAoCBAGAgABgIABgIAAYCgIEAYCAAGAgAGAgABgKAgQBgIAAYCAAYCAAGAoCBAGAgABgIABgIAAYCgIEAYCAAGAgAGAgABgKAgQBgIAAgAAAGAoCBAGAgABgIABgIAAYCgIEAYCAAGAgAGAgABgKAgQBgIAAYCAAYCAAGAoCBAGAgABgIABgIAAYCgIEAYCAAGAgAGAgABgKAgQBgIAAYCAAYCAAGAoCBAGAgABgIABgIAAYCgIEAYCAAYCAAGAgABgKAgQBgIABgIAAYCAAGAoCBAGAgAGAgABgIAAYCgIEAYCAAYCAAGAgABgKAgQBgIABgIAAYCAAGAoCBAGAgAGAgABgIAAYCgIEAYCAAYCAAGAgABgKAgQCACAAYCAAGAoCBAGAgAGAgABgIAAYCgIEAYCAAYCAAGAgABgKAgQBgIABgIAAYCAAGAoCBAGAgAGAgABgIAAYCgIEAYCAAYCAAGAgABgKAgQBgIABgIAAYCAAGAoCBAGAgAGAgABgIAAYCgIEAgIEAYCAAGAgABgKAgQCAgQBgIAAYCAAGAoCBAICBAGAgABgIAAYCgIEAgIEAYCAAGAgABgKAgQCAgQBgIAD8sG+VKS+eC1CGAAAAAElFTkSuQmCC",
+                    "width": 400,
+                    "height": 320
                 },
-                "height": 81
+                "height": 357
             },
             "evaluatorReader": true,
-            "lineCount": 14
+            "lineCount": 10
         },
         {
             "id": "markdownHx5dlw",
             "type": "markdown",
             "body": [
-                "Breaking _lines 9-10_ into individual steps...",
+                "Breaking _lines 6-9_ into individual steps...",
                 "",
                 "1 <code>final ImgFactory< UnsignedByteType > factory = new ArrayImgFactory< UnsignedByteType >();</code>",
                 "",
@@ -223,7 +232,7 @@
         {
             "id": "sectionJ61d2l",
             "type": "section",
-            "title": "Openning and Displaying Image Files",
+            "title": "Opening and Displaying Image Files",
             "level": 2,
             "evaluatorReader": false,
             "collapsed": false
@@ -237,32 +246,62 @@
             "evaluatorReader": false
         },
         {
-            "id": "codedbeqgt",
+            "id": "codecJRYF3",
             "type": "code",
-            "evaluator": "Java",
+            "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "import net.imglib2.img.Img;",
-                    "import net.imglib2.img.array.ArrayImgFactory;",
-                    "import net.imglib2.img.display.imagej.ImageJFunctions;",
-                    "import io.scif.img.ImgIOException;",
-                    "import io.scif.img.ImgOpener;",
-                    "import net.imglib2.type.numeric.integer.UnsignedByteType;",
-                    " ",
-                    "public class OpenAndDisplay {",
-                    "    public static void main( final String[] args ) {",
-                    "        try {",
+                    "import net.imagej.ImageJ",
+                    "",
+                    "// create an ImageJ gateway",
+                    "ij = new ImageJ()",
+                    "",
+                    "// load an image of Lena",
+                    "path = \"http://wsr.imagej.net/images/lena.jpg\"",
+                    "lena = ij.scifio().datasetIO().open(path)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] Populating metadata\n[INFO] Populating metadata\n"
+                        }
+                    ],
+                    "payload": "http://wsr.imagej.net/images/lena.jpg"
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "ba8861d4-2815-44d7-8bfa-e16b510e334e",
+                "elapsedTime": 576,
+                "height": 90
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
+        },
+        {
+            "id": "codedbeqgt",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imglib2.img.Img",
+                    "import net.imglib2.img.array.ArrayImgFactory",
+                    "//import net.imglib2.img.display.imagej.ImageJFunctions",
+                    "import io.scif.img.ImgIOException",
+                    "import io.scif.img.ImgOpener",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType",
+                    "",
                     "            // load image",
-                    "            final Img< UnsignedByteType > img = new ImgOpener().openImg( \"graffiti.tif\",",
-                    "                new ArrayImgFactory< UnsignedByteType >(), new UnsignedByteType() );",
-                    "            // show image",
-                    "            ImageJFunctions.show( img );",
-                    "        }",
-                    "        catch ( final ImgIOException e ) {",
-                    "            e.printStackTrace();",
-                    "        }",
-                    "    }",
-                    "}"
+                    "            final Img< UnsignedByteType > img = new ImgOpener().openImg( lena, new ArrayImgFactory< UnsignedByteType >(), new UnsignedByteType() );",
+                    "            // display the image",
+                    "            notebook.display(img)",
+                    "    ",
+                    "    ",
+                    ""
                 ]
             },
             "output": {
@@ -270,13 +309,21 @@
                 "result": {
                     "type": "BeakerDisplay",
                     "innertype": "Error",
-                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
+                    "object": [
+                        "groovy.lang.MissingMethodException: No signature of method: io.scif.img.ImgOpener.openImg() is applicable for argument types: (net.imagej.DefaultDataset, net.imglib2.img.array.ArrayImgFactory, net.imglib2.type.numeric.integer.UnsignedByteType) values: [http://wsr.imagej.net/images/lena.jpg, net.imglib2.img.array.ArrayImgFactory@5c28e487, ...]<br/>Possible solutions: openImg(java.lang.String), openImg(io.scif.Reader, io.scif.config.SCIFIOConfig), openImg(java.lang.String, io.scif.config.SCIFIOConfig), openImg(java.lang.String, net.imglib2.img.ImgFactory), openImg(java.lang.String, net.imglib2.type.numeric.RealType), openImg(io.scif.Reader, net.imglib2.type.numeric.RealType, io.scif.config.SCIFIOConfig)<br/>",
+                        "\tat script1472069320213224947880.run(script1472069320213224947880.groovy:9)",
+                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:378)",
+                        ""
+                    ]
                 },
                 "selectedType": "BeakerDisplay",
-                "height": 77
+                "height": 97,
+                "pluginName": "Groovy",
+                "shellId": "ba8861d4-2815-44d7-8bfa-e16b510e334e",
+                "elapsedTime": 576
             },
             "evaluatorReader": true,
-            "lineCount": 21
+            "lineCount": 14
         },
         {
             "id": "markdownBXkArm",
