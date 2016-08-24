@@ -246,43 +246,6 @@
             "evaluatorReader": false
         },
         {
-            "id": "codecJRYF3",
-            "type": "code",
-            "evaluator": "Groovy",
-            "input": {
-                "body": [
-                    "import net.imagej.ImageJ",
-                    "",
-                    "// create an ImageJ gateway",
-                    "ij = new ImageJ()",
-                    "",
-                    "// load an image of Lena",
-                    "path = \"http://wsr.imagej.net/images/lena.jpg\"",
-                    "lena = ij.scifio().datasetIO().open(path)"
-                ]
-            },
-            "output": {
-                "state": {},
-                "result": {
-                    "type": "Results",
-                    "outputdata": [
-                        {
-                            "type": "err",
-                            "value": "[INFO] Populating metadata\n[INFO] Populating metadata\n"
-                        }
-                    ],
-                    "payload": "http://wsr.imagej.net/images/lena.jpg"
-                },
-                "selectedType": "Results",
-                "pluginName": "Groovy",
-                "shellId": "a0f25c69-ae96-416e-8e2b-d4660e3eea0a",
-                "elapsedTime": 1656,
-                "height": 90
-            },
-            "evaluatorReader": true,
-            "lineCount": 8
-        },
-        {
             "id": "codedbeqgt",
             "type": "code",
             "evaluator": "Groovy",
