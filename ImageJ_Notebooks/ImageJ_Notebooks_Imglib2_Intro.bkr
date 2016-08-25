@@ -504,6 +504,7 @@
                     "// load an image of diatoms",
                     "path = \"http://wsr.imagej.net/images/Diatoms.jpg\"",
                     "diatoms = ij.scifio().datasetIO().open(path)",
+                    "",
                     "// display the image",
                     "notebook.display(diatoms)"
                 ]
@@ -532,7 +533,7 @@
                 "elapsedTime": 725
             },
             "evaluatorReader": true,
-            "lineCount": 10
+            "lineCount": 11
         },
         {
             "id": "markdownAGsFJz",
@@ -627,7 +628,7 @@
                 "state": {},
                 "result": "script1472066939518763101798$1@19707164",
                 "selectedType": "Text",
-                "height": 56,
+                "height": 93,
                 "pluginName": "Groovy",
                 "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
                 "elapsedTime": 614
@@ -676,7 +677,7 @@
                 "pluginName": "Groovy",
                 "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
                 "elapsedTime": 638,
-                "height": 71
+                "height": 108
             },
             "evaluatorReader": true,
             "lineCount": 6
