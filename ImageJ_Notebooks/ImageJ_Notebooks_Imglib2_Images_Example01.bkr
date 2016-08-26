@@ -128,11 +128,11 @@
                 ]
             },
             "output": {
-                "result": "script14721434359171453574080$1@4b4b0943",
+                "result": "script14722283918861453574080$1@4c417403",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "afe083bb-d348-449b-b197-1ebb861065a6",
-                "elapsedTime": 4577,
+                "shellId": "063a1712-e3b8-4e9d-bfdc-493b6d89f968",
+                "elapsedTime": 4624,
                 "state": {},
                 "height": 56
             },
@@ -227,15 +227,15 @@
                     "type": "BeakerDisplay",
                     "innertype": "Error",
                     "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script1472145369045744370582.groovy: 20: unexpected token: ( @ line 20, column 61.<br/>   &lt;T&gt; &amp; NativeType&lt;T&gt;&gt; Example1b() throws <br/>                                 ^<br/><br/>1 error<br/><br/>",
+                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14722283960771116409202.groovy: 18: unexpected token: ( @ line 18, column 61.<br/>   &lt;T&gt; &amp; NativeType&lt;T&gt;&gt; Example1b() throws <br/>                                 ^<br/><br/>1 error<br/><br/>",
                         "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
                         ""
                     ]
                 },
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Groovy",
-                "shellId": "afe083bb-d348-449b-b197-1ebb861065a6",
-                "elapsedTime": 605,
+                "shellId": "063a1712-e3b8-4e9d-bfdc-493b6d89f968",
+                "elapsedTime": 576,
                 "height": 177
             },
             "evaluatorReader": true,
@@ -258,17 +258,13 @@
                 "result": {
                     "type": "BeakerDisplay",
                     "innertype": "Error",
-                    "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14721453722771302179186.groovy: 2: unable to resolve class ImageJ <br/> @ line 2, column 1.<br/>   new ImageJ();<br/>   ^<br/><br/>script14721453722771302179186.groovy: 4: unable to resolve class construct03.Example1b <br/> @ line 4, column 1.<br/>   new construct03.Example1b();<br/>   ^<br/><br/>2 errors<br/><br/>",
-                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
-                        ""
-                    ]
+                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
                 },
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Groovy",
                 "shellId": "afe083bb-d348-449b-b197-1ebb861065a6",
                 "elapsedTime": 582,
-                "height": 273
+                "height": 77
             },
             "evaluatorReader": true,
             "lineCount": 4
@@ -422,7 +418,14 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
+                },
+                "selectedType": "BeakerDisplay",
+                "height": 77
             },
             "evaluatorReader": true,
             "lineCount": 43
