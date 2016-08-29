@@ -144,7 +144,13 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": "script14724975154921453574080$1@6d26d394",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "e3325e64-f09b-4fbf-8e65-5144543f0357",
+                "elapsedTime": 2487,
+                "height": 56
             },
             "evaluatorReader": true,
             "lineCount": 38
@@ -254,7 +260,21 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": [
+                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14724975179971768288863.groovy: 6: unable to resolve class net.imglib2.img.display.imagej.ImageJFunctions<br/> @ line 6, column 1.<br/>   import net.imglib2.img.display.imagej.ImageJFunctions;<br/>   ^<br/><br/>script14724975179971768288863.groovy: 1: unable to resolve class ij.ImageJ<br/> @ line 1, column 1.<br/>   import ij.ImageJ;<br/>   ^<br/><br/>2 errors<br/><br/>",
+                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
+                        ""
+                    ]
+                },
+                "selectedType": "BeakerDisplay",
+                "pluginName": "Groovy",
+                "shellId": "e3325e64-f09b-4fbf-8e65-5144543f0357",
+                "elapsedTime": 578,
+                "height": 273
             },
             "evaluatorReader": true,
             "lineCount": 72
@@ -396,7 +416,13 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
+                },
+                "height": 51
             },
             "evaluatorReader": true,
             "lineCount": 110
@@ -530,7 +556,13 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": "Evaluation cancelled due to a failure of an earlier cell evaluation"
+                },
+                "height": 51
             },
             "evaluatorReader": true,
             "lineCount": 98
