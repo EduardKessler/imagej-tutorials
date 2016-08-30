@@ -86,21 +86,28 @@
                     "import net.imglib2.converter.RealLUTConverter",
                     "import net.imglib2.display.projector.composite.CompositeXYProjector",
                     "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "import net.imglib2.view.Views",
                     "",
                     "notebook = new Object() {",
                     "  BufferedImage display(RandomAccessibleInterval source) {",
                     "    return display(source, 0, 1, -1)",
                     "  }",
                     "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis) {",
-                    "    w = (int) source.dimension(xAxis)",
-                    "    h = (int) source.dimension(yAxis)",
+                    "    offset = new long[source.numDimensions()]",
+                    "    for (int d = 0; d < offset.length; d++) {",
+                    "     offset[d] = -source.min(d) ",
+                    "    }",
+                    "    image = Views.translate(source, offset)",
+                    "    ",
+                    "    w = (int) image.dimension(xAxis)",
+                    "    h = (int) image.dimension(yAxis)",
                     "    c = 1",
                     "    target = new ARGBScreenImage(w, h)",
                     "    converters = new ArrayList<RealLUTConverter>(c);",
                     "    for (int i=0; i<c; i++) {",
                     "      converters.add(new RealLUTConverter(0, 255, ColorTables.GRAYS))",
                     "    }",
-                    "    proj = new CompositeXYProjector(source, target, converters, cAxis)",
+                    "    proj = new CompositeXYProjector(image, target, converters, cAxis)",
                     "    proj.map()",
                     "    return target.image()",
                     "  }",
@@ -111,13 +118,13 @@
                 "state": {},
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 2557,
-                "result": "script14720645359071453574080$1@2cda0ab4",
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 2392,
+                "result": "script1472583618619353746837$1@242df39b",
                 "height": 56
             },
             "evaluatorReader": true,
-            "lineCount": 38
+            "lineCount": 45
         },
         {
             "id": "sectionlAC22Y",
@@ -210,8 +217,8 @@
                 "result": "ArrayImg [400x320]",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 586,
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 598,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -237,11 +244,11 @@
             },
             "output": {
                 "state": {},
-                "result": "java.util.Random@735a2782",
+                "result": "java.util.Random@52b3a57a",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 578,
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 104,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -283,8 +290,8 @@
                 "state": {},
                 "selectedType": "Hidden",
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 570,
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 598,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -311,14 +318,14 @@
                 "state": {},
                 "result": {
                     "type": "ImageIcon",
-                    "imageData": "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",
+                    "imageData": "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",
                     "width": 400,
                     "height": 320
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 613,
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 90,
                 "height": 357
             },
             "evaluatorReader": true,
@@ -398,9 +405,9 @@
                 "selectedType": "Text",
                 "height": 56,
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 620,
-                "result": "script14720668054651724044493$1@1deb8866"
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 102,
+                "result": "script14725836225681724044493$1@53773a37"
             },
             "evaluatorReader": true,
             "lineCount": 37
@@ -432,15 +439,15 @@
                 "state": {},
                 "result": {
                     "type": "ImageIcon",
-                    "imageData": "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",
+                    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAZAAAAFACAYAAACSgSrjAAAFiUlEQVR42u3bUa7DKBBFQfa/6UReQRQEuLldI9X3zMPAATszxhgfuMHzj3GAUgwCgAORgJiQJj8gIAAICABeYXnVAYAbCDi9goAAICA4YWKucntATAwA3EAAtw0EBAABAUBAABAQABAQADb9EMKAAtA4IH5eiLkKAgI2axAQAAQEp1+wDhEQAATEicYY+m/HGhEQANxAcLoBBMSmCIAbCAACAoCAACAgvlkACAjg8MNl8+Pwv9vDBkBAABAQ8MoDis9FAwaAGwi4NYCAACAgAAgIAAgIAAICgIAAICB+ool5g2cnIGBjAQQEAAEBQEAAEBAABAR8dAbrQkAAEBAAtwEBwaIABASANodGJ2QndwA3EADOHZQNLABTETIoALiB+OYBICAg+CAgIB4gIBY1gIOVGwgWFCAgAAgIAAICgIDg/TyAgIADAAgIAAICgIDgFQ8gIABwUUBmTrVOwgACgtddgIAAICAAICAAHA2Id9jgmxW4gWAzAgTEZotxBwEBhNLfLCAACIhTGgACAoCAAHhjISAANmYBAUBAAEBAXO0BOgXERgkgIAAIiJuDsQMEBHBwAAGxCQAIiM0fQEBAqCFuDRpIAKbiYzDArQvcQAAQECdVMDcQEAAEBMDtDAHBogcEBICAgNx4qnQSBnADAUBAALdjCs8bAw2AgABOz7wdEA8QsPl7jm4gJj+AV1gACAjgJo+AACAgACAgAAgIAAIC+IiNgAAgIAAgIAAICAACAoCAACAgBgEAAQH/PwRcFBCLFEBAnBjBXAWvsCzw2uOY9HzMNQQEAAcbAQG3BxAQAAQEAAEBQEAA33VAQGwKAAICgICAWyAICAAICAAZAfGKwGsfQEBA9EBAAHBQERAABAQAAQFAQAAQEB+m8JwBNxAABATcREBAABAQAAQEr1QAfuxrBgYANxDc7MA8FxAABAQAAXG9A8ANBAABAaB4QLxCAr/+ATcQAAQEAAEBQEAAfDcSEAAQEABaBsS1EUBAABAQNwUAAfFqCrBW8QoLbO4YVwEBsOFX+ttMNGovPic/cAMBQEAAwACAV4sgIIB4IiAACAgAAgIAAgKAgAAgIAAICOBnqAgIAAgIgNuvgADgBgKAgAAgIH7ZAoAbCAACArjVIyBggwMBAUBAAHCrFxAAkm4g3mUDCAgAAgIAAoIPgBgvBAQAAQFAQAAQEADfYhAQAAQEAAEBQEAAEBAAEBAAv2ATEADcQADIu6UYaPA/zoGAACAgAAgIAAKCd/K+CWBOICAACAgAAgKAgOCdMSAg2OzBOqNjQEwqAAEBQEDcJgAEBAABAcA3YAEBQEB8iwEQEAAHSAHBhMW8MnYCAoAwJAbEQwUQEAAEBAABAQABwXcnQEAAEBAABATAq1IBAWyuICAACAgAAuKaD9YNAgIrNyKbGAgITpBArz3DgGLhAAKCEAACAoCAAG52CAgACIhTn7EFBAQbLiAgAAgIAAICAALiGwGAgAAgIAAICHjVCYvmTOE55eEBwsfLATEBAQQEAAQE3JYxtwXEgwdwAwEhBQEBQEAAQEAA2Pnq2MAB4AayrLo+5AIIiGumvxEQEARUXEBAQKhAQAAQEAAQEAAEBN8dfAMBAUEQwDwREJMWQEAQSjxfEBAQFuOAgAAgIDhRAln7hcEGQEAAEBBckQEBsRkBCAhuCWA+IyAAQiogAAgIgFO+gAAgIDjFAAiIOPn7gLiA2DgABAQAAQEAAQHffEBA1ixCixesCePnBoLFAtaigORubjZcwA0EwMFMQLCwLFbzAAQEAAEh6xTpFAwCYhM3Dp4hW8bcsxEQQEQREEA8BAsBsVgABASxAgQEAAEBoM2bAg8WsGkjIAAiIyAmGoCAAJB4UPXAABAQnNCAc+vLgAHwvy+c0f90EJN/9QAAAABJRU5ErkJggg==",
                     "width": 400,
                     "height": 320
                 },
                 "selectedType": "Image",
                 "height": 357,
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 636
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 263
             },
             "evaluatorReader": true,
             "lineCount": 7
@@ -529,8 +536,8 @@
                 "selectedType": "Results",
                 "height": 557,
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 725
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 684
             },
             "evaluatorReader": true,
             "lineCount": 11
@@ -579,8 +586,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 615,
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 682,
                 "height": 55
             },
             "evaluatorReader": true,
@@ -607,8 +614,7 @@
                     "construct02 = new Object() {",
                     "    // IterableInterval<T> is the most general type to use, but must be Comparable",
                     "    // the return value of findmax is a Cursor<T>, holds value and coordinates",
-                    "    public static < T extends Comparable<T>>",
-                    "            Cursor< T > findmax( final IterableInterval< T > iterable ) {",
+                    "    public static < T extends Comparable<T>> Cursor< T > findmax( final IterableInterval< T > iterable ) {",
                     "        final Cursor< T > cursor = iterable.cursor()",
                     "        cursor.fwd()",
                     "        Cursor< T > max = cursor.copyCursor()",
@@ -626,15 +632,15 @@
             },
             "output": {
                 "state": {},
-                "result": "script1472066939518763101798$1@19707164",
+                "result": "script1472583624516617871258$1@32d72342",
                 "selectedType": "Text",
-                "height": 93,
+                "height": 56,
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 614
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 594
             },
             "evaluatorReader": true,
-            "lineCount": 20
+            "lineCount": 19
         },
         {
             "id": "markdownPtPmeF",
@@ -675,9 +681,9 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "9c31e5c2-8d92-4680-948c-5948b1ed9f10",
-                "elapsedTime": 638,
-                "height": 108
+                "shellId": "9c8beddd-cd5b-413f-af75-0c95e5742a20",
+                "elapsedTime": 640,
+                "height": 71
             },
             "evaluatorReader": true,
             "lineCount": 6
