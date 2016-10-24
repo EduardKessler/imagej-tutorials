@@ -95,7 +95,6 @@
                     "// but will be fast on subsequent runs on the same computer.",
                     "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
                     "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-50')",
-                    "@Grab(group='net.imagej', module='imagej-legacy', version='0.21.0')",
                     "import net.imagej.ImageJ",
                     "/////////////////////////////////////////////////////////////////",
                     "",
@@ -140,15 +139,15 @@
             },
             "output": {
                 "state": {},
-                "result": "script14770600949721642888364$1@2c8bc9a",
+                "result": "script14773191705171499809235$1@7ca0eefd",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "3bf41619-3386-40bc-a31a-0afcdac1d79f",
-                "elapsedTime": 25014,
+                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
+                "elapsedTime": 24360,
                 "height": 56
             },
             "evaluatorReader": true,
-            "lineCount": 46
+            "lineCount": 45
         },
         {
             "id": "sectionK2rrg9",
@@ -262,11 +261,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14770601235321215754089$1@275abd82",
+                "result": "script14773192172701215754089$1@6a960d5c",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "3bf41619-3386-40bc-a31a-0afcdac1d79f",
-                "elapsedTime": 796,
+                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
+                "elapsedTime": 1495,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -314,8 +313,8 @@
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "3bf41619-3386-40bc-a31a-0afcdac1d79f",
-                "elapsedTime": 14650,
+                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
+                "elapsedTime": 22732,
                 "height": 293
             },
             "evaluatorReader": true,
@@ -434,11 +433,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14770601471461421844406$1@302d7161",
+                "result": "script14773193222541421844406$1@31f4e259",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "3bf41619-3386-40bc-a31a-0afcdac1d79f",
-                "elapsedTime": 850,
+                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
+                "elapsedTime": 1924,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -477,10 +476,6 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "Oct 21, 2016 9:29:18 AM java.util.prefs.WindowsPreferences <init>\r\nWARNING: Could not open/create prefs root node Software\\JavaSoft\\Prefs at root 0x80000002. Windows RegCreateKeyEx(...) returned error code 5.\r\n"
-                        },
-                        {
-                            "type": "err",
                             "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
                         }
                     ],
@@ -493,9 +488,9 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "3bf41619-3386-40bc-a31a-0afcdac1d79f",
-                "elapsedTime": 12151,
-                "height": 551
+                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
+                "elapsedTime": 13030,
+                "height": 519
             },
             "evaluatorReader": true,
             "lineCount": 18
