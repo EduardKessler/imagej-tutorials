@@ -1,0 +1,386 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            },
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n"
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "jsSetting2": "",
+            "jsSetting1": "",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "R",
+            "plugin": "R",
+            "view": {
+                "cm": {
+                    "mode": "r"
+                }
+            }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "section001",
+            "type": "section",
+            "level": 1,
+            "title": "ImgLib2 \n\nExample 07: Interpolation",
+            "collapsed": false,
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectiondWXqiA",
+            "type": "section",
+            "title": "Introduction",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdown9dHd5C",
+            "type": "markdown",
+            "body": [
+                "Interpolation is a basic operation required in many image processing tasks. In the terminology of ImgLib2 it means to convert a **RandomAccessible** into a **RealRandomAccessible** which is able to create a **RealRandomAccess**. It can be positioned at real coordinates instead of only integer coordinates and a return a value for each real location. ",
+                "",
+                "Currently, three interpolation schemes are available for ImgLib2:",
+                "  * Nearest neighbor interpolation (also for available for any kind of data that can return a nearest neighbor like sparse datasets)",
+                "  * Linear interpolation",
+                "  * Lanczos interpolation",
+                "",
+                "In the example we magnify a given real interval in the RealRandomAccessible which is based on the interpolation on an Img and compare the results of all three interpolation methods."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section8LHMGc",
+            "type": "section",
+            "title": "Bootstrap ImageJ",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeGB53Md",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-50')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    "",
+                    "///////////////////////////////////////////////////////////////////////////////",
+                    "// Define an object which houses some handy notebook functions. In particular,",
+                    "// we include a way to display ImgLib images (i.e., RandomAccessibleInterval",
+                    "// objects) directly inside the notebook here.",
+                    "",
+                    "import java.awt.image.BufferedImage",
+                    "import net.imagej.display.ColorTables",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.converter.RealLUTConverter",
+                    "import net.imglib2.display.projector.composite.CompositeXYProjector",
+                    "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "import net.imglib2.view.Views",
+                    "",
+                    "notebook = new Object() {",
+                    "  BufferedImage display(RandomAccessibleInterval source, double min = 0.0, double max = 255.0) {",
+                    "    return display(source, 0, 1, -1, min, max)",
+                    "  }",
+                    "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis, double min, double max) {",
+                    "    offset = new long[source.numDimensions()]",
+                    "    for (int d = 0; d < offset.length; d++) {",
+                    "     offset[d] = -source.min(d) ",
+                    "    }",
+                    "    image = Views.translate(source, offset)",
+                    "    ",
+                    "    w = (int) image.dimension(xAxis)",
+                    "    h = (int) image.dimension(yAxis)",
+                    "    c = 1",
+                    "    target = new ARGBScreenImage(w, h)",
+                    "    converters = new ArrayList<RealLUTConverter>(c)",
+                    "    for (int i=0; i<c; i++) {",
+                    "      converters.add(new RealLUTConverter(min, max, ColorTables.GRAYS))",
+                    "    }",
+                    "    proj = new CompositeXYProjector(image, target, converters, cAxis)",
+                    "    proj.map()",
+                    "    return target.image()",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "script14775821116071184362112$1@3b9d790",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "35c1f4fb-fb47-4321-9510-6851b36b1e5c",
+                "elapsedTime": 19775,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 45
+        },
+        {
+            "id": "sectionypvq97",
+            "type": "section",
+            "title": "Code",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "sectionyX1R9l",
+            "type": "section",
+            "title": "Utility method for a given interval magnification",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeTMpYOB",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imglib2.type.Type",
+                    "import net.imglib2.RealRandomAccessible",
+                    "import net.imglib2.RealInterval",
+                    "import net.imglib2.img.ImgFactory",
+                    "import net.imglib2.img.Img",
+                    "",
+                    "mag = new Object() {",
+                    "  /**",
+                    "   * Compute a magnified version of a given real interval",
+                    "   *",
+                    "   * @param <T> value type",
+                    "   * @param source - the input data",
+                    "   * @param interval - the real interval on the source that should be",
+                    "   * magnified",
+                    "   * @param factory - the image factory for the output image",
+                    "   * @param magnification - the ratio of magnification",
+                    "   * @return - an Img that contains the magnified image content",
+                    "   */",
+                    "  public <T extends Type<T>> Img<T> magnify(",
+                    "    RealRandomAccessible<T> source,",
+                    "    RealInterval interval,",
+                    "    ImgFactory<T> factory,",
+                    "    double magnification) {",
+                    "    ",
+                    "    numDimensions = interval.numDimensions()",
+                    "    ",
+                    "    // compute the number of pixels of the output and the size of the real interval",
+                    "    pixelSize = new long[numDimensions]",
+                    "    intervalSize = new double[numDimensions]",
+                    "    ",
+                    "    for (int d = 0; d < numDimensions; ++d) {",
+                    "      intervalSize[d] = interval.realMax(d) - interval.realMin(d)",
+                    "      pixelSize[d] = Math.round(intervalSize[d] * magnification) + 1",
+                    "    }",
+                    "    ",
+                    "    // create the output image",
+                    "    output = factory.create(pixelSize, source.realRandomAccess().get())",
+                    "    ",
+                    "    // cursor to iterate over all pixels",
+                    "    cursor = output.localizingCursor()",
+                    "    ",
+                    "    // create a RealRandomAccess on the source (interpolator)",
+                    "    realRandomAccess = source.realRandomAccess()",
+                    "    ",
+                    "    // the temporary array to compute the position",
+                    "    tmp = new double[numDimensions]",
+                    "    ",
+                    "    // for all pixels of the output image",
+                    "    while (cursor.hasNext()) {",
+                    "      cursor.fwd()",
+                    "      ",
+                    "      // compute the appropriate location of the interpolator",
+                    "      for (int d = 0; d < numDimensions; ++d) {",
+                    "        tmp[d] = cursor.getDoublePosition(d) / output.realMax(d) * intervalSize[d] + interval.realMin(d)",
+                    "      }",
+                    "      ",
+                    "      // set the position",
+                    "      realRandomAccess.setPosition(tmp)",
+                    "      ",
+                    "      // set the new value",
+                    "      cursor.get().set(realRandomAccess.get())",
+                    "    }",
+                    "    ",
+                    "    return output",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "script14775821357781045357735$1@54cb7e81",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "35c1f4fb-fb47-4321-9510-6851b36b1e5c",
+                "elapsedTime": 1374,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 66
+        },
+        {
+            "id": "section14sx8g",
+            "type": "section",
+            "title": "Use three different interpolators to 10x magnify a small area",
+            "level": 3,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codex7Gigr",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import io.scif.img.ImgOpener",
+                    "import net.imglib2.FinalRealInterval",
+                    "import net.imglib2.type.numeric.real.FloatType",
+                    "import net.imglib2.interpolation.randomaccess.LanczosInterpolatorFactory",
+                    "import net.imglib2.interpolation.randomaccess.NLinearInterpolatorFactory",
+                    "import net.imglib2.interpolation.randomaccess.NearestNeighborInterpolatorFactory",
+                    "import net.imglib2.img.array.ArrayImgFactory",
+                    "import net.imglib2.view.Views",
+                    "",
+                    "enum InterpolationType {",
+                    "  NEAREST_NEIGHBOR_INTERPOLATION,",
+                    "  NLINEAR_INTERPOLATION,",
+                    "  LANCZOS_INTERPOLATION",
+                    "}",
+                    "",
+                    "// open with ImgOpener as a FloatType",
+                    "image = new ImgOpener().openImgs(\"http://samples.fiji.sc/tutorials/DrosophilaWing.tif\", new FloatType()).get(0)",
+                    "",
+                    "// define the area in the interpolated image",
+                    "double[]min = [105.12, 40.43]",
+                    "double[]max = [129.56, 74.933]",
+                    "",
+                    "interval = new FinalRealInterval(min, max)",
+                    "",
+                    "// change this variable to switch for different kind of interpolation scheme display",
+                    "interpolant_type = InterpolationType.NEAREST_NEIGHBOR_INTERPOLATION",
+                    "//interpolant_type = InterpolationType.NLINEAR_INTERPOLATION",
+                    "//interpolant_type = InterpolationType.LANCZOS_INTERPOLATION",
+                    "",
+                    "// create a RandomAccessible using the factory and views method",
+                    "// it is important to extend the image first, the interpolation scheme might",
+                    "// grep pixels outside of the boundaries even when locations inside are queried",
+                    "// as they integrate pixel information in a local neighborhood - the size of",
+                    "// this neighborhood depends on which interpolator is used",
+                    "switch (interpolant_type) {",
+                    "  case InterpolationType.NEAREST_NEIGHBOR_INTERPOLATION:",
+                    "    // create an InterpolatorFactory RealRandomAccessible using nearst neighbor interpolation",
+                    "    nn_inter_factory = new NearestNeighborInterpolatorFactory<FloatType>()",
+                    "    nn_interpolant = Views.interpolate(Views.extendMirrorSingle(image), nn_inter_factory)",
+                    "    img = mag.magnify(nn_interpolant, interval, new ArrayImgFactory<FloatType>(), 10)",
+                    "    break",
+                    "  case InterpolationType.NLINEAR_INTERPOLATION:",
+                    "    // create an InterpolatorFactory RealRandomAccessible using linear interpolation",
+                    "    linear_inter_factory = new NLinearInterpolatorFactory<FloatType>()",
+                    "    nlinear_interpolant = Views.interpolate(Views.extendMirrorSingle(image), linear_inter_factory)",
+                    "    img = mag.magnify(nlinear_interpolant, interval, new ArrayImgFactory<FloatType>(), 10)",
+                    "    break",
+                    "  case InterpolationType.LANCZOS_INTERPOLATION:",
+                    "    // create an InterpolatorFactory RealRandomAccessible using lanczos interpolation",
+                    "    lanczos_inter_factory = new LanczosInterpolatorFactory<FloatType>()",
+                    "    lanczos_interpolant = Views.interpolate(Views.extendMirrorSingle(image), lanczos_inter_factory)",
+                    "    img = mag.magnify(lanczos_interpolant, interval, new ArrayImgFactory<FloatType>(), 10)",
+                    "    break",
+                    "  default:",
+                    "    nn_inter_factory = new NearestNeighborInterpolatorFactory<FloatType>()",
+                    "    nn_interpolant = Views.interpolate(Views.extendMirrorSingle(image), nn_inter_factory)",
+                    "    img = mag.magnify(nn_interpolant, interval, new ArrayImgFactory<FloatType>(), 10)",
+                    "}",
+                    "",
+                    "notebook.display(img)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                        }
+                    ],
+                    "payload": {
+                        "type": "ImageIcon",
+                        "imageData": "iVBORw0KGgoAAAANSUhEUgAAAPUAAAFaCAYAAADGjBvqAAAPmElEQVR42u3d+0+W9R/H8f67VqvMDiMtWc2lHZZhlnZw1DoZWsbKsmWCc3nE0DTTyMRULMhDaqVCokYoJKKSHLID392/Oba2V3B9B9nj2p6/3jf3fV+Pi1/ee39uGP4/X3/99VfUeF3+vn/n9+L6++uG6/WDpTdl0f3555/jkssFNdQuqKGG2gU11FC7oIYaahfUUEPtghpqF9RQQ+2CGmqoXVBDDbUL6r+7ikbzxx9/TOiMdbqghtoFNdRQu6CGGmoX1FBD7YIaaqhdUEPtghpqqF1QQw21C2qooXb991CnN2+KYbzw//7771Hj9XouqKGG2gU11FC7oIYaahfUUEMNNdRQQw011FC7oIYaahfUUEPtghpqqKGGeqKVYv3tt9+i0vcteiHjRL9frqcjjaGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhnrioh6vI2CLHq8suqtXr0aln6Po17Pw8N/7MIEaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGup/P+rxQlj0+6a4xqv0cxQ9Tnq94Cr6eyn6IVv67aCGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhnriok6vohfxXS+lCwWLRj3Rx0SLft+iUff390cNDAxEXbx4Maq3txdqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqivA9TpVfQivvEaO02xDg0NFVr6vkUfBVz0OGTR90H6vfT19UW1tLRErVq1Kqq6ujrqxRdfhBpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYa6v8Q6om+yDC9OYqu6KNsix7DTN93cHAwqqenJ+r06dNRra2tUcePH486fPhw1P79+6Oam5ujdu3aBTXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011BMY9URfTFf0mGOKsOijcYse6yx6EWT6Obq7u6N2794dVVtbG/Xaa69FzZ07N2rmzJlR5eXlUffdd19UWVkZ1FBDDTXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011FBDDTXUUEMNNdRQXweoJ3pFoyl6kWHR464pwvQo1vRo13SxX1dXV9SZM2ei2tvbo44dOxZVGtdMqq+vj3r//fejKisroYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGG+jpAnV5Fjzmmf99EX1CYount7Y3q7OyMOnLkSFRDQ0NUTU1N1MKFC6PmzZsXVVFREfXggw9GTZ8+PWratGlRM2bMiHryySehhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYZ6AqMuGmt6Fb0oMB2bHBoaikpfL0W4b9++qHTccMGCBVHPPfdcVIrmoYceikoxTJ06Neruu++OmjRpUtTkyZOj0gWFS5YsiVq6dCnUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011FBPYNRFj4kWvYjv0qVLUenY5MmTJ6MOHToUlR7ZumnTpqgVK1ZEpeOaaevWrYtauXJl1Kuvvhr17LPPRr388stR6eulVVVVRa1evTqqrq4OaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqooYYaaqihhhpqqKGGGmqorwPUael45YULF6K2b98etXz58qhFixZFPf/881GzZ8+OSscrH3jggah0vDIdh7z55psLraysLCrFP2vWrKj0fZ955pmo9GHX1NQUBzXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011MWhLhph0UfFpqgHBwejrly5EpUuAEwfJl1dXVEdHR1R6Xjq4cOHoxobG6PSsdP58+dH3XPPPVFTpkyJmjNnTlR1dXXUsmXLotLXq62tjdq6dWvUxx9/DDXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011AWiLvro2fSo2PQI2P7+/qienp6odKFgW1tb1J49e6LWrl0btXjx4qh0nPTee++NKi8vj0qPvK2srIx65ZVXot55552o9Oje9OG0bdu2qM2bN0elY6IlrEmffPIJ1FBDDTXUUEMNNdRQQw011FBDDTXUUEMNNdRQQw011FBDDTXUUEMNNdRQjwF1ejTsyNIxzPSo2BRN+mWlCwAfffTRqPQmTxfTTZo0Keq2226LShf23XXXXVHpuObDDz8cNX369Kinnnoq6r33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",
+                        "width": 245,
+                        "height": 346
+                    }
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "35c1f4fb-fb47-4321-9510-6851b36b1e5c",
+                "elapsedTime": 7165,
+                "height": 497
+            },
+            "evaluatorReader": true,
+            "lineCount": 60
+        },
+        {
+            "id": "markdownW1Aeuk",
+            "type": "markdown",
+            "body": [
+                "The nearest neighbor interpolation is computed fastest and is the most versatile as it requires no computation but just a lookout. The result is, however, very pixelated. The linear interpolation produces reasonable results and computes quite fast. The Lanczos interpolation shows visually most pleasing results but also introduces slight artifacts in the background."
+            ],
+            "evaluatorReader": false
+        }
+    ],
+    "namespace": {}
+}
