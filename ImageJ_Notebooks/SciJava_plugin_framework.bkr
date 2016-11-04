@@ -57,7 +57,7 @@
             "body": [
                 "First and foremost, [SciJava Common](http://imagej.net/SciJava_Common#Services) is a plugin framework — a base for developing highly modular and extensible Java applications.  All plugins available on Java's classpath are automatically discovered and made available. This is accomplished by scanning classpath resources for the file path <code>META-INF/json/org.scijava.plugin.Plugin</code>. Such files are generated at compile time by a Java annotation processor that writes them in response to <code>@Plugin</code> annotations on Java classes.",
                 "",
-                "In ImageJ2 , we invented a plugin mechanism to replace ImageJ 1.x plugins, now called \"commands\" in ImageJ2 to distinguish from other plugins. We factor out plugin discovery from ImageJ2 into a base library: SciJava-Common."
+                "In [ImageJ2](http://imagej.net/ImageJ2) , we invented a plugin mechanism to replace ImageJ 1.x plugins, now called \"commands\" in ImageJ2 to distinguish from other plugins. We factor out plugin discovery from ImageJ2 into a base library: [SciJava Common](http://imagej.net/SciJava_Common#Services)."
             ],
             "evaluatorReader": false
         },
@@ -79,11 +79,11 @@
             },
             "output": {
                 "state": {},
-                "result": "net.imagej.ImageJ@4d223fb8",
+                "result": "net.imagej.ImageJ@3cc4b8b7",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "9a412bae-1f9c-4068-bbb0-0fc91b8124ab",
-                "elapsedTime": 2624,
+                "shellId": "7906ba45-ace0-4c65-9d8c-3eb9801c1113",
+                "elapsedTime": 1991,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -150,8 +150,8 @@
                 "result": "Success!",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "9a412bae-1f9c-4068-bbb0-0fc91b8124ab",
-                "elapsedTime": 571,
+                "shellId": "7906ba45-ace0-4c65-9d8c-3eb9801c1113",
+                "elapsedTime": 608,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -173,6 +173,8 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
+                    "import org.scijava.Context;",
+                    "import org.scijava.plugin.Parameter",
                     "",
                     "public class MyService {",
                     " ",
@@ -204,19 +206,19 @@
                     "type": "BeakerDisplay",
                     "innertype": "Error",
                     "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14708553001921149489611.groovy: 1: unable to resolve class net.imagej.ImageJ<br/> @ line 1, column 1.<br/>   import net.imagej.ImageJ<br/>   ^<br/><br/>script14708553001921149489611.groovy: 2: unable to resolve class org.scijava.plugin.Parameter<br/> @ line 2, column 1.<br/>   import org.scijava.plugin.Parameter<br/>   ^<br/><br/>script14708553001921149489611.groovy: 9: unable to resolve class Context <br/> @ line 9, column 3.<br/>     @Parameter<br/>     ^<br/><br/>script14708553001921149489611.groovy: 15: unable to resolve class MyPlugin <br/> @ line 15, column 14.<br/>       MyPlugin plugin = new MyPlugin();<br/>                ^<br/><br/>script14708553001921149489611.groovy: 15: unable to resolve class MyPlugin <br/> @ line 15, column 23.<br/>       MyPlugin plugin = new MyPlugin();<br/>                         ^<br/><br/>5 errors<br/><br/>",
-                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
+                        "java.lang.ClassCastException: MyService cannot be cast to groovy.lang.Script<br/>",
+                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:368)",
                         ""
                     ]
                 },
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Groovy",
-                "shellId": "9a412bae-1f9c-4068-bbb0-0fc91b8124ab",
-                "elapsedTime": 582,
-                "height": 513
+                "shellId": "7906ba45-ace0-4c65-9d8c-3eb9801c1113",
+                "elapsedTime": 567,
+                "height": 81
             },
             "evaluatorReader": true,
-            "lineCount": 23
+            "lineCount": 25
         },
         {
             "id": "sectionkmU6Pi",
@@ -248,6 +250,10 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
+                    "import org.scijava.app.StatusService;",
+                    "import org.scijava.plugin.Plugin",
+                    "import org.scijava.plugin.Parameter",
+                    "",
                     "// Example Service Interface:",
                     "public interface HelloService extends SciJavaService {",
                     "  public void sayHello();",
@@ -272,10 +278,24 @@
                 ]
             },
             "output": {
-                "state": {}
+                "state": {},
+                "result": {
+                    "type": "BeakerDisplay",
+                    "innertype": "Error",
+                    "object": [
+                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14782022772981417051260.groovy: 6: unable to resolve class SciJavaService <br/> @ line 6, column 1.<br/>   public interface HelloService extends SciJavaService {<br/>   ^<br/><br/>script14782022772981417051260.groovy: 11: unable to find class &#39;Service.class&#39; for annotation attribute constant<br/> @ line 11, column 16.<br/>   @Plugin(type = Service.class)<br/>                  ^<br/><br/>2 errors<br/><br/>",
+                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
+                        ""
+                    ]
+                },
+                "selectedType": "BeakerDisplay",
+                "pluginName": "Groovy",
+                "shellId": "7906ba45-ace0-4c65-9d8c-3eb9801c1113",
+                "elapsedTime": 567,
+                "height": 273
             },
             "evaluatorReader": true,
-            "lineCount": 21
+            "lineCount": 25
         },
         {
             "id": "sectionTK39y9",
@@ -291,7 +311,7 @@
             "body": [
                 "Whereas [Services](http://imagej.net/Writing_plugins#Services) provide internal functionality, <code>Commands</code> are plugins designed to be executed as one-offs, typically interacting with users to achieve some desired outcome. When opening the ImageJ GUI, Commands are what populate your menu structure: exposing functionality and algorithms in a way that can be consumed by non-developers.",
                 "",
-                "When writing <code>Commands</code> you will often declare [@Parameters](https://github.com/scijava/scijava-common/blob/scijava-common-2.47.0/src/main/java/org/scijava/plugin/Parameter.java) on fields that '''can not''' be resolved automatically by the <code>Context</code>—for example, numeric values or file paths. Instead of being instantiated at <code>Context</code> startup as a <code>Service</code> would be, <code>Commands</code> are created and executed on demand.",
+                "When writing <code>Commands</code> you will often declare [@Parameters](https://github.com/scijava/scijava-common/blob/scijava-common-2.47.0/src/main/java/org/scijava/plugin/Parameter.java) on fields that '''cannot''' be resolved automatically by the <code>Context</code>—for example, numeric values or file paths. Instead of being instantiated at <code>Context</code> startup as a <code>Service</code> would be, <code>Commands</code> are created and executed on demand.",
                 "",
                 "When a <code>Command</code> is executed, it goes through a series of pre-processing steps to populate its <code>@Parameters</code> using its associated [Context](http://imagej.net/Writing_plugins#The_Context). If any parameters are left unresolved and a UI is available, the framework will automatically build and display an appropriate dialog to get user input. In this way, input harvesting is decoupled from functional operation—allowing developers to focus on what's really important without repetition of code. This also means that Commands can typically run [headlessly](http://imagej.net/Headless) without any extra development effort.",
                 "",
