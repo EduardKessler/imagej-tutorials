@@ -92,6 +92,14 @@
             "evaluatorReader": false
         },
         {
+            "id": "markdownThTdQs",
+            "type": "markdown",
+            "body": [
+                "**Important: This source code is only GPLv2!**"
+            ],
+            "evaluatorReader": false
+        },
+        {
             "id": "section8LHMGc",
             "type": "section",
             "title": "Bootstrap ImageJ",
@@ -155,11 +163,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script1478266723128503082304$1@34f3c84",
+                "result": "script1478271903101503082304$1@13d85509",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "be6f771e-01cb-4e6e-ba5f-efe5c25ac3c2",
-                "elapsedTime": 4518,
+                "shellId": "24d2bc48-bf3a-4009-bade-196b9b42dedd",
+                "elapsedTime": 4685,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -198,7 +206,7 @@
                     "      sum.add(type.getRealDouble())",
                     "    }",
                     "    ",
-                    "    return sum.getSum();",
+                    "    return sum.getSum()",
                     "  }",
                     "  ",
                     "  /**",
@@ -218,11 +226,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14782667303311057827144$1@49ce921d",
+                "result": "script14782719099621393697403$1@443a5ef",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "be6f771e-01cb-4e6e-ba5f-efe5c25ac3c2",
-                "elapsedTime": 589,
+                "shellId": "24d2bc48-bf3a-4009-bade-196b9b42dedd",
+                "elapsedTime": 600,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -282,8 +290,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "be6f771e-01cb-4e6e-ba5f-efe5c25ac3c2",
-                "elapsedTime": 3401,
+                "shellId": "24d2bc48-bf3a-4009-bade-196b9b42dedd",
+                "elapsedTime": 3321,
                 "height": 631
             },
             "evaluatorReader": true,
