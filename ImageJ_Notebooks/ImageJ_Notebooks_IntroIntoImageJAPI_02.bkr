@@ -181,8 +181,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "cb3718c5-4ee4-4b53-bdb5-cd6d0dabc75a",
-                "elapsedTime": 4050,
+                "shellId": "c7847316-14de-4b4d-bdbe-c33805831033",
+                "elapsedTime": 5089,
                 "height": 87
             },
             "evaluatorReader": true,
@@ -200,9 +200,9 @@
             "id": "markdownpDUu52",
             "type": "markdown",
             "body": [
-                "ImageJ 1.x has a similar concept with the ij.ImageJ class, which is created using \"new ImageJ()\" and cached statically as a singleton.  This allows the ImageJ instance to be recovered later by calling IJ.getInstance(), and simplifies the API in some ways.  However, the assumption that there will only ever be one ImageJ per JVM limits its flexibility, and the fact that ij.ImageJ extends java.awt.Frame makes ImageJ 1.x difficult to use headless or with user interfaces other than Java AWT.",
+                "[ImageJ 1.x](http://imagej.net/ImageJ1) has a similar concept with the ij.ImageJ class, which is created using \"new ImageJ()\" and cached statically as a singleton.  This allows the ImageJ instance to be recovered later by calling IJ.getInstance(), and simplifies the API in some ways.  However, the assumption that there will only ever be one ImageJ per JVM limits its flexibility, and the fact that ij.ImageJ extends java.awt.Frame makes ImageJ 1.x difficult to use headless or with user interfaces other than Java AWT.",
                 "",
-                "ImageJ 1.x is not service-driven, which makes it less extensible, since additional functionality cannot be registered with the context."
+                "[ImageJ 1.x](http://imagej.net/ImageJ1) is not service-driven, which makes it less extensible, since additional functionality cannot be registered with the context."
             ],
             "evaluatorReader": false
         }
