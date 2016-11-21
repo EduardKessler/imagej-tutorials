@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>net.imagej</groupId>
+		<artifactId>pom-imagej</artifactId>
+		<version>16.6.0</version>
+		<relativePath />
+	</parent>
+
+	<groupId>imagej-tutorials</groupId>
+	<artifactId>using-ops-dog</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>Using ImageJ Ops DoG</name>
+	<description>This example illustrates how to use ImageJ Ops DoG filter.</description>
+
+	<properties>
+		<main-class>UsingOpsDog</main-class>
+		<scijava.jvm.version>1.8</scijava.jvm.version>
+                <enforcer.skip>true</enforcer.skip>
+                <imagej-ops.version>0.34.1-SNAPSHOT</imagej-ops.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>imagej.public</id>
+			<url>http://maven.imagej.net/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.imagej</groupId>
+			<artifactId>imagej</artifactId>
+		</dependency>
+	</dependencies>
+</project>
