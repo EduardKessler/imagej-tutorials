@@ -1,0 +1,241 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            },
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n"
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "jsSetting2": "",
+            "jsSetting1": "",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "R",
+            "plugin": "R",
+            "view": {
+                "cm": {
+                    "mode": "r"
+                }
+            }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "section001",
+            "type": "section",
+            "level": 1,
+            "title": "ImageJ Ops\n\nExample 02: Using filter op",
+            "collapsed": false,
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectiondWXqiA",
+            "type": "section",
+            "title": "Introduction",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdown9dHd5C",
+            "type": "markdown",
+            "body": [
+                "[ImageJ Ops](http://imagej.net/ImageJ_Ops) is a framework for reusable image processing operations. Ops extends Java's mantra of \"write once, run anywhere\" to image processing algorithms.",
+                "The central goal is to enable programmers to code an image processing algorithm in the Ops framework, which is then usable as-is from any SciJava-compatible software project, ",
+                "such as [ImageJ](http://imagej.net/ImageJ), [CellProfiler](http://imagej.net/CellProfiler), [KNIME](http://imagej.net/KNIME), [OMERO](http://imagej.net/OMERO) and [Alida](http://imagej.net/Alida).",
+                "",
+                "This example is an introduction of ImageJ Ops usage, and it illustrates various ops usage like math op, image op, and different services usage like **CommandService**, **LogService** and **OpService**. "
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section8LHMGc",
+            "type": "section",
+            "title": "Bootstrap ImageJ",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeGB53Md",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-50')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    "",
+                    "///////////////////////////////////////////////////////////////////////////////",
+                    "// Define an object which houses some handy notebook functions. In particular,",
+                    "// we include a way to display ImgLib images (i.e., RandomAccessibleInterval",
+                    "// objects) directly inside the notebook here.",
+                    "",
+                    "import java.awt.image.BufferedImage",
+                    "import net.imagej.display.ColorTables",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.converter.RealLUTConverter",
+                    "import net.imglib2.display.projector.composite.CompositeXYProjector",
+                    "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "import net.imglib2.view.Views",
+                    "",
+                    "notebook = new Object() {",
+                    "  BufferedImage display(RandomAccessibleInterval source, double min = 0.0, double max = 255.0) {",
+                    "    return display(source, 0, 1, -1, min, max)",
+                    "  }",
+                    "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis, double min, double max) {",
+                    "    offset = new long[source.numDimensions()]",
+                    "    for (int d = 0; d < offset.length; d++) {",
+                    "     offset[d] = -source.min(d) ",
+                    "    }",
+                    "    image = Views.translate(source, offset)",
+                    "    ",
+                    "    w = (int) image.dimension(xAxis)",
+                    "    h = (int) image.dimension(yAxis)",
+                    "    c = 1",
+                    "    target = new ARGBScreenImage(w, h)",
+                    "    converters = new ArrayList<RealLUTConverter>(c)",
+                    "    for (int i=0; i<c; i++) {",
+                    "      converters.add(new RealLUTConverter(min, max, ColorTables.GRAYS))",
+                    "    }",
+                    "    proj = new CompositeXYProjector(image, target, converters, cAxis)",
+                    "    proj.map()",
+                    "    return target.image()",
+                    "  }",
+                    "}"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "script14797331184021184362112$1@3b423efa",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "26a6a569-9f0d-4ef9-bb28-0bdfa443fb5d",
+                "elapsedTime": 3279,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 45
+        },
+        {
+            "id": "sectionypvq97",
+            "type": "section",
+            "title": "Implementation",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeTMpYOB",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imagej.ImageJ",
+                    "import net.imagej.ops.Ops",
+                    "import net.imagej.ops.Op",
+                    "import io.scif.img.ImgOpener",
+                    "import net.imglib2.type.numeric.real.FloatType",
+                    "import net.imagej.ops.convert.normalizeScale.NormalizeScaleRealTypes",
+                    "import net.imglib2.type.numeric.integer.UnsignedByteType",
+                    "",
+                    "ij = new ImageJ()",
+                    "",
+                    "input = ij.scifio().datasetIO().open(\"http://samples.fiji.sc/tutorials/DrosophilaWing.tif\").getImgPlus()",
+                    "converted = ij.op().convert().float32(input)",
+                    "dog = ij.op().filter().dog(converted, 1.0, 1.25)",
+                    "",
+                    "converter = new NormalizeScaleRealTypes();",
+                    "converter.setEnvironment(ij.op());",
+                    "converter.initialize();",
+                    "converter.checkInput(dog);",
+                    "",
+                    "//scale_op = ij.op().op(\"convert.normalizeScale\", input.firstElement(), dog.firstElement())",
+                    "",
+                    "output = ij.op().create().img(input, new UnsignedByteType());",
+                    "",
+                    "ij.op().convert().imageType(output, dog, converter)",
+                    "",
+                    "//ij.op().run(Ops.Convert.ImageType.class, output, dog, converter);",
+                    "notebook.display(output)",
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
+                        }
+                    ],
+                    "payload": {
+                        "type": "ImageIcon",
+                        "imageData": "iVBORw0KGgoAAAANSUhEUgAAAyAAAAFwCAYAAABAYR+2AAAGlElEQVR42u3XMQEAAAjDsEmfc1ABV44Y6Ne0HQAAgA8RAQAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAAAAAwIAABgQAAAAAwIAABgQAADAgAgBAAAYEAAAwIAAAAAYEAAAwIAAAAAYEAAAwIAAAAAGBAAAwIAAAAAGBAAAwIAAAAAGBAAAMCAAAAAGBAAAMCAAAAAGBAAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAAAAAwIAABgQAAAAAwIAABgQAADAgAAAABgQAADAgAAAABgQAADAgAAAAAYEAADAgAAAAAYEAADAgAAAAAYEAAAwIAAAAAYEAAAwIAAAAAYEAAAwIAAAgAERAQAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAAAAAwIAABgQAAAAAwIAABgQAADAgAgBAAAYEAAAwIAAAAAYEAAAwIAAAAAYEAAAwIAAAAAGBAAAwIAAAAAGBAAAwIAAAAAGBAAAMCAAAAAGBAAAMCAAAAAGBAAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAAAAAwIAABgQAAAAAwIAABgQAADAgAAAABgQAADAgAAAABgQAADAgAAAAAYEAADAgAAAAAYEAADAgAAAAAYEAAAwIAAAAAYEAAAwIAAAAAYEAAAwIAAAgAERAQAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAAAAAwIAABgQAAAAAwIAABgQAADAgAgBAAAYEAAAwIAAAAAYEAAAwIAAAAAYEAAAwIAAAAAGBAAAwIAAAAAGBAAAwIAAAAAGBAAAMCAAAAAGBAAAMCAAAAAGBAAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAAAAAwIAABgQAAAAAwIAABgQAADAgAAAABgQAADAgAAAABgQAADAgAAAAAYEAADAgAAAAAYEAADAgAAAAAYEAAAwIAAAAAYEAAAwIAAAAAYEAAAwIAAAgAERAQAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAAAAAwIAABgQAAAAAwIAABgQAADAgAgBAAAYEAAAwIAAAAAYEAAAwIAAAAAYEAAAwIAAAAAGBAAAwIAAAAAGBAAAwIAAAAAGBAAAMCAAAAAGBAAAMCAAAAAGBAAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAAAAAwIAABgQAAAAAwIAABgQAADAgAAAABgQAADAgAAAABgQAADAgAAAAAYEAADAgAAAAAYEAADAgAAAAAYEAAAwIAAAAAYEAAAwIAAAAAYEAAAwIAAAgAERAQAAMCAAAIABAQAAMCAAAIABAQAAMCAAAIABAQAADAgAAIABAQAADAgAAIABAQAADAgAAGBAAAAADAgAAGBAAAAADAgAAGBAAAAAAwIAAGBAAAAAAwIAAGBAAAAAAwIAABgQAACASwu3gio6z57+awAAAABJRU5ErkJggg==",
+                        "width": 800,
+                        "height": 368
+                    }
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "26a6a569-9f0d-4ef9-bb28-0bdfa443fb5d",
+                "elapsedTime": 579,
+                "height": 519
+            },
+            "evaluatorReader": true,
+            "lineCount": 28
+        }
+    ],
+    "namespace": {}
+}
