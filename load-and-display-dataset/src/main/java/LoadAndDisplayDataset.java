@@ -15,7 +15,6 @@ import org.scijava.command.Command;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
-import org.scijava.ui.UIService;
 
 import io.scif.services.DatasetIOService;
 import net.imagej.Dataset;
