@@ -6,6 +6,7 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import net.imagej.ops.AbstractOp;
 import net.imagej.ops.Op;
 import net.imglib2.Cursor;
 import net.imglib2.img.array.ArrayImg;
@@ -19,28 +20,30 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 @Plugin(type = Op.class, name = "ramp")
-public class Ramp<T extends RealType<T>> implements Op {
+public class Ramp<T extends RealType<T>> extends AbstractOp {
 
-	@Parameter(type = ItemIO.OUTPUT)
-	private ArrayImg<DoubleType, DoubleArray> rampImg;
+    @Parameter(type = ItemIO.OUTPUT)
+    private ArrayImg<DoubleType, DoubleArray> rampImg;
 
-	@Override
-	public void run() {
-		rampImg = ArrayImgs.doubles(256, 256);
+    @Override
+    public void run() {
+        rampImg = ArrayImgs.doubles(256, 256);
 
-		final Cursor<DoubleType> c = rampImg.localizingCursor();
-		final long[] pos = new long[rampImg.numDimensions()];
-		while (c.hasNext()) {
-			c.fwd();
-			c.localize(pos);
-			c.get().setReal(sum(pos));
-		}
-	}
+        final Cursor<DoubleType> c = rampImg.localizingCursor();
+        final long[] pos = new long[rampImg.numDimensions()];
+        while (c.hasNext()) {
+            c.fwd();
+            c.localize(pos);
+            c.get().setReal(sum(pos));
+        }
+    }
 
-	private float sum(long[] pos) {
-		float sum = 0;
-		for (long p : pos) sum += p;
-		return sum;
-	}
+    private float sum(long[] pos) {
+        float sum = 0;
+        for (long p : pos) {
+            sum += p;
+        }
+        return sum;
+    }
 
 }
