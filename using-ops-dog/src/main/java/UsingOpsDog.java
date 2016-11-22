@@ -31,8 +31,6 @@ import net.imglib2.type.numeric.RealType;
  * Also, because this class implements Command and is annotated as an @Plugin,
  * it will show up in the ImageJ menus: under Tutorials>Load and Display
  * Dataset, as specified by the menuPath field of the @Plugin annotation.
- *
- * @param <T> value type
  */
 @Plugin(type = Command.class, menuPath = "Tutorials>DoG Filtering")
 public class UsingOpsDog<T extends RealType<T> & NativeType<T>> implements Command {
@@ -84,10 +82,7 @@ public class UsingOpsDog<T extends RealType<T> & NativeType<T>> implements Comma
 
         // Create a NormalizeScaleRealTypes op
         RealTypeConverter<FloatType, T> scale_op;
-        scale_op = (RealTypeConverter<FloatType, T>) opService.op(
-                "convert.normalizeScale",
-                dog.firstElement(),
-                image.firstElement());
+        scale_op = (RealTypeConverter<FloatType, T>) opService.op("convert.normalizeScale", dog.firstElement(), image.firstElement());
 
         // Create the output image
         output = opService.create().img(image);
