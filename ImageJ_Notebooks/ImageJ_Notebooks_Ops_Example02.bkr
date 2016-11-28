@@ -152,11 +152,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14798267479151184362112$1@61201117",
+                "result": "script14803498648461184362112$1@656da268",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "4c6e25bf-974f-47fa-a488-107d2ad07cfb",
-                "elapsedTime": 38888,
+                "shellId": "83b8ed46-af19-45c5-b79a-c56c2f0938d9",
+                "elapsedTime": 48263,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -231,8 +231,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "4c6e25bf-974f-47fa-a488-107d2ad07cfb",
-                "elapsedTime": 5806,
+                "shellId": "83b8ed46-af19-45c5-b79a-c56c2f0938d9",
+                "elapsedTime": 26214,
                 "height": 519
             },
             "evaluatorReader": true,
