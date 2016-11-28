@@ -1,0 +1,269 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            },
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n"
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "jsSetting2": "",
+            "jsSetting1": "",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "R",
+            "plugin": "R",
+            "view": {
+                "cm": {
+                    "mode": "r"
+                }
+            }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "section001",
+            "type": "section",
+            "level": 1,
+            "title": "ImageJ Ops\n\nExample 03b: Creating a new op to display a ramp image",
+            "collapsed": false,
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectiondWXqiA",
+            "type": "section",
+            "title": "Introduction",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdown9dHd5C",
+            "type": "markdown",
+            "body": [
+                "This example illustrates how to create a new op and construct a ramp image in this op."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section8LHMGc",
+            "type": "section",
+            "title": "Bootstrap ImageJ",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeGB53Md",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-55')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    "",
+                    "///////////////////////////////////////////////////////////////////////////////",
+                    "// Define an object which houses some handy notebook functions. In particular,",
+                    "// we include a way to display ImgLib images (i.e., RandomAccessibleInterval",
+                    "// objects) directly inside the notebook here.",
+                    "//////////////////////////////////////////////////////////////////////////////",
+                    "",
+                    "import java.awt.image.BufferedImage",
+                    "import net.imagej.display.ColorTables",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.converter.RealLUTConverter",
+                    "import net.imglib2.display.projector.composite.CompositeXYProjector",
+                    "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "import net.imglib2.view.Views",
+                    "",
+                    "notebook = new Object() {",
+                    "  BufferedImage display(RandomAccessibleInterval source, double min = 0.0, double max = 255.0) {",
+                    "    return display(source, 0, 1, -1, min, max)",
+                    "  }",
+                    "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis, double min, double max) {",
+                    "    offset = new long[source.numDimensions()]",
+                    "    for (int d = 0; d < offset.length; d++) {",
+                    "     offset[d] = -source.min(d) ",
+                    "    }",
+                    "    image = Views.translate(source, offset)",
+                    "    ",
+                    "    w = (int) image.dimension(xAxis)",
+                    "    h = (int) image.dimension(yAxis)",
+                    "    c = 1",
+                    "    target = new ARGBScreenImage(w, h)",
+                    "    converters = new ArrayList<RealLUTConverter>(c)",
+                    "    for (int i=0; i<c; i++) {",
+                    "      converters.add(new RealLUTConverter(min, max, ColorTables.GRAYS))",
+                    "    }",
+                    "    proj = new CompositeXYProjector(image, target, converters, cAxis)",
+                    "    proj.map()",
+                    "    return target.image()",
+                    "  }",
+                    "}",
+                    "",
+                    "print \"Bootstrap ImageJ success!\""
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "564e5866-2ced-4feb-aa35-11a09cb81973",
+                "elapsedTime": 26322,
+                "height": 55,
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Bootstrap ImageJ success!\n"
+                        }
+                    ]
+                }
+            },
+            "evaluatorReader": true,
+            "lineCount": 48
+        },
+        {
+            "id": "sectionypvq97",
+            "type": "section",
+            "title": "Implementation",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeTMpYOB",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imagej.ImageJ",
+                    "import net.imagej.ops.AbstractOp",
+                    "import net.imagej.ops.Op",
+                    "import org.scijava.ItemIO",
+                    "import org.scijava.plugin.Parameter",
+                    "import org.scijava.plugin.Plugin",
+                    "import org.scijava.plugin.PluginInfo",
+                    "import net.imglib2.Cursor;",
+                    "import net.imglib2.img.array.ArrayImg;",
+                    "import net.imglib2.img.array.ArrayImgs;",
+                    "import net.imglib2.img.basictypeaccess.array.DoubleArray;",
+                    "import net.imglib2.type.numeric.RealType;",
+                    "import net.imglib2.type.numeric.real.DoubleType;",
+                    "",
+                    "@Plugin(type = Op.class, name = \"ramp\")",
+                    "public class Ramp<T extends RealType<T>> extends AbstractOp {",
+                    "  ",
+                    "  @Parameter(type = ItemIO.OUTPUT)",
+                    "  private ArrayImg<DoubleType, DoubleArray> rampImg",
+                    "  ",
+                    "  @Override",
+                    "  public void run() {",
+                    "    rampImg = ArrayImgs.doubles(256, 256)",
+                    "    ",
+                    "    Cursor<DoubleType> c = rampImg.localizingCursor()",
+                    "    long[] pos = new long[rampImg.numDimensions()]",
+                    "    ",
+                    "    while (c.hasNext()) {",
+                    "      c.fwd()",
+                    "      c.localize(pos)",
+                    "      c.get().setReal(sum(pos))",
+                    "    }",
+                    "  }",
+                    "  ",
+                    "  private float sum(long[] pos) {",
+                    "    float sum = 0",
+                    "    for (long p : pos) {",
+                    "      sum += p",
+                    "    }",
+                    "    return sum",
+                    "  }",
+                    "}",
+                    "",
+                    "// Create a new ImageJ instance ",
+                    "ij = new ImageJ()",
+                    "",
+                    "// The @Plugin annatation is processed by the javac compiler,",
+                    "// which is used to generate the metadata in class bytecode.",
+                    "// Unfortunately, the Groovy compiler doesn't invoke the javac",
+                    "// compiler, so we need to register the plugin manually!",
+                    "rampInfo = new PluginInfo(Ramp.class, Op.class)",
+                    "ij.plugin().addPlugin(rampInfo)",
+                    "",
+                    "// Executing our op and get the result",
+                    "ramp = ij.op().run(\"ramp\")",
+                    "",
+                    "// Display the ramp image",
+                    "notebook.display(ramp)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "ImageIcon",
+                    "imageData": "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",
+                    "width": 256,
+                    "height": 256
+                },
+                "selectedType": "Image",
+                "pluginName": "Groovy",
+                "shellId": "564e5866-2ced-4feb-aa35-11a09cb81973",
+                "elapsedTime": 4471,
+                "height": 293
+            },
+            "evaluatorReader": true,
+            "lineCount": 58
+        }
+    ],
+    "namespace": {}
+}
