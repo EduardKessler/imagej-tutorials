@@ -6,6 +6,7 @@
  *     http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+import net.imagej.ImageJ;
 import net.imagej.ops.AbstractOp;
 import net.imagej.ops.Op;
 import net.imglib2.Cursor;
@@ -44,6 +45,17 @@ public class Ramp<T extends RealType<T>> extends AbstractOp {
             sum += p;
         }
         return sum;
+    }
+
+    public static void main(final String... args) throws Exception {
+        final ImageJ ij = new ImageJ();
+
+        // Run our op
+        final Object ramp = ij.op().run("ramp");
+
+        // And display the result!
+        ij.ui().showUI();
+        ij.ui().show(ramp);
     }
 
 }
