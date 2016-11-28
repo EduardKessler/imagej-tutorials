@@ -1,0 +1,192 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            },
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n"
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "jsSetting2": "",
+            "jsSetting1": "",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "R",
+            "plugin": "R",
+            "view": {
+                "cm": {
+                    "mode": "r"
+                }
+            }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "section001",
+            "type": "section",
+            "level": 1,
+            "title": "ImageJ Ops\n\nExample 03a: Creating a new op",
+            "collapsed": false,
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectiondWXqiA",
+            "type": "section",
+            "title": "Introduction",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdown9dHd5C",
+            "type": "markdown",
+            "body": [
+                "This example illustrates how to create a new op and run this op with ImageJ OpService."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section8LHMGc",
+            "type": "section",
+            "title": "Bootstrap ImageJ",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeGB53Md",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-55')",
+                    "import net.imagej.ImageJ",
+                    "",
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Groovy",
+                "shellId": "9aea8f83-d03f-4b0d-9308-8cb1156c93a4",
+                "elapsedTime": 15804,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 8
+        },
+        {
+            "id": "sectionypvq97",
+            "type": "section",
+            "title": "Implementation",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeTMpYOB",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imagej.ImageJ",
+                    "import net.imagej.ops.AbstractOp",
+                    "import net.imagej.ops.Op",
+                    "import org.scijava.ItemIO",
+                    "import org.scijava.plugin.Parameter",
+                    "import org.scijava.plugin.Plugin",
+                    "import org.scijava.plugin.PluginInfo",
+                    "",
+                    "@Plugin(type = Op.class, name = \"narf\")",
+                    "public class Narf extends AbstractOp {",
+                    "  ",
+                    "  @Parameter",
+                    "  private String input",
+                    "  ",
+                    "  @Parameter(type = ItemIO.OUTPUT)",
+                    "  private String output",
+                    "  ",
+                    "  @Override",
+                    "  public void run() {",
+                    "    output = \"Egads! \" + input.toUpperCase()",
+                    "  }",
+                    "}",
+                    "",
+                    "// Create a new ImageJ instance ",
+                    "ij = new ImageJ()",
+                    "",
+                    "// The @Plugin annatation is processed by the javac compiler,",
+                    "// which is used to generate the metadata in class bytecode.",
+                    "// Unfortunately, the Groovy compiler doesn't invoke the javac",
+                    "// compiler, so we need to register the plugin manually!",
+                    "narfInfo = new PluginInfo(Narf.class, Op.class)",
+                    "ij.plugin().addPlugin(narfInfo)",
+                    "",
+                    "// Executing our op and get the result",
+                    "String result = ij.op().run(\"narf\", \"Put some trousers on\")"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": "Egads! PUT SOME TROUSERS ON",
+                "selectedType": "Text",
+                "pluginName": "Groovy",
+                "shellId": "9aea8f83-d03f-4b0d-9308-8cb1156c93a4",
+                "elapsedTime": 10726,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 35
+        }
+    ],
+    "namespace": {}
+}
