@@ -1,0 +1,311 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            },
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n"
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "jsSetting2": "",
+            "jsSetting1": "",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "R",
+            "plugin": "R",
+            "view": {
+                "cm": {
+                    "mode": "r"
+                }
+            }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "section001",
+            "type": "section",
+            "level": 1,
+            "title": "ImageJ Ops\n\nExample 03b: Creating a new op to display a random blos image",
+            "collapsed": false,
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectiondWXqiA",
+            "type": "section",
+            "title": "Introduction",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdown9dHd5C",
+            "type": "markdown",
+            "body": [
+                "This example illustrates how to create a new op and construct a ramp image in this op."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section8LHMGc",
+            "type": "section",
+            "title": "Bootstrap ImageJ",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeGB53Md",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-55')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    "",
+                    "///////////////////////////////////////////////////////////////////////////////",
+                    "// Define an object which houses some handy notebook functions. In particular,",
+                    "// we include a way to display ImgLib images (i.e., RandomAccessibleInterval",
+                    "// objects) directly inside the notebook here.",
+                    "//////////////////////////////////////////////////////////////////////////////",
+                    "",
+                    "import java.awt.image.BufferedImage",
+                    "import net.imagej.display.ColorTables",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.converter.RealLUTConverter",
+                    "import net.imglib2.display.projector.composite.CompositeXYProjector",
+                    "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "import net.imglib2.view.Views",
+                    "",
+                    "notebook = new Object() {",
+                    "  BufferedImage display(RandomAccessibleInterval source, double min = 0.0, double max = 255.0) {",
+                    "    return display(source, 0, 1, -1, min, max)",
+                    "  }",
+                    "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis, double min, double max) {",
+                    "    offset = new long[source.numDimensions()]",
+                    "    for (int d = 0; d < offset.length; d++) {",
+                    "     offset[d] = -source.min(d) ",
+                    "    }",
+                    "    image = Views.translate(source, offset)",
+                    "    ",
+                    "    w = (int) image.dimension(xAxis)",
+                    "    h = (int) image.dimension(yAxis)",
+                    "    c = 1",
+                    "    target = new ARGBScreenImage(w, h)",
+                    "    converters = new ArrayList<RealLUTConverter>(c)",
+                    "    for (int i=0; i<c; i++) {",
+                    "      converters.add(new RealLUTConverter(min, max, ColorTables.GRAYS))",
+                    "    }",
+                    "    proj = new CompositeXYProjector(image, target, converters, cAxis)",
+                    "    proj.map()",
+                    "    return target.image()",
+                    "  }",
+                    "}",
+                    "",
+                    "print \"Bootstrap ImageJ success!\""
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "2474d877-1d95-4c2d-9d43-e2288d7761ea",
+                "elapsedTime": 22447,
+                "height": 55,
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Bootstrap ImageJ success!\n"
+                        }
+                    ]
+                }
+            },
+            "evaluatorReader": true,
+            "lineCount": 48
+        },
+        {
+            "id": "sectionypvq97",
+            "type": "section",
+            "title": "Implementation",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeTMpYOB",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import java.util.Random",
+                    "import net.imagej.ImageJ",
+                    "import net.imagej.ops.AbstractOp",
+                    "import net.imagej.ops.Op",
+                    "import net.imglib2.RandomAccess",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.img.array.ArrayImgs",
+                    "import net.imglib2.type.numeric.RealType",
+                    "import net.imglib2.util.IntervalIndexer",
+                    "import net.imglib2.util.Intervals",
+                    "import org.scijava.ItemIO",
+                    "import org.scijava.log.LogService",
+                    "import org.scijava.plugin.Parameter",
+                    "import org.scijava.plugin.Plugin",
+                    "import org.scijava.plugin.PluginInfo",
+                    "",
+                    "@Plugin(type = Op.class, name = \"blobs\")",
+                    "public class RandomBlobs<T extends RealType<T>> extends AbstractOp {",
+                    "",
+                    "  @Parameter(type = ItemIO.OUTPUT)",
+                    "  private RandomAccessibleInterval<T> image",
+                    "  ",
+                    "  @Parameter",
+                    "  private LogService log",
+                    "  ",
+                    "  @Parameter",
+                    "  private int blobNum",
+                    "  ",
+                    "  @Parameter",
+                    "  private int blobSize",
+                    "  ",
+                    "  @Parameter",
+                    "  private int xDim",
+                    "  ",
+                    "  @Parameter",
+                    "  private int yDim",
+                    "  ",
+                    "  private final long seed = 0xcafebabe",
+                    "  ",
+                    "  @Override",
+                    "  public void run() {",
+                    "    // produce a XxY float64 array-backed image using the input parameters",
+                    "    image = ArrayImgs.doubles(xDim, yDim)",
+                    "    long[] pos = new long[image.numDimensions()]",
+                    "    ",
+                    "    long[] blobCenter = new long[image.numDimensions()]",
+                    "    long[] dims = new long[image.numDimensions()]",
+                    "    image.dimensions(dims)",
+                    "    ",
+                    "    long total = Intervals.numElements(image)",
+                    "    ",
+                    "    Random r = new Random(seed)",
+                    "    ",
+                    "    RandomAccess<T> ra = image.randomAccess(image)",
+                    "    ",
+                    "    for (int i = 0; i < blobNum; i++) {",
+                    "      long index = (long) (r.nextDouble() * total)",
+                    "      IntervalIndexer.indexToPosition(index, dims, blobCenter)",
+                    "      ",
+                    "      for (int j = 0; j < total; j++) {",
+                    "        IntervalIndexer.indexToPosition(j, dims, pos)",
+                    "        double dist = distance(pos, blobCenter)",
+                    "        if (dist > blobSize) {",
+                    "          continue",
+                    "        }",
+                    "        ",
+                    "        ra.setPosition(pos)",
+                    "        double norm = 1.0 - dist / blobSize",
+                    "        ra.get().setReal(Math.max(ra.get().getRealDouble(), norm))",
+                    "      }",
+                    "    }",
+                    "  }",
+                    "  /**",
+                    "   * Computes distance between the given position and a center point.",
+                    "   */",
+                    "  private double distance(long[] pos, long[] center) {",
+                    "    long sumDistSquared = 0",
+                    "    for (int d = 0; d < center.length; d++) {",
+                    "      long dist = pos[d] - center[d]",
+                    "      sumDistSquared += dist * dist",
+                    "    }",
+                    "    return Math.sqrt(sumDistSquared)",
+                    "  }",
+                    "}",
+                    "",
+                    "// Create a new ImageJ instance ",
+                    "ij = new ImageJ()",
+                    "",
+                    "// The @Plugin annatation is processed by the javac compiler,",
+                    "// which is used to generate the metadata in class bytecode.",
+                    "// Unfortunately, the Groovy compiler doesn't invoke the javac",
+                    "// compiler, so we need to register the plugin manually!",
+                    "blobsInfo = new PluginInfo(RandomBlobs.class, Op.class)",
+                    "ij.plugin().addPlugin(blobsInfo)",
+                    "",
+                    "// Executing our op and get the result",
+                    "blobs = ij.op().run(\"blobs\", 30, 15, 256, 256)",
+                    "",
+                    "// Display the ramp image",
+                    "notebook.display(blobs, 0, 1)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "ImageIcon",
+                    "imageData": "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",
+                    "width": 256,
+                    "height": 256
+                },
+                "selectedType": "Image",
+                "pluginName": "Groovy",
+                "shellId": "2474d877-1d95-4c2d-9d43-e2288d7761ea",
+                "elapsedTime": 5132,
+                "height": 293
+            },
+            "evaluatorReader": true,
+            "lineCount": 100
+        }
+    ],
+    "namespace": {}
+}
