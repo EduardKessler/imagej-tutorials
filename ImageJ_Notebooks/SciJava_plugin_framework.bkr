@@ -74,20 +74,30 @@
                     "import net.imagej.ImageJ",
                     "",
                     "// application gateway to all services, our instance of ImageJ",
-                    "ij = new ImageJ()"
+                    "ij = new ImageJ()",
+                    "",
+                    "print(\"Bootstrap ImageJ success!\")"
                 ]
             },
             "output": {
                 "state": {},
-                "result": "net.imagej.ImageJ@3cc4b8b7",
-                "selectedType": "Text",
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Bootstrap ImageJ success!\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "7906ba45-ace0-4c65-9d8c-3eb9801c1113",
-                "elapsedTime": 1991,
-                "height": 56
+                "shellId": "945144fe-862d-4030-be95-c43dc97ac278",
+                "elapsedTime": 1680,
+                "height": 55
             },
             "evaluatorReader": true,
-            "lineCount": 8
+            "lineCount": 10
         },
         {
             "id": "sectionE4yLib",
@@ -117,45 +127,53 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "import net.imagej.ImageJ",
-                    "import java.net.URL",
                     "import org.scijava.plugin.Plugin",
                     "import org.scijava.plugin.Parameter",
-                    "import org.scijava.platform.PlatformService",
+                    "import org.scijava.log.LogService",
                     "import org.scijava.command.Command",
                     "",
                     "@Plugin(type = Command.class)",
                     "public class MyPlugin implements Command {",
                     " ",
                     "  // This @Parameter notation is 'asking' the Context",
-                    "  // for an instance of PlatformService.",
+                    "  // for an instance of LogService.",
                     "  @Parameter",
-                    "  private PlatformService platformService",
+                    "  private LogService logService",
+                    "  ",
+                    "  @Parameter",
+                    "  private String message",
                     " ",
+                    "  @Override",
                     "  public void run() {",
-                    "    // Just use the PlatformService!",
+                    "    // Just use the LogService!",
                     "    // There is no need to construct it, since the Context",
                     "    // has already provided an appropriate instance.",
-                    "    platformService.open(new URL(\"http://imagej.net\"))",
+                    "    logService.info(message)",
+                    "  }",
+                    "  ",
+                    "  public void log(String message) {",
+                    "    // Just use the LogService!",
+                    "    // There is no need to construct it, since the Context",
+                    "    // has already provided an appropriate instance.",
+                    "    logService.info(message);",
                     "  }",
                     "}",
                     "",
-                    "// executing our sample command, will open URL",
-                    "ij.command().run(MyPlugin.class, true)",
-                    "\"Success!\""
+                    "// executing our sample command",
+                    "ij.command().run(MyPlugin.class, true, \"message\", \"Success!\")"
                 ]
             },
             "output": {
                 "state": {},
-                "result": "Success!",
+                "result": "java.util.concurrent.FutureTask@7c101e29",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "7906ba45-ace0-4c65-9d8c-3eb9801c1113",
-                "elapsedTime": 608,
+                "shellId": "945144fe-862d-4030-be95-c43dc97ac278",
+                "elapsedTime": 555,
                 "height": 56
             },
             "evaluatorReader": true,
-            "lineCount": 26
+            "lineCount": 34
         },
         {
             "id": "markdownezExAD",
@@ -173,18 +191,22 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
+                    "import org.scijava.plugin.Plugin",
                     "import org.scijava.Context;",
                     "import org.scijava.plugin.Parameter",
+                    "import org.scijava.command.Command",
                     "",
-                    "public class MyService {",
+                    "@Plugin(type = Command.class)",
+                    "public class MyService implements Command {",
                     " ",
                     "  // This service will manually create plugin instances.",
                     "  // So, we need a reference to our containing Context,",
                     "  // then we can use it to inject our plugins.",
                     "  @Parameter",
-                    "  private Context context;",
-                    " ",
-                    "  public void doStuff() {",
+                    "  private Context context",
+                    "  ",
+                    "  @Override",
+                    "  public void run() {",
                     "    // Manually create a plugin instance.",
                     "    // It is not connected to a Context yet",
                     "    MyPlugin plugin = new MyPlugin();",
@@ -197,28 +219,23 @@
                     "    // have been populated.",
                     "    plugin.log(\"Success!\");",
                     "  }",
-                    "}"
+                    "}",
+                    "",
+                    "// executing our sample command",
+                    "ij.command().run(MyService.class, true)"
                 ]
             },
             "output": {
                 "state": {},
-                "result": {
-                    "type": "BeakerDisplay",
-                    "innertype": "Error",
-                    "object": [
-                        "java.lang.ClassCastException: MyService cannot be cast to groovy.lang.Script<br/>",
-                        "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:368)",
-                        ""
-                    ]
-                },
-                "selectedType": "BeakerDisplay",
+                "result": "java.util.concurrent.FutureTask@150ce977",
+                "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "7906ba45-ace0-4c65-9d8c-3eb9801c1113",
-                "elapsedTime": 567,
-                "height": 81
+                "shellId": "945144fe-862d-4030-be95-c43dc97ac278",
+                "elapsedTime": 549,
+                "height": 56
             },
             "evaluatorReader": true,
-            "lineCount": 25
+            "lineCount": 32
         },
         {
             "id": "sectionkmU6Pi",
@@ -250,20 +267,22 @@
             "evaluator": "Groovy",
             "input": {
                 "body": [
-                    "import org.scijava.app.StatusService;",
+                    "import org.scijava.service.SciJavaService",
+                    "import org.scijava.service.Service",
+                    "import org.scijava.app.StatusService",
                     "import org.scijava.plugin.Plugin",
                     "import org.scijava.plugin.Parameter",
                     "",
                     "// Example Service Interface:",
                     "public interface HelloService extends SciJavaService {",
-                    "  public void sayHello();",
+                    "  public void sayHello()",
                     "}",
                     "",
                     "// Example implementation:",
                     "@Plugin(type = Service.class)",
                     "public class DefaultHelloService implements HelloService {",
                     "  @Parameter",
-                    "  private StatusService status;",
+                    "  private StatusService status",
                     "",
                     "  @Override",
                     "  public void initialize() {",
@@ -272,7 +291,7 @@
                     "",
                     "  @Override",
                     "  public void sayHello() {",
-                    "          status.showStatus(\"Howdy!\");",
+                    "          status.showStatus(\"Howdy!\")",
                     "  }",
                     "}"
                 ]
@@ -283,19 +302,20 @@
                     "type": "BeakerDisplay",
                     "innertype": "Error",
                     "object": [
-                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14782022772981417051260.groovy: 6: unable to resolve class SciJavaService <br/> @ line 6, column 1.<br/>   public interface HelloService extends SciJavaService {<br/>   ^<br/><br/>script14782022772981417051260.groovy: 11: unable to find class &#39;Service.class&#39; for annotation attribute constant<br/> @ line 11, column 16.<br/>   @Plugin(type = Service.class)<br/>                  ^<br/><br/>2 errors<br/><br/>",
+                        "org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:<br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;void registerEventHandlers()&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;void setPriority(double)&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;void dispose()&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;int compareTo(java.lang.Object)&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;org.scijava.Context context()&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;void setContext(org.scijava.Context)&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;void setInfo(org.scijava.plugin.PluginInfo)&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;org.scijava.Context getContext()&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;double getPriority()&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>script14805399230081231302939.groovy: 13: Can&#39;t have an abstract method in a non-abstract class. The class &#39;DefaultHelloService&#39; must be declared abstract or the method &#39;org.scijava.plugin.PluginInfo getInfo()&#39; must be implemented.<br/> @ line 13, column 1.<br/>   @Plugin(type = Service.class)<br/>   ^<br/><br/>10 errors<br/><br/>",
                         "\tat com.twosigma.beaker.groovy.utils.GroovyEvaluator$workerThread$MyRunnable.run(GroovyEvaluator.java:366)",
                         ""
                     ]
                 },
                 "selectedType": "BeakerDisplay",
                 "pluginName": "Groovy",
-                "shellId": "7906ba45-ace0-4c65-9d8c-3eb9801c1113",
-                "elapsedTime": 567,
-                "height": 273
+                "shellId": "945144fe-862d-4030-be95-c43dc97ac278",
+                "elapsedTime": 560,
+                "height": 51,
+                "hidden": true
             },
             "evaluatorReader": true,
-            "lineCount": 25
+            "lineCount": 27
         },
         {
             "id": "sectionTK39y9",
