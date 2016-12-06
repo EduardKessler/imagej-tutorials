@@ -77,10 +77,10 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                "Example 4 will focus on how to work with specialized **iterables**. They are especially useful when performing operations in the local neighborhood of many pixels - like finding local minima/maxima, texture analysis, convolution with non-separable, non-linear filters and many more. One elegant solution is to write a specialized **Iterable** that will iterate all pixels in the local neighborhood. We implemented two examples:",
+                "Example 4 will focus on how to work with specialized **iterables**. They are especially useful when performing operations in the local neighborhood of many pixels - like finding local minima/maxima, texture analysis, convolution with non-separable, non-linear filters and many more. One elegant solution is to write a specialized [Iterable](http://javadoc.imagej.net/Java/java/lang/Iterable.html?is-external=true) that will iterate all pixels in the local neighborhood. We implemented two examples:",
                 "",
-                "* A **HyperSphere** that will iterate a n-dimensional sphere with a given radius at a defined location..",
-                "* A **LocalNeighborhood** that will iterate n-dimensionally all pixels adjacent to a certain location, but skip the central pixel (this corresponds to an both neighbors in 1d, an 8-neighborhood in 2d, a 26-neighborhood in 3d, and so on ...)"
+                "* A [HyperSphere](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/region/hypersphere/HyperSphere.html) that will iterate a n-dimensional sphere with a given radius at a defined location..",
+                "* A [LocalNeighborhood](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/region/localneighborhood/package-summary.html) that will iterate n-dimensionally all pixels adjacent to a certain location, but skip the central pixel (this corresponds to an both neighbors in 1d, an 8-neighborhood in 2d, a 26-neighborhood in 3d, and so on ...)"
             ],
             "evaluatorReader": false
         },
@@ -139,11 +139,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14773191705171499809235$1@7ca0eefd",
+                "result": "script14810618297061499809235$1@1c4fa6ba",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
-                "elapsedTime": 24360,
+                "shellId": "d7377d07-5e1c-4631-b0e4-878ab687095d",
+                "elapsedTime": 2311,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -152,7 +152,7 @@
         {
             "id": "sectionK2rrg9",
             "type": "section",
-            "title": "Drawing a sphere full of spheres",
+            "title": "Example 4a - Drawing a sphere full of spheres",
             "level": 2,
             "evaluatorReader": false,
             "collapsed": false
@@ -261,11 +261,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14773192172701215754089$1@6a960d5c",
+                "result": "script14810619435041215754089$1@670d0fa3",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
-                "elapsedTime": 1495,
+                "shellId": "d7377d07-5e1c-4631-b0e4-878ab687095d",
+                "elapsedTime": 593,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -275,7 +275,7 @@
             "id": "markdownEXf280",
             "type": "markdown",
             "body": [
-                "Note: Because current display method can only display the first frame of the multi-frames images, so we can only just see a \"black\" image."
+                "**Note:** The current display method can only display the first frame of multi-framed images, so we only see a \"black\" image."
             ],
             "evaluatorReader": false
         },
@@ -313,8 +313,8 @@
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
-                "elapsedTime": 22732,
+                "shellId": "d7377d07-5e1c-4631-b0e4-878ab687095d",
+                "elapsedTime": 3267,
                 "height": 293
             },
             "evaluatorReader": true,
@@ -323,7 +323,7 @@
         {
             "id": "section9bqVrv",
             "type": "section",
-            "title": "Finding and displaying local minima",
+            "title": "Example 4b - Finding and displaying local minima",
             "level": 2,
             "evaluatorReader": false,
             "collapsed": false
@@ -332,11 +332,11 @@
             "id": "markdownBoF4Zu",
             "type": "markdown",
             "body": [
-                "In this example we want to find all local minima in an image an display them as small spheres. To not capture too much of the noise in the image data, we first perform an in-place Gaussian smoothing with a sigma of 1, i.e. the data will be overwritten with the result. A complete documentation of the gauss package for ImgLib2 can be found  [here](http://imagej.net/Gauss_Package_ImgLib2).",
+                "In this example we want to find all local minima in an image and display them as small spheres. To not capture too much of the noise in the image data, we first perform an in-place Gaussian smoothing with a sigma of 1, i.e. the data will be overwritten with the result. A complete documentation of the gauss package for ImgLib2 can be found  [here](http://imagej.net/Gauss_Package_ImgLib2).",
                 "",
                 "We display the results using a binary image. *Note that the **BitType** only requires one bit per pixel and therefore is very memory efficient.*",
                 "",
-                "The generic method for minima detection has some more interesting properties. The type of the source image data actually does not require to be of **Type**, it simply needs something that is comparable. The **LocalNeighborhood** will iterate n-dimensionally all pixels adjacent to a certain location, but skip the central pixel (this corresponds to an both neighbors in 1d, an 8-neighborhood in 2d, a 26-neighborhood in 3d, and so on ...). This allows to efficiently detect if a pixel is a local minima or maxima. Note that the **Cursor** that performs the iteration can have special implementations for specific dimensionalities to speed up the iteration. See below the example for a specialized three-dimensional iteration:",
+                "The generic method for minima detection has some more interesting properties. The type of the source image data actually does not require to be of **Type**, it simply needs something that is comparable. The **LocalNeighborhood** will iterate n-dimensionally all pixels adjacent to a certain location, but skip the central pixel (this corresponds to neighbors in 1d, an 8-neighborhood in 2d, a 26-neighborhood in 3d, and so on ...). This allows to efficiently detect if a pixel is a local minima or maxima. Note that the **Cursor** that performs the iteration can have special implementations for specific dimensionalities to speed up the iteration. See below the example for a specialized three-dimensional iteration:",
                 "",
                 "Please note as well that if one would increase the radius of the **RectangleShape** to more than 1 (without at the same time changing the **View** on source that creates an inset border of exactly this one pixel), this example would fail as we would try to write image data outside of the defined boundary. **OutOfBoundsStrategies** which define how to handle such cases is discussed in example 5."
             ],
@@ -388,7 +388,7 @@
                     "    // create a view on the source with this interval",
                     "    source = Views.interval(source, interval)",
                     "    ",
-                    "    // create a Cursor that iterates over the source and checks in a 8-neighborhood if it is a minima",
+                    "    // create a Cursor that iterates over the source and checks in an 8-neighborhood if it is a minima",
                     "    final Cursor<T> center = Views.iterable(source).cursor()",
                     "    ",
                     "    // instantiate a RectangleShape to access rectangular local neighborhoods",
@@ -433,11 +433,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14773193222541421844406$1@31f4e259",
+                "result": "script14810622640231421844406$1@67944490",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
-                "elapsedTime": 1924,
+                "shellId": "d7377d07-5e1c-4631-b0e4-878ab687095d",
+                "elapsedTime": 570,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -476,7 +476,7 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
                         }
                     ],
                     "payload": {
@@ -488,8 +488,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
-                "elapsedTime": 13030,
+                "shellId": "d7377d07-5e1c-4631-b0e4-878ab687095d",
+                "elapsedTime": 1699,
                 "height": 519
             },
             "evaluatorReader": true,
