@@ -77,10 +77,10 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                "Example 4 will focus on how to work with specialized **iterables**. They are especially useful when performing operations in the local neighborhood of many pixels - like finding local minima/maxima, texture analysis, convolution with non-separable, non-linear filters and many more. One elegant solution is to write a specialized **Iterable** that will iterate all pixels in the local neighborhood. We implemented two examples:",
+                "Example 4 will focus on how to work with specialized **iterables**. They are especially useful when performing operations in the local neighborhood of many pixels - like finding local minima/maxima, texture analysis, convolution with non-separable, non-linear filters and many more. One elegant solution is to write a specialized [**Iterable**](https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html) that will iterate all pixels in the local neighborhood. We implemented two examples:",
                 "",
-                "* A **HyperSphere** that will iterate a n-dimensional sphere with a given radius at a defined location..",
-                "* A **LocalNeighborhood** that will iterate n-dimensionally all pixels adjacent to a certain location, but skip the central pixel (this corresponds to an both neighbors in 1d, an 8-neighborhood in 2d, a 26-neighborhood in 3d, and so on ...)"
+                "* A [**HyperSphere**](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/region/hypersphere/HyperSphere.html) that will iterate a n-dimensional sphere with a given radius at a defined location..",
+                "* A [**LocalNeighborhood**](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/neighborhood/Neighborhood.html) that will iterate n-dimensionally all pixels adjacent to a certain location, but skip the central pixel (this corresponds to an both neighbors in 1d, an 8-neighborhood in 2d, a 26-neighborhood in 3d, and so on ...)"
             ],
             "evaluatorReader": false
         },
@@ -161,11 +161,11 @@
             "id": "markdownZ2C71U",
             "type": "markdown",
             "body": [
-                "In the first sample we simply draw a sphere full of little spheres. We therefore create a large **HyperSphere** in the center of a **RandomAccessibleInterval**. Note that the **HyperSphere** only needs a **RandomAccessible**, we need the additional **Interval** simply to compute the center and the radius of the large sphere. When iterating over all pixels of this large sphere, we create small **HyperSpheres** at every n'th pixel and fill them with a random intensity.",
+                "In the first sample we simply draw a sphere full of little spheres. We therefore create a large [**HyperSphere**](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/region/hypersphere/HyperSphere.html) in the center of a [**RandomAccessibleInterval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccessibleInterval.html). Note that the **HyperSphere** only needs a [**RandomAccessible**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccessible.html), we need the additional [**Interval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/util/Intervals.html) simply to compute the center and the radius of the large sphere. When iterating over all pixels of this large sphere, we create small [**HyperSphere**](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/region/hypersphere/HyperSphere.html) at every n'th pixel and fill them with a random intensity.",
                 "",
-                "This example illustrates the use of specialized **Iterables**, and emphasizes the fact that they can be stacked on the underlying **RandomAccessible** using the location of one as the center of a new one. Note that we always create new instances of **HyperSphere**. The code reads very nicely but might not offer the best performance. We therefore added *update* methods to the **HyperSphere** and its **Cursor** that could be used instead.",
+                "This example illustrates the use of specialized **Iterables**, and emphasizes the fact that they can be stacked on the underlying [**RandomAccessible**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccessible.html) using the location of one as the center of a new one. Note that we always create new instances of [**HyperSphere**](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/region/hypersphere/HyperSphere.html) . The code reads very nicely but might not offer the best performance. We therefore added *update* methods to the [**HyperSphere**](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/region/hypersphere/HyperSphere.html)  and its **Cursor** that could be used instead.",
                 "",
-                "Another interesting aspect of this example is the use of the **ImagePlusImgFactory**, which is the compatibility container for ImageJ. If the required dimensionality and **Type** is available in ImageJ, it will internally create an ImagePlus and work on it directly. In this case, one can request the ImagePlus and show it directly. It will, however, fail if **Type** and dimensionality is not supported by ImageJ and throw a **ImgLibException**."
+                "Another interesting aspect of this example is the use of the [**ImagePlusImgFactory**](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/imageplus/ImagePlusImgFactory.html), which is the compatibility container for ImageJ. If the required dimensionality and [**Type**](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/Type.html) is available in ImageJ, it will internally create an ImagePlus and work on it directly. In this case, one can request the ImagePlus and show it directly. It will, however, fail if [**Type**](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/Type.html) and dimensionality is not supported by ImageJ and throw a [**ImgLibException**](http://javadoc.imagej.net/ImgLib2/net/imglib2/exception/ImgLibException.html)."
             ],
             "evaluatorReader": false
         },
@@ -334,11 +334,11 @@
             "body": [
                 "In this example we want to find all local minima in an image an display them as small spheres. To not capture too much of the noise in the image data, we first perform an in-place Gaussian smoothing with a sigma of 1, i.e. the data will be overwritten with the result. A complete documentation of the gauss package for ImgLib2 can be found  [here](http://imagej.net/Gauss_Package_ImgLib2).",
                 "",
-                "We display the results using a binary image. *Note that the **BitType** only requires one bit per pixel and therefore is very memory efficient.*",
+                "We display the results using a binary image. *Note that the [**BitType**](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/logic/BitType.html) only requires one bit per pixel and therefore is very memory efficient.*",
                 "",
-                "The generic method for minima detection has some more interesting properties. The type of the source image data actually does not require to be of **Type**, it simply needs something that is comparable. The **LocalNeighborhood** will iterate n-dimensionally all pixels adjacent to a certain location, but skip the central pixel (this corresponds to an both neighbors in 1d, an 8-neighborhood in 2d, a 26-neighborhood in 3d, and so on ...). This allows to efficiently detect if a pixel is a local minima or maxima. Note that the **Cursor** that performs the iteration can have special implementations for specific dimensionalities to speed up the iteration. See below the example for a specialized three-dimensional iteration:",
+                "The generic method for minima detection has some more interesting properties. The type of the source image data actually does not require to be of [**Type**](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/Type.html), it simply needs something that is comparable. The [**LocalNeighborhood**](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/neighborhood/Neighborhood.html) will iterate n-dimensionally all pixels adjacent to a certain location, but skip the central pixel (this corresponds to an both neighbors in 1d, an 8-neighborhood in 2d, a 26-neighborhood in 3d, and so on ...). This allows to efficiently detect if a pixel is a local minima or maxima. Note that the [**Cursor**](http://javadoc.imagej.net/ImgLib2/net/imglib2/Cursor.html) that performs the iteration can have special implementations for specific dimensionalities to speed up the iteration. See below the example for a specialized three-dimensional iteration:",
                 "",
-                "Please note as well that if one would increase the radius of the **RectangleShape** to more than 1 (without at the same time changing the **View** on source that creates an inset border of exactly this one pixel), this example would fail as we would try to write image data outside of the defined boundary. **OutOfBoundsStrategies** which define how to handle such cases is discussed in example 5."
+                "Please note as well that if one would increase the radius of the [**RectangleShape**](http://javadoc.imagej.net/ImgLib2/net/imglib2/algorithm/neighborhood/RectangleShape.html) to more than 1 (without at the same time changing the [**View**](http://javadoc.imagej.net/ImgLib2/net/imglib2/View.html) on source that creates an inset border of exactly this one pixel), this example would fail as we would try to write image data outside of the defined boundary. [**OutOfBoundsStrategies**](http://javadoc.imagej.net/ImgLib2/net/imglib2/view/Views.html) which define how to handle such cases is discussed in example 5."
             ],
             "evaluatorReader": false
         },
@@ -438,7 +438,7 @@
                 "pluginName": "Groovy",
                 "shellId": "c61242c4-e64c-4529-b8e9-43f0fb2f7ad4",
                 "elapsedTime": 1924,
-                "height": 56
+                "height": 55
             },
             "evaluatorReader": true,
             "lineCount": 81
