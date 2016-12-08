@@ -168,7 +168,7 @@
                 "pluginName": "Groovy",
                 "shellId": "24d2bc48-bf3a-4009-bade-196b9b42dedd",
                 "elapsedTime": 4685,
-                "height": 56
+                "height": 55
             },
             "evaluatorReader": true,
             "lineCount": 46
@@ -240,7 +240,7 @@
             "id": "markdownsnyeNt",
             "type": "markdown",
             "body": [
-                "implementation"
+                "Implementation"
             ],
             "evaluatorReader": false
         },
