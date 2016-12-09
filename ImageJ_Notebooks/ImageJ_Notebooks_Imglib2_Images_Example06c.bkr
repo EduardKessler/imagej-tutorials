@@ -87,7 +87,7 @@
             "body": [
                 "In this example we show how to work with complex numbers and Fourier transforms. We show how to determine the location of a template in an image exploiting the *Fourier Shift Theorem*. We therefore compute the Fast Fourier Transform of a template, invert it and convolve it in Fourier space with the original image.",
                 "",
-                "Computing an FFT is straight forward. It does not offer a static method because the instance of the FFT is required to perform an inverse FFT. This is necessary because the input image needs to be extended to a size supported by the 1-d FFT method (edu_mines_jtk.jar). In order to restore the complete input image remembering those parameters is essential.",
+                "Computing an FFT is straight forward. It does not offer a static method because the instance of the FFT is required to perform an inverse FFT. This is necessary because the input image needs to be extended to a size supported by the 1-d FFT method (edu_mines_jtk.jar). In order to restore the complete input image, remembering those parameters is essential.",
                 "",
                 "Note that for inverting the kernel we use methods defined for [**ComplexType**](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/numeric/ComplexType.html), also the basic math operations add, mul, sub and div are implemented in complex math. The inverse FFT finally takes the instance of the FFT as a parameter from which it takes all required parameters for a correct inversion.",
                 "",
@@ -167,12 +167,12 @@
             },
             "output": {
                 "state": {},
-                "result": "script1478269550275503082304$1@3bb529c5",
+                "result": "script1481314107693503082304$1@46bb7d1d",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "a95fee24-ea8b-433e-be38-9f750a32c4d4",
-                "elapsedTime": 5234,
-                "height": 55
+                "shellId": "5c2bb99a-8204-453a-855d-a117ebf61837",
+                "elapsedTime": 2414,
+                "height": 56
             },
             "evaluatorReader": true,
             "lineCount": 46
@@ -181,7 +181,7 @@
             "id": "markdownGK5zPw",
             "type": "markdown",
             "body": [
-                "Some utility methods"
+                "Some utility methods can be found below."
             ],
             "evaluatorReader": false
         },
@@ -230,11 +230,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14782717373021393697403$1@5b2c546f",
+                "result": "script14813141711261393697403$1@7660b151",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "a95fee24-ea8b-433e-be38-9f750a32c4d4",
-                "elapsedTime": 686,
+                "shellId": "5c2bb99a-8204-453a-855d-a117ebf61837",
+                "elapsedTime": 553,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -244,7 +244,7 @@
             "id": "markdownsnyeNt",
             "type": "markdown",
             "body": [
-                "Implementation"
+                "The implementation is as follows..."
             ],
             "evaluatorReader": false
         },
@@ -299,7 +299,7 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
                         }
                     ],
                     "payload": {
@@ -311,9 +311,9 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "a95fee24-ea8b-433e-be38-9f750a32c4d4",
-                "elapsedTime": 1761,
-                "height": 630
+                "shellId": "5c2bb99a-8204-453a-855d-a117ebf61837",
+                "elapsedTime": 2770,
+                "height": 631
             },
             "evaluatorReader": true,
             "lineCount": 36
