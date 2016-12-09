@@ -1,0 +1,402 @@
+{
+    "beaker": "2",
+    "evaluators": [
+        {
+            "name": "HTML",
+            "plugin": "HTML",
+            "view": {
+                "cm": {
+                    "mode": "htmlmixed"
+                }
+            }
+        },
+        {
+            "name": "TeX",
+            "plugin": "TeX",
+            "view": {
+                "cm": {
+                    "mode": "stex"
+                }
+            }
+        },
+        {
+            "name": "IPython",
+            "plugin": "IPython",
+            "imports": "",
+            "supplementalClassPath": "",
+            "view": {
+                "cm": {
+                    "mode": "python"
+                }
+            },
+            "setup": "%matplotlib inline\nimport numpy\nimport matplotlib\nfrom matplotlib import pylab, mlab, pyplot\nnp = numpy\nplt = pyplot\nfrom IPython.display import display\nfrom IPython.core.pylabtools import figsize, getfigs\nfrom pylab import *\nfrom numpy import *\n"
+        },
+        {
+            "name": "JavaScript",
+            "plugin": "JavaScript",
+            "jsSetting2": "",
+            "jsSetting1": "",
+            "view": {
+                "cm": {
+                    "mode": "javascript",
+                    "background": "#FFE0F0"
+                }
+            },
+            "languageVersion": "ES2015"
+        },
+        {
+            "name": "R",
+            "plugin": "R",
+            "view": {
+                "cm": {
+                    "mode": "r"
+                }
+            }
+        },
+        {
+            "name": "Groovy",
+            "plugin": "Groovy",
+            "imports": "graxxia.*\ncom.twosigma.beaker.NamespaceClient\ncom.twosigma.beaker.BeakerProgressUpdate\ncom.twosigma.beaker.chart.Color\ncom.twosigma.beaker.chart.GradientColor\ncom.twosigma.beaker.chart.legend.*\ncom.twosigma.beaker.chart.Filter\ncom.twosigma.beaker.chart.xychart.*\ncom.twosigma.beaker.chart.xychart.plotitem.*\ncom.twosigma.beaker.chart.categoryplot.*\ncom.twosigma.beaker.chart.categoryplot.plotitem.*\ncom.twosigma.beaker.chart.histogram.*\ncom.twosigma.beaker.chart.treemap.*\ncom.twosigma.beaker.chart.treemap.util.*\nnet.sf.jtreemap.swing.*\ncom.twosigma.beaker.chart.heatmap.HeatMap\ncom.twosigma.beaker.chart.KeyboardCodes\ncom.twosigma.beaker.jvm.object.*\ncom.twosigma.beaker.easyform.*\ncom.twosigma.beaker.easyform.formitem.*",
+            "view": {
+                "cm": {
+                    "mode": "groovy"
+                }
+            }
+        }
+    ],
+    "cells": [
+        {
+            "id": "section001",
+            "type": "section",
+            "level": 1,
+            "title": "ImageJ Ops\n\nExample 04: Add two datasets",
+            "collapsed": false,
+            "evaluatorReader": false
+        },
+        {
+            "id": "sectiondWXqiA",
+            "type": "section",
+            "title": "Introduction",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "markdown9dHd5C",
+            "type": "markdown",
+            "body": [
+                "This example illustrates how to use ImageJ Ops to add two datasets."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "section8LHMGc",
+            "type": "section",
+            "title": "Bootstrap ImageJ",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeGB53Md",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "/////////////////////////////////////////////////////////////////",
+                    "// Bootstrap ImageJ. This may take some minutes the first time,",
+                    "// but will be fast on subsequent runs on the same computer.",
+                    "@GrabResolver(name='imagej', root='http://maven.imagej.net/content/groups/public/')",
+                    "@Grab(group='net.imagej', module='imagej', version='2.0.0-rc-50')",
+                    "import net.imagej.ImageJ",
+                    "/////////////////////////////////////////////////////////////////",
+                    "",
+                    "///////////////////////////////////////////////////////////////////////////////",
+                    "// Define an object which houses some handy notebook functions. In particular,",
+                    "// we include a way to display ImgLib images (i.e., RandomAccessibleInterval",
+                    "// objects) directly inside the notebook here.",
+                    "",
+                    "import java.awt.image.BufferedImage",
+                    "import net.imagej.display.ColorTables",
+                    "import net.imglib2.RandomAccessibleInterval",
+                    "import net.imglib2.converter.RealLUTConverter",
+                    "import net.imglib2.display.projector.composite.CompositeXYProjector",
+                    "import net.imglib2.display.screenimage.awt.ARGBScreenImage",
+                    "import net.imglib2.view.Views",
+                    "",
+                    "notebook = new Object() {",
+                    "  BufferedImage display(RandomAccessibleInterval source, double min = 0.0, double max = 255.0) {",
+                    "    return display(source, 0, 1, -1, min, max)",
+                    "  }",
+                    "  BufferedImage display(RandomAccessibleInterval source, int xAxis, int yAxis, int cAxis, double min, double max) {",
+                    "    offset = new long[source.numDimensions()]",
+                    "    for (int d = 0; d < offset.length; d++) {",
+                    "     offset[d] = -source.min(d) ",
+                    "    }",
+                    "    image = Views.translate(source, offset)",
+                    "    ",
+                    "    w = (int) image.dimension(xAxis)",
+                    "    h = (int) image.dimension(yAxis)",
+                    "    c = 1",
+                    "    target = new ARGBScreenImage(w, h)",
+                    "    converters = new ArrayList<RealLUTConverter>(c)",
+                    "    for (int i=0; i<c; i++) {",
+                    "      converters.add(new RealLUTConverter(min, max, ColorTables.GRAYS))",
+                    "    }",
+                    "    proj = new CompositeXYProjector(image, target, converters, cAxis)",
+                    "    proj.map()",
+                    "    return target.image()",
+                    "  }",
+                    "}",
+                    "",
+                    "print \"Bootstrap ImageJ success.\""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "Bootstrap ImageJ success.\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "56ea7244-800b-4a59-abb3-9be24152e01d",
+                "elapsedTime": 8498,
+                "height": 55
+            },
+            "evaluatorReader": true,
+            "lineCount": 47
+        },
+        {
+            "id": "codeOpUAsY",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imglib2.type.numeric.RealType",
+                    "import net.imglib2.type.NativeType",
+                    "import net.imagej.ImageJ",
+                    "import net.imagej.Dataset",
+                    "import net.imagej.axis.AxisType",
+                    "import net.imglib2.type.numeric.real.FloatType",
+                    "import net.imglib2.IterableInterval",
+                    "",
+                    "con = new Object() {",
+                    "  /**",
+                    "   * Creates a dataset with bounds constrained by the minimum of the two input datasets.",
+                    "   */",
+                    "  private <T extends RealType<T> & NativeType<T>> Dataset create(ImageJ ij, Dataset d1, Dataset d2, T type) {",
+                    "    int dimCount = Math.min(d1.numDimensions(), d2.numDimensions())",
+                    "    long[] dims = new long[dimCount]",
+                    "    AxisType[] axes = new AxisType[dimCount]",
+                    "    for (int i = 0; i < dimCount; i++) {",
+                    "      dims[i] = Math.min(d1.dimension(i), d2.dimension(i))",
+                    "      axes[i] = d1.numDimensions() > i ? d1.axis(i).type() : d2.axis(i).type()",
+                    "    }",
+                    "    return ij.dataset().create(type, dims, \"result\", axes)",
+                    "  }",
+                    "  ",
+                    "  /**",
+                    "   * Adds two datasets using a loop with an ImgLib cursor.",
+                    "   * This is a very powerful approach but requires a verbose loop.",
+                    "   */",
+                    "  private Dataset addRandomAccess(ImageJ ij, Dataset d1, Dataset d2) {",
+                    "    result = create(ij, d1, d2, new FloatType())",
+                    "    ",
+                    "    // sum data into result dataset",
+                    "    ra1 = d1.getImgPlus().randomAccess()",
+                    "    ra2 = d2.getImgPlus().randomAccess()",
+                    "    cursor = result.getImgPlus().localizingCursor()",
+                    "    ",
+                    "    long[] pos1 = new long[d1.numDimensions()]",
+                    "    final long[] pos2 = new long[d2.numDimensions()]",
+                    "    ",
+                    "    while (cursor.hasNext()) {",
+                    "      cursor.fwd()",
+                    "      cursor.localize(pos1)",
+                    "      cursor.localize(pos2)",
+                    "      ra1.setPosition(pos1)",
+                    "      ra2.setPosition(pos2)",
+                    "      double sum = ra1.get().getRealDouble() + ra2.get().getRealDouble()",
+                    "      cursor.get().setReal(sum)",
+                    "    }",
+                    "    return result",
+                    "  }",
+                    "  ",
+                    "  /**",
+                    "   * Adds two datasets using the ImageJ OPS framework.",
+                    "   * This is a very succinct approach that does not require a loop.",
+                    "   * This version is designed for small processing jobs and is not automatically parallelized.",
+                    "   */",
+                    "  private <T extends RealType<T> & NativeType<T>> Dataset addOpsSerial(ImageJ ij, Dataset d1, Dataset d2, T outType) {",
+                    "    output = create(ij, d1, d2, outType)",
+                    "    ",
+                    "    // Convert image to FloatType for better numeric precision",
+                    "    float_img1 = ij.op().convert().float32(d1.getImgPlus())",
+                    "    float_img2 = ij.op().convert().float32(d2.getImgPlus())",
+                    "    ",
+                    "    ij.op().math().add(output.getImgPlus(), float_img1 as IterableInterval, float_img2 as IterableInterval)",
+                    "    ",
+                    "    return output",
+                    "  }",
+                    "  ",
+                    "  /**",
+                    "   * Adds two datasets using the ImgLib OPS framework.",
+                    "   * This is a very succinct approach that does not require a loop.",
+                    "   * This version is automatically parallelized!",
+                    "   */",
+                    "  private <T extends RealType<T> & NativeType<T>> Dataset addOpsParallel(ImageJ ij, Dataset d1, Dataset d2, T outType) {",
+                    "    output = create(ij, d1, d2, outType)",
+                    "",
+                    "    // Convert image to FloatType for better numeric precision",
+                    "    float_img1 = ij.op().convert().float32(d1.getImgPlus())",
+                    "    float_img2 = ij.op().convert().float32(d2.getImgPlus())",
+                    "    ",
+                    "    ij.op().run(\"math.add\", output.getImgPlus(), float_img1 as IterableInterval, float_img2 as IterableInterval)",
+                    "    ",
+                    "    return output",
+                    "  }",
+                    "}",
+                    "",
+                    "print \"create object success.\""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "out",
+                            "value": "create object success.\n"
+                        }
+                    ]
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "56ea7244-800b-4a59-abb3-9be24152e01d",
+                "elapsedTime": 2390,
+                "height": 54
+            },
+            "evaluatorReader": true,
+            "lineCount": 86
+        },
+        {
+            "id": "sectionypvq97",
+            "type": "section",
+            "title": "Implementation",
+            "level": 2,
+            "evaluatorReader": false,
+            "collapsed": false
+        },
+        {
+            "id": "codeTMpYOB",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imagej.ImageJ",
+                    "",
+                    "ij = new ImageJ()",
+                    "",
+                    "dataset1 = ij.scifio().datasetIO().open(\"http://samples.fiji.sc/tutorials/DrosophilaWingSmall.tif\")",
+                    "dataset2 = ij.scifio().datasetIO().open(\"http://samples.fiji.sc/tutorials/DrosophilaWingSmall.tif\")",
+                    "",
+                    "",
+                    "result1 = con.addRandomAccess(ij, dataset1, dataset2);",
+                    "notebook.display(result1.getImgPlus())",
+                    ""
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "Results",
+                    "outputdata": [
+                        {
+                            "type": "err",
+                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                        }
+                    ],
+                    "payload": {
+                        "type": "ImageIcon",
+                        "imageData": "iVBORw0KGgoAAAANSUhEUgAAAMgAAABcCAYAAAArr/rLAAADTUlEQVR42u3cXytsUQDGYZ/Vtc/hygdw7cqF5EJyIUmSJEmSJEmSJEmSJOv07lrlyIz/M7PN89TkZOacZsb+rbX2sueMFBhS19fXZWFhoaysrHR8zIi3iWE1MzNT7u/vuz5GIF/08PBQzs7Oyvr6etnd3S1ra2tlZ2en7O3tlcPDw3JyctLcNjc3m9vW1lZz3/b2dtnf3y+np6fNLX8338u/l8fnB5bHXV5eepN/UX3/3yOQV56fn5sD/eDgoFxdXZW7u7vmaw7w3BJFDuSE0WtPT0/N1zyn4+PjcnR0VC4uLpqYbm9vm+eVuPJ8a4T8v6TKLYPS7Oxs8x4KpIOM2hn1M2IvLS01B1pG/jaO3I+Pj024+ZpoOsnrOz8//zM/w9XV1a73v3wvMuBl8Iubm5syOTlZpqamytzcXJmfnx/uQDJS5A3KQZQg3lt3DovMOG/Je5VZNAdSv+U5ZMb8yCBRZZDLTNFNXQ3ktWa27TRw/LlAMmrkxYrgexYXF8vo6GgZGxsrExMTzWibaDLiZnk5PT3dHLw5d8psHFnmZTDKEi8zcmboPCYzVw7I3Jc/vx6xc3DnPC3frwdqDt5eLanzvDoF1fpA8kOpL5SfNT4+XjY2Nj59wCWCbJ1mrZ8DP6FkpK7nAW3SukByopopt1cjDMOtNYEkCFufvZFlEy0IxCzBe3LOUrfju8k5Ud0mb3UgecHdtioZTl85uCM7dd/5fdBABFJ3PaCTj2z1dpo5WrvEqjsbUGVbeJCuAHCpCQxKIJkxXB+EQH5o/chwyG/SX14qMkibAJZY9N1Xd6jei+4zslEkEP70JTm5tKX6yKXsfVli9XuqZDjl4srl5eV2n6TDb8mVwHXW+MlLZQTCl9TPXAzCki1XDNePOPz0+YxAaLXskP7GJfQ1NIHQGm/NDr/9EWKB0ApvfTy4FxtCAmHg9fM/mhAIA72E6jeBgEBAICAQEAgIBAQCAgGBgEAAgYBAQCAgEBAICAQEAgIBgYBAAIGAQEAgIBAQCAgEBAICAYEAAgGBgEBAICAQEAgIBAQCAgGBAAIBgYBAQCAgEBAICAQEAgIBBAICAYGAQEAgIBAQCAgEBAICAQQCAgGBgEBAICAQEAj8Mf8A6ygheOtpHloAAAAASUVORK5CYII=",
+                        "width": 200,
+                        "height": 92
+                    }
+                },
+                "selectedType": "Results",
+                "pluginName": "Groovy",
+                "shellId": "56ea7244-800b-4a59-abb3-9be24152e01d",
+                "elapsedTime": 703,
+                "height": 354
+            },
+            "evaluatorReader": true,
+            "lineCount": 11
+        },
+        {
+            "id": "codedbHqHQ",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imglib2.type.numeric.real.FloatType",
+                    "",
+                    "result2 = con.addOpsSerial(ij, dataset1, dataset2, new FloatType());",
+                    "notebook.display(result2.getImgPlus())"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "ImageIcon",
+                    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAMgAAABcCAYAAAArr/rLAAADTUlEQVR42u3cXytsUQDGYZ/Vtc/hygdw7cqF5EJyIUmSJEmSJEmSJEmSJOv07lrlyIz/M7PN89TkZOacZsb+rbX2sueMFBhS19fXZWFhoaysrHR8zIi3iWE1MzNT7u/vuz5GIF/08PBQzs7Oyvr6etnd3S1ra2tlZ2en7O3tlcPDw3JyctLcNjc3m9vW1lZz3/b2dtnf3y+np6fNLX8338u/l8fnB5bHXV5eepN/UX3/3yOQV56fn5sD/eDgoFxdXZW7u7vmaw7w3BJFDuSE0WtPT0/N1zyn4+PjcnR0VC4uLpqYbm9vm+eVuPJ8a4T8v6TKLYPS7Oxs8x4KpIOM2hn1M2IvLS01B1pG/jaO3I+Pj024+ZpoOsnrOz8//zM/w9XV1a73v3wvMuBl8Iubm5syOTlZpqamytzcXJmfnx/uQDJS5A3KQZQg3lt3DovMOG/Je5VZNAdSv+U5ZMb8yCBRZZDLTNFNXQ3ktWa27TRw/LlAMmrkxYrgexYXF8vo6GgZGxsrExMTzWibaDLiZnk5PT3dHLw5d8psHFnmZTDKEi8zcmboPCYzVw7I3Jc/vx6xc3DnPC3frwdqDt5eLanzvDoF1fpA8kOpL5SfNT4+XjY2Nj59wCWCbJ1mrZ8DP6FkpK7nAW3SukByopopt1cjDMOtNYEkCFufvZFlEy0IxCzBe3LOUrfju8k5Ud0mb3UgecHdtioZTl85uCM7dd/5fdBABFJ3PaCTj2z1dpo5WrvEqjsbUGVbeJCuAHCpCQxKIJkxXB+EQH5o/chwyG/SX14qMkibAJZY9N1Xd6jei+4zslEkEP70JTm5tKX6yKXsfVli9XuqZDjl4srl5eV2n6TDb8mVwHXW+MlLZQTCl9TPXAzCki1XDNePOPz0+YxAaLXskP7GJfQ1NIHQGm/NDr/9EWKB0ApvfTy4FxtCAmHg9fM/mhAIA72E6jeBgEBAICAQEAgIBAQCAgGBgEAAgYBAQCAgEBAICAQEAgIBgYBAAIGAQEAgIBAQCAgEBAICAYEAAgGBgEBAICAQEAgIBAQCAgGBAAIBgYBAQCAgEBAICAQEAgIBBAICAYGAQEAgIBAQCAgEBAICAQQCAgGBgEBAICAQEAj8Mf8A6ygheOtpHloAAAAASUVORK5CYII=",
+                    "width": 200,
+                    "height": 92
+                },
+                "selectedType": "Image",
+                "pluginName": "Groovy",
+                "shellId": "56ea7244-800b-4a59-abb3-9be24152e01d",
+                "elapsedTime": 707,
+                "height": 129
+            },
+            "evaluatorReader": true,
+            "lineCount": 4
+        },
+        {
+            "id": "codelCwcVt",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "import net.imglib2.type.numeric.real.FloatType",
+                    "",
+                    "result3 = con.addOpsParallel(ij, dataset1, dataset2, new FloatType())",
+                    "notebook.display(result3.getImgPlus())"
+                ]
+            },
+            "output": {
+                "state": {},
+                "result": {
+                    "type": "ImageIcon",
+                    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAMgAAABcCAYAAAArr/rLAAADTUlEQVR42u3cXytsUQDGYZ/Vtc/hygdw7cqF5EJyIUmSJEmSJEmSJEmSJOv07lrlyIz/M7PN89TkZOacZsb+rbX2sueMFBhS19fXZWFhoaysrHR8zIi3iWE1MzNT7u/vuz5GIF/08PBQzs7Oyvr6etnd3S1ra2tlZ2en7O3tlcPDw3JyctLcNjc3m9vW1lZz3/b2dtnf3y+np6fNLX8338u/l8fnB5bHXV5eepN/UX3/3yOQV56fn5sD/eDgoFxdXZW7u7vmaw7w3BJFDuSE0WtPT0/N1zyn4+PjcnR0VC4uLpqYbm9vm+eVuPJ8a4T8v6TKLYPS7Oxs8x4KpIOM2hn1M2IvLS01B1pG/jaO3I+Pj024+ZpoOsnrOz8//zM/w9XV1a73v3wvMuBl8Iubm5syOTlZpqamytzcXJmfnx/uQDJS5A3KQZQg3lt3DovMOG/Je5VZNAdSv+U5ZMb8yCBRZZDLTNFNXQ3ktWa27TRw/LlAMmrkxYrgexYXF8vo6GgZGxsrExMTzWibaDLiZnk5PT3dHLw5d8psHFnmZTDKEi8zcmboPCYzVw7I3Jc/vx6xc3DnPC3frwdqDt5eLanzvDoF1fpA8kOpL5SfNT4+XjY2Nj59wCWCbJ1mrZ8DP6FkpK7nAW3SukByopopt1cjDMOtNYEkCFufvZFlEy0IxCzBe3LOUrfju8k5Ud0mb3UgecHdtioZTl85uCM7dd/5fdBABFJ3PaCTj2z1dpo5WrvEqjsbUGVbeJCuAHCpCQxKIJkxXB+EQH5o/chwyG/SX14qMkibAJZY9N1Xd6jei+4zslEkEP70JTm5tKX6yKXsfVli9XuqZDjl4srl5eV2n6TDb8mVwHXW+MlLZQTCl9TPXAzCki1XDNePOPz0+YxAaLXskP7GJfQ1NIHQGm/NDr/9EWKB0ApvfTy4FxtCAmHg9fM/mhAIA72E6jeBgEBAICAQEAgIBAQCAgGBgEAAgYBAQCAgEBAICAQEAgIBgYBAAIGAQEAgIBAQCAgEBAICAYEAAgGBgEBAICAQEAgIBAQCAgGBAAIBgYBAQCAgEBAICAQEAgIBBAICAYGAQEAgIBAQCAgEBAICAQQCAgGBgEBAICAQEAj8Mf8A6ygheOtpHloAAAAASUVORK5CYII=",
+                    "width": 200,
+                    "height": 92
+                },
+                "selectedType": "Image",
+                "pluginName": "Groovy",
+                "shellId": "56ea7244-800b-4a59-abb3-9be24152e01d",
+                "elapsedTime": 707,
+                "height": 129
+            },
+            "evaluatorReader": true,
+            "lineCount": 4
+        }
+    ],
+    "namespace": {}
+}

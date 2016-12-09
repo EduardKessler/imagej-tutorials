@@ -89,7 +89,7 @@
                 "",
                 "Computing an FFT is straight forward. It does not offer a static method because the instance of the FFT is required to perform an inverse FFT. This is necessary because the input image needs to be extended to a size supported by the 1-d FFT method (edu_mines_jtk.jar). In order to restore the complete input image remembering those parameters is essential.",
                 "",
-                "Note that for inverting the kernel we use methods defined for **ComplexType**, also the basic math operations add, mul, sub and div are implemented in complex math. The inverse FFT finally takes the instance of the FFT as a parameter from which it takes all required parameters for a correct inversion.",
+                "Note that for inverting the kernel we use methods defined for [**ComplexType**](http://javadoc.imagej.net/ImgLib2/net/imglib2/type/numeric/ComplexType.html), also the basic math operations add, mul, sub and div are implemented in complex math. The inverse FFT finally takes the instance of the FFT as a parameter from which it takes all required parameters for a correct inversion.",
                 "",
                 "The final convolution of the inverse template with the image is performed using the FourierConvolution (see example 6b). Note that all possible locations of the template in the image have been tested. The peak in the result image clearly marks the location of the template, while the computation time for the whole operation takes less than a second."
             ],
@@ -172,7 +172,7 @@
                 "pluginName": "Groovy",
                 "shellId": "a95fee24-ea8b-433e-be38-9f750a32c4d4",
                 "elapsedTime": 5234,
-                "height": 56
+                "height": 55
             },
             "evaluatorReader": true,
             "lineCount": 46
@@ -313,7 +313,7 @@
                 "pluginName": "Groovy",
                 "shellId": "a95fee24-ea8b-433e-be38-9f750a32c4d4",
                 "elapsedTime": 1761,
-                "height": 631
+                "height": 630
             },
             "evaluatorReader": true,
             "lineCount": 36

@@ -85,7 +85,7 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                "Interpolation is a basic operation required in many image processing tasks. In the terminology of ImgLib2 it means to convert a **RandomAccessible** into a **RealRandomAccessible** which is able to create a **RealRandomAccess**. It can be positioned at real coordinates instead of only integer coordinates and a return a value for each real location. ",
+                "Interpolation is a basic operation required in many image processing tasks. In the terminology of ImgLib2 it means to convert a [**RandomAccessible**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccessible.html) into a [**RealRandomAccessible**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RealRandomAccessible.html) which is able to create a [**RealRandomAccess**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RealRandomAccess.html). It can be positioned at real coordinates instead of only integer coordinates and a return a value for each real location. ",
                 "",
                 "Currently, three interpolation schemes are available for ImgLib2:",
                 "  * Nearest neighbor interpolation (also for available for any kind of data that can return a nearest neighbor like sparse datasets)",
@@ -266,7 +266,7 @@
                 "pluginName": "Groovy",
                 "shellId": "35c1f4fb-fb47-4321-9510-6851b36b1e5c",
                 "elapsedTime": 1374,
-                "height": 56
+                "height": 55
             },
             "evaluatorReader": true,
             "lineCount": 66
@@ -368,7 +368,7 @@
                 "pluginName": "Groovy",
                 "shellId": "35c1f4fb-fb47-4321-9510-6851b36b1e5c",
                 "elapsedTime": 7165,
-                "height": 497
+                "height": 498
             },
             "evaluatorReader": true,
             "lineCount": 60
