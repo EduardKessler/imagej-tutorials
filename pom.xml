@@ -57,6 +57,7 @@
 		<module>intro-to-imagej-api</module>
 		<module>load-and-display-dataset</module>
 		<module>listen-to-events</module>
+		<module>minimal-ij2-plugin</module>
 		<module>simple-commands</module>
 		<module>using-ops</module>
 		<module>using-ops-dog</module>
