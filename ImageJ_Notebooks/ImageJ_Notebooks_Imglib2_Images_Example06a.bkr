@@ -74,6 +74,18 @@
             "evaluatorReader": false
         },
         {
+            "id": "markdownHASz7K",
+            "type": "markdown",
+            "body": [
+                "**Note:** ImgLib2 contains a growing number of built-in standard algorithms. In examples 06a, 06b, and 06c, we will show some of those, illustrate how to use them and give some examples of what they might be used for.",
+                "",
+                "Typically algorithms provide static methods for simple calling, but they also have classes which you can instantiate yourself to have more options.",
+                "",
+                "*Important: Algorithms do not allow to work on a different dimensionality than the input data. You can achieve that by selecting hyperslices using [Views](http://javadoc.imagej.net/ImgLib2/net/imglib2/view/Views.html) (see Example 6a - variation 4). In this way, you can for example apply two-dimensional gaussians to each frame of a movie independently.*"
+            ],
+            "evaluatorReader": false
+        },
+        {
             "id": "sectiondWXqiA",
             "type": "section",
             "title": "Introduction",
@@ -85,7 +97,7 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                "The Gaussian convolution has its own [wiki](http://imagej.net/Gauss_Package_ImgLib2) page. You can apply the Gaussian convolution with different sigmas in any dimension. It will work on any kind [**RandomAccessibleInterval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccessibleInterval.html). Below we show a examples of a simple gaussian convolution (variation 1), convolution using a different [**OutOfBoundsStrategy**](http://javadoc.imagej.net/ImgLib2/net/imglib2/view/Views.html) (variation 2), convolution of a part of an [**Interval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/Interval.html) (variation 3), and convolution of in a lower dimensionality than the image data (variation 4)."
+                "The Gaussian convolution has its own [wiki](http://imagej.net/Gauss_Package_ImgLib2) page. You can apply the Gaussian convolution with different sigmas in any dimension. It will work on any kind of [**RandomAccessibleInterval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccessibleInterval.html). Below we show examples of a simple gaussian convolution (variation 1), convolution using a different [**OutOfBoundsStrategy**](http://javadoc.imagej.net/ImgLib2/net/imglib2/view/Views.html) (variation 2), convolution of a part of an [**Interval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/Interval.html) (variation 3), and convolution of in a lower dimensionality than the image data (variation 4)."
             ],
             "evaluatorReader": false
         },
@@ -152,11 +164,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14779260271741184362112$1@39ac91a3",
+                "result": "script14813100921891184362112$1@5ee30fb3",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "6e3505f1-c929-4286-b327-e98402d06253",
-                "elapsedTime": 29744,
+                "shellId": "64ed2a26-1211-4132-9da8-9dd349ff8698",
+                "elapsedTime": 2501,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -174,7 +186,7 @@
             "id": "markdownxaOMcA",
             "type": "markdown",
             "body": [
-                "Here, we simply apply a Gaussian convolution with a sigma of 8. Note that it could be applied in-place as well when calling Gauss.inFloatInPlace( ... ). The Gaussian convolution uses by default the **OutOfBoundsMirrorStrategy**."
+                "Here, we simply apply a Gaussian convolution with a sigma of 8. Note that it could be applied in-place as well when calling *Gauss.inFloatInPlace(...)*. The Gaussian convolution uses by default the **OutOfBoundsMirrorStrategy**."
             ],
             "evaluatorReader": false
         },
@@ -211,7 +223,7 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
                         }
                     ],
                     "payload": {
@@ -223,8 +235,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "6e3505f1-c929-4286-b327-e98402d06253",
-                "elapsedTime": 4129,
+                "shellId": "64ed2a26-1211-4132-9da8-9dd349ff8698",
+                "elapsedTime": 2688,
                 "height": 519
             },
             "evaluatorReader": true,
@@ -242,7 +254,7 @@
             "id": "markdownAs0b3j",
             "type": "markdown",
             "body": [
-                "Here we use an **OutOfBoundsStrategyConstantValue** instead. It results in continuously darker borders as the zero-values from outside of the image are used in the convolution. Note that the computation is done in-place here. However, we still need to provide an ImgFactory as the Gaussian convolution needs to create temporary image(s) - except for the one-dimensional case."
+                "Here we use an **OutOfBoundsStrategyConstantValue** instead. It results in continuously darker borders as the zero-values from outside of the image are used in the convolution. Note that the computation is done in-place here. However, we still need to provide an [ImgFactory](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/ImgFactory.html) as the Gaussian convolution needs to create temporary image(s) - except for the one-dimensional case."
             ],
             "evaluatorReader": false
         },
@@ -265,7 +277,7 @@
                     "infiniteImg = Views.extendValue(image, new FloatType())",
                     "",
                     "// now we convolve the whole image manually in-place",
-                    "// note that is is basically the same as the call above, just called in a more generic way",
+                    "// note that it is basically the same as the call above, just called in a more generic way",
                     "//",
                     "// sigma .. the sigma",
                     "// infiniteImg ... the RandomAccessible that is the source for the convolution",
@@ -282,7 +294,7 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
                         }
                     ],
                     "payload": {
@@ -294,9 +306,9 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "6e3505f1-c929-4286-b327-e98402d06253",
-                "elapsedTime": 4207,
-                "height": 518
+                "shellId": "64ed2a26-1211-4132-9da8-9dd349ff8698",
+                "elapsedTime": 1243,
+                "height": 519
             },
             "evaluatorReader": true,
             "lineCount": 21
@@ -313,9 +325,9 @@
             "id": "markdownWvjtWU",
             "type": "markdown",
             "body": [
-                "Here we only convolve part of an **Interval**, or in this case part of the **Img**. Note that for convolution he will actually use the real image values outside of the defined **Interval**. The **OutOfBoundsStrategy** is only necessary if the kernel is that large so that it will actually grep image values outside of the underlying **Img**.",
+                "Here we only convolve part of an [**Interval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/Interval.html), or in this case part of the [**Img**](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html). Note that for convolution, it will actually use the real image values outside of the defined [**Interval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/Interval.html). The **OutOfBoundsStrategy** is only necessary if the kernel is that large so that it will actually grep image values outside of the underlying [**Img**](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html).",
                 "",
-                "Note: if you wanted, you could force him to use an **OutOfBoundsStrategy** directly outside of the **Interval**. For that you would have to create an **RandomAccessibleInterval** on the **Img**, extend it by an **OutOfBoundsStrategy** and give this as input to the Gaussian convolution."
+                "Note: if you wanted, you could force it to use an **OutOfBoundsStrategy** directly outside of the [**Interval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/Interval.html). For that you would have to create an [**RandomAccessibleInterval**](http://javadoc.imagej.net/ImgLib2/net/imglib2/RandomAccessibleInterval.html) on the [**Img**](http://javadoc.imagej.net/ImgLib2/net/imglib2/img/Img.html), extend it by an **OutOfBoundsStrategy** and give this as input to the Gaussian convolution."
             ],
             "evaluatorReader": false
         },
@@ -335,7 +347,7 @@
                     "image = new ImgOpener().openImgs(\"http://samples.fiji.sc/tutorials/DrosophilaWing.tif\", new FloatType()).get(0)",
                     "",
                     "// we need to extend it nevertheless as the algorithm needs more pixels from around",
-                    "// the convolved area and we are not sure how much exactly (altough we could compute",
+                    "// the convolved area and we are not sure how much exactly (although we could compute",
                     "// it with some effort from the sigma).",
                     "// Here we let the Views framework take care of the details. The Gauss convolution",
                     "// knows which area of the source image is required, and if the extension is not needed,",
@@ -359,7 +371,7 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
                         }
                     ],
                     "payload": {
@@ -371,8 +383,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "6e3505f1-c929-4286-b327-e98402d06253",
-                "elapsedTime": 4423,
+                "shellId": "64ed2a26-1211-4132-9da8-9dd349ff8698",
+                "elapsedTime": 3104,
                 "height": 519
             },
             "evaluatorReader": true,
@@ -390,9 +402,9 @@
             "id": "markdownc4r6Z5",
             "type": "markdown",
             "body": [
-                "This example shows howto apply an algorithm to a lower dimensionality as the image data you are working on. Therefore we use **Views** to create HyperSlices which have n-1 dimensions. We simply apply the algorithm in-place on those **Views** which will automatically update the image data in the higher-dimensional data.",
+                "This example shows how to apply an algorithm to a lower dimensionality as the image data you are working on. Therefore we use [View](http://javadoc.imagej.net/ImgLib2/net/imglib2/View.html)s to create HyperSlices which have n-1 dimensions. We simply apply the algorithm in-place on those [View](http://javadoc.imagej.net/ImgLib2/net/imglib2/View.html)s which will automatically update the image data in the higher-dimensional data.",
                 "",
-                "Specifically, we apply 1-dimensional Gaussian convolution in 30-pixel wide stripes using a sigma of 16. Note that whenever you request an HyperSlice for a certain dimension, you will get back a **View** that contains all dimensions but this one."
+                "Specifically, we apply 1-dimensional Gaussian convolution in 30-pixel wide stripes using a sigma of 16. Note that whenever you request a HyperSlice for a certain dimension, you will get back a [View](http://javadoc.imagej.net/ImgLib2/net/imglib2/View.html) that contains all dimensions but this one."
             ],
             "evaluatorReader": false
         },
@@ -443,7 +455,7 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
                         }
                     ],
                     "payload": {
@@ -455,8 +467,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "6e3505f1-c929-4286-b327-e98402d06253",
-                "elapsedTime": 7231,
+                "shellId": "64ed2a26-1211-4132-9da8-9dd349ff8698",
+                "elapsedTime": 1346,
                 "height": 519
             },
             "evaluatorReader": true,

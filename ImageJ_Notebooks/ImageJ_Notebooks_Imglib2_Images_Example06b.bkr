@@ -85,9 +85,9 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                "In image processing it is sometimes necessary to convolve images with non-separable kernels. This can be efficiently done in Fourier space exploiting the convolution theorem. It states that a convolution in real-space corresponds to a multiplication in Fourier-space, as vice versa. Note that the computation time for such a convolution is independent of the size and shape of the kernel.",
+                "In image processing, it is sometimes necessary to convolve images with non-separable kernels. This can be efficiently done in Fourier space exploiting the convolution theorem. It states that a convolution in real-space corresponds to a multiplication in Fourier-space, and vice versa. Note that the computation time for such a convolution is independent of the size and shape of the kernel.",
                 "",
-                "*Note that it is useful to normalize the kernel prior to Fourier convolution so that the sum of all pixels is one. Otherwise, the resulting intensities will be increased.*"
+                "*Note: that it is useful to normalize the kernel prior to Fourier convolution so that the sum of all pixels is one. Otherwise, the resulting intensities will be increased.*"
             ],
             "evaluatorReader": false
         },
@@ -163,12 +163,12 @@
             },
             "output": {
                 "state": {},
-                "result": "script1478271903101503082304$1@13d85509",
+                "result": "script1481312265869503082304$1@206a1e8a",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "24d2bc48-bf3a-4009-bade-196b9b42dedd",
-                "elapsedTime": 4685,
-                "height": 55
+                "shellId": "e3553c4b-5557-445f-be08-a01da43e1607",
+                "elapsedTime": 13661,
+                "height": 56
             },
             "evaluatorReader": true,
             "lineCount": 46
@@ -177,7 +177,7 @@
             "id": "markdownGK5zPw",
             "type": "markdown",
             "body": [
-                "Some utility methods"
+                "Some utility methods can be found below."
             ],
             "evaluatorReader": false
         },
@@ -226,11 +226,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14782719099621393697403$1@443a5ef",
+                "result": "script14813123040341393697403$1@6a1dedbd",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "24d2bc48-bf3a-4009-bade-196b9b42dedd",
-                "elapsedTime": 600,
+                "shellId": "e3553c4b-5557-445f-be08-a01da43e1607",
+                "elapsedTime": 553,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -240,7 +240,7 @@
             "id": "markdownsnyeNt",
             "type": "markdown",
             "body": [
-                "Implementation"
+                "The implementation is as follows..."
             ],
             "evaluatorReader": false
         },
@@ -278,7 +278,7 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
                         }
                     ],
                     "payload": {
@@ -290,8 +290,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "24d2bc48-bf3a-4009-bade-196b9b42dedd",
-                "elapsedTime": 3321,
+                "shellId": "e3553c4b-5557-445f-be08-a01da43e1607",
+                "elapsedTime": 3099,
                 "height": 631
             },
             "evaluatorReader": true,

@@ -152,11 +152,11 @@
             },
             "output": {
                 "state": {},
-                "result": "script14803498648461184362112$1@656da268",
+                "result": "script14815839517731184362112$1@6f3abe3b",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "83b8ed46-af19-45c5-b79a-c56c2f0938d9",
-                "elapsedTime": 48263,
+                "shellId": "def81618-6f1b-4de3-b60d-4de2895d5fc8",
+                "elapsedTime": 4542,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -191,11 +191,11 @@
                     "dog = ij.op().filter().dog(input, 1.0, 1.25)",
                     "",
                     "// TODO:",
-                    "// We shouldn't creat op like these, but now it is a workaround for a bug in imagej-ops normalizeScale.",
-                    "// Idealy, we should create the scale op like:",
+                    "// We shouldn't create ops like this, but now it is a workaround for a bug in imagej-ops normalizeScale.",
+                    "// Ideally, we should create the scale op like:",
                     "// scale_op = ij.op().op(\"convert.normalizeScale\", dog.firstElement(), output.firstElement())",
                     "// ij.op().convert().imageType(output, dog, scale_op)",
-                    "// This pull request [https://github.com/imagej/imagej-ops/pull/466] fix this bug, but we need to wait",
+                    "// This pull request [https://github.com/imagej/imagej-ops/pull/466] fixes this bug, but we need to wait",
                     "// for a new imagej-ops build version.",
                     "",
                     "converter = new NormalizeScaleRealTypes();",
@@ -219,7 +219,7 @@
                     "outputdata": [
                         {
                             "type": "err",
-                            "value": "[INFO] Reading IFDs\r\n[INFO] Populating metadata\r\n[INFO] Checking comment style\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\r\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\r\n"
+                            "value": "[INFO] Reading IFDs\n[INFO] Populating metadata\n[INFO] Checking comment style\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n[WARNING] Expected positive value for PhysicalSizeX; got 0.0\n[WARNING] Expected positive value for PhysicalSizeY; got 0.0\n"
                         }
                     ],
                     "payload": {
@@ -231,8 +231,8 @@
                 },
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "83b8ed46-af19-45c5-b79a-c56c2f0938d9",
-                "elapsedTime": 26214,
+                "shellId": "def81618-6f1b-4de3-b60d-4de2895d5fc8",
+                "elapsedTime": 3941,
                 "height": 519
             },
             "evaluatorReader": true,
