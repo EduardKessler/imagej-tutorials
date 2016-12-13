@@ -85,7 +85,7 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                "This example illustrates how to create a new op and run this op with ImageJ OpService."
+                "This example illustrates how to create a new Op and runs this Op with ImageJ [OpService](http://javadoc.imagej.net/ImageJ/net/imagej/ops/OpService.html)."
             ],
             "evaluatorReader": false
         },
@@ -117,8 +117,8 @@
                 "state": {},
                 "selectedType": "Hidden",
                 "pluginName": "Groovy",
-                "shellId": "9aea8f83-d03f-4b0d-9308-8cb1156c93a4",
-                "elapsedTime": 15804,
+                "shellId": "890cfead-4c19-49b1-97f7-2eaa8bf1fdf8",
+                "elapsedTime": 2191,
                 "height": 56
             },
             "evaluatorReader": true,
@@ -146,17 +146,22 @@
                     "import org.scijava.plugin.Plugin",
                     "import org.scijava.plugin.PluginInfo",
                     "",
+                    "// The @Plugin annotation allows this Op to be discovered by the OpService.",
+                    "// We declare the type of op, the name of the op, and any optional aliases...",
                     "@Plugin(type = Op.class, name = \"narf\")",
                     "public class Narf extends AbstractOp {",
                     "  ",
+                    "  // INPUTS, declared using @Parameter notation",
                     "  @Parameter",
                     "  private String input",
                     "  ",
+                    "  // OUTPUTS, declared using @Parameter notation",
                     "  @Parameter(type = ItemIO.OUTPUT)",
                     "  private String output",
                     "  ",
                     "  @Override",
                     "  public void run() {",
+                    "    // The job of the run method is to populate any outputs using the inputs",
                     "    output = \"Egads! \" + input.toUpperCase()",
                     "  }",
                     "}",
@@ -164,14 +169,40 @@
                     "// Create a new ImageJ instance ",
                     "ij = new ImageJ()",
                     "",
-                    "// The @Plugin annatation is processed by the javac compiler,",
+                    "// The @Plugin annotation is processed by the javac compiler,",
                     "// which is used to generate the metadata in class bytecode.",
                     "// Unfortunately, the Groovy compiler doesn't invoke the javac",
                     "// compiler, so we need to register the plugin manually!",
                     "narfInfo = new PluginInfo(Narf.class, Op.class)",
-                    "ij.plugin().addPlugin(narfInfo)",
-                    "",
-                    "// Executing our op and get the result",
+                    "ij.plugin().addPlugin(narfInfo)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Groovy",
+                "shellId": "890cfead-4c19-49b1-97f7-2eaa8bf1fdf8",
+                "elapsedTime": 555,
+                "height": 56
+            },
+            "evaluatorReader": true,
+            "lineCount": 37
+        },
+        {
+            "id": "markdownbMxBkL",
+            "type": "markdown",
+            "body": [
+                "Now you can start using your new Op."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeatmeaU",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
+                    "// Execute our Op and get the result",
                     "String result = ij.op().run(\"narf\", \"Put some trousers on\")"
                 ]
             },
@@ -180,12 +211,12 @@
                 "result": "Egads! PUT SOME TROUSERS ON",
                 "selectedType": "Text",
                 "pluginName": "Groovy",
-                "shellId": "9aea8f83-d03f-4b0d-9308-8cb1156c93a4",
-                "elapsedTime": 10726,
+                "shellId": "890cfead-4c19-49b1-97f7-2eaa8bf1fdf8",
+                "elapsedTime": 573,
                 "height": 56
             },
             "evaluatorReader": true,
-            "lineCount": 35
+            "lineCount": 2
         }
     ],
     "namespace": {}
