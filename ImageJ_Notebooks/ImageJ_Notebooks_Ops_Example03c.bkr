@@ -69,7 +69,7 @@
             "id": "section001",
             "type": "section",
             "level": 1,
-            "title": "ImageJ Ops\n\nExample 03b: Creating a new op to display a random blos image",
+            "title": "ImageJ Ops\n\nExample 03c: Creating a new op to display a 'random blobs' image",
             "collapsed": false,
             "evaluatorReader": false
         },
@@ -85,7 +85,7 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                "This example illustrates how to create a new op and construct a ramp image in this op."
+                "This example illustrates how to create a new op that constructs a 'random blobs' image."
             ],
             "evaluatorReader": false
         },
@@ -157,8 +157,8 @@
                 "state": {},
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "2474d877-1d95-4c2d-9d43-e2288d7761ea",
-                "elapsedTime": 22447,
+                "shellId": "2593bff4-cf45-4d16-ae6b-b97387be83fb",
+                "elapsedTime": 4806,
                 "height": 55,
                 "result": {
                     "type": "Results",
@@ -203,9 +203,12 @@
                     "import org.scijava.plugin.Plugin",
                     "import org.scijava.plugin.PluginInfo",
                     "",
+                    "// The @Plugin annotation allows this Op to be discovered by the OpService.",
+                    "// We declare the type of op, the name of the op, and any optional aliases...",
                     "@Plugin(type = Op.class, name = \"blobs\")",
                     "public class RandomBlobs<T extends RealType<T>> extends AbstractOp {",
                     "",
+                    "  // OUTPUTS, declared using @Parameter notation",
                     "  @Parameter(type = ItemIO.OUTPUT)",
                     "  private RandomAccessibleInterval<T> image",
                     "  ",
@@ -280,8 +283,34 @@
                     "// Unfortunately, the Groovy compiler doesn't invoke the javac",
                     "// compiler, so we need to register the plugin manually!",
                     "blobsInfo = new PluginInfo(RandomBlobs.class, Op.class)",
-                    "ij.plugin().addPlugin(blobsInfo)",
-                    "",
+                    "ij.plugin().addPlugin(blobsInfo)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Groovy",
+                "shellId": "2593bff4-cf45-4d16-ae6b-b97387be83fb",
+                "elapsedTime": 557,
+                "height": 293
+            },
+            "evaluatorReader": true,
+            "lineCount": 97
+        },
+        {
+            "id": "markdown4DzyCk",
+            "type": "markdown",
+            "body": [
+                "Again, it is time to try out our new Op."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codegMHb9h",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
                     "// Executing our op and get the result",
                     "blobs = ij.op().run(\"blobs\", 30, 15, 256, 256)",
                     "",
@@ -299,12 +328,12 @@
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "2474d877-1d95-4c2d-9d43-e2288d7761ea",
-                "elapsedTime": 5132,
-                "height": 293
+                "shellId": "2593bff4-cf45-4d16-ae6b-b97387be83fb",
+                "elapsedTime": 580,
+                "height": 330
             },
             "evaluatorReader": true,
-            "lineCount": 100
+            "lineCount": 5
         }
     ],
     "namespace": {}
