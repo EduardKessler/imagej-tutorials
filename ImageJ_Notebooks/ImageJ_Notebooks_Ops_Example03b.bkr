@@ -85,7 +85,7 @@
             "id": "markdown9dHd5C",
             "type": "markdown",
             "body": [
-                "This example illustrates how to create a new op and construct a ramp image in this op."
+                "This example illustrates how to create a new Op that constructs a ramp image."
             ],
             "evaluatorReader": false
         },
@@ -157,8 +157,8 @@
                 "state": {},
                 "selectedType": "Results",
                 "pluginName": "Groovy",
-                "shellId": "564e5866-2ced-4feb-aa35-11a09cb81973",
-                "elapsedTime": 26322,
+                "shellId": "7069279d-bec1-4405-b827-0c22e3e7fe0c",
+                "elapsedTime": 2993,
                 "height": 55,
                 "result": {
                     "type": "Results",
@@ -201,11 +201,15 @@
                     "import net.imglib2.type.numeric.RealType",
                     "import net.imglib2.type.numeric.real.DoubleType",
                     "",
+                    "// The @Plugin annotation allows this Op to be discovered by the OpService.",
+                    "// We declare the type of op, the name of the op, and any optional aliases...",
                     "@Plugin(type = Op.class, name = \"ramp\")",
                     "public class Ramp<T extends RealType<T>> extends AbstractOp {",
                     "  ",
+                    "  // OUTPUTS, declared using @Parameter notation",
                     "  @Parameter(type = ItemIO.OUTPUT)",
                     "  private ArrayImg<DoubleType, DoubleArray> rampImg",
+                    "  ",
                     "  ",
                     "  @Override",
                     "  public void run() {",
@@ -224,6 +228,7 @@
                     "    }",
                     "  }",
                     "  ",
+                    "  // a sum method to be called in our Op",
                     "  private float sum(long[] pos) {",
                     "    float sum = 0",
                     "    for (long p : pos) {",
@@ -241,8 +246,34 @@
                     "// Unfortunately, the Groovy compiler doesn't invoke the javac",
                     "// compiler, so we need to register the plugin manually!",
                     "rampInfo = new PluginInfo(Ramp.class, Op.class)",
-                    "ij.plugin().addPlugin(rampInfo)",
-                    "",
+                    "ij.plugin().addPlugin(rampInfo)"
+                ]
+            },
+            "output": {
+                "state": {},
+                "selectedType": "Hidden",
+                "pluginName": "Groovy",
+                "shellId": "7069279d-bec1-4405-b827-0c22e3e7fe0c",
+                "elapsedTime": 568,
+                "height": 293
+            },
+            "evaluatorReader": true,
+            "lineCount": 57
+        },
+        {
+            "id": "markdownuuXFVl",
+            "type": "markdown",
+            "body": [
+                "Now it is time to call our newly-constructed Op."
+            ],
+            "evaluatorReader": false
+        },
+        {
+            "id": "codeE3tZP0",
+            "type": "code",
+            "evaluator": "Groovy",
+            "input": {
+                "body": [
                     "// Executing our op and get the result",
                     "ramp = ij.op().run(\"ramp\")",
                     "",
@@ -260,8 +291,8 @@
                 },
                 "selectedType": "Image",
                 "pluginName": "Groovy",
-                "shellId": "564e5866-2ced-4feb-aa35-11a09cb81973",
-                "elapsedTime": 4471,
+                "shellId": "7069279d-bec1-4405-b827-0c22e3e7fe0c",
+                "elapsedTime": 574,
                 "height": 293
             },
             "evaluatorReader": true,
