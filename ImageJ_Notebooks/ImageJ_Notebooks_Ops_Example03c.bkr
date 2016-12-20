@@ -314,7 +314,7 @@
                     "// Executing our op and get the result",
                     "blobs = ij.op().run(\"blobs\", 30, 15, 256, 256)",
                     "",
-                    "// Display the ramp image",
+                    "// Display the blobs image",
                     "notebook.display(blobs, 0, 1)"
                 ]
             },
@@ -330,7 +330,7 @@
                 "pluginName": "Groovy",
                 "shellId": "2593bff4-cf45-4d16-ae6b-b97387be83fb",
                 "elapsedTime": 580,
-                "height": 330
+                "height": 293
             },
             "evaluatorReader": true,
             "lineCount": 5
