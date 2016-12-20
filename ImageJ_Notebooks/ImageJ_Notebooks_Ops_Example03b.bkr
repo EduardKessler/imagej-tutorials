@@ -214,6 +214,9 @@
                     "    Cursor<DoubleType> c = rampImg.localizingCursor()",
                     "    long[] pos = new long[rampImg.numDimensions()]",
                     "    ",
+                    "    // Iterate the image and get the each pixel location",
+                    "    // Every pixel value is assigned its locations sum,",
+                    "    // so generate the ramp pattern image.",
                     "    while (c.hasNext()) {",
                     "      c.fwd()",
                     "      c.localize(pos)",
@@ -262,7 +265,7 @@
                 "height": 293
             },
             "evaluatorReader": true,
-            "lineCount": 58
+            "lineCount": 61
         }
     ],
     "namespace": {}
